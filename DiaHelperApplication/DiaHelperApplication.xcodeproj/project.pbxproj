@@ -15,6 +15,9 @@
 		D344AE592AF625D8002C9CE0 /* DiaHelperApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */; };
 		D344AE632AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */; };
 		D344AE652AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */; };
+		D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE722AF634D2002C9CE0 /* GraphicsViewController.swift */; };
+		D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */; };
+		D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE762AF63538002C9CE0 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		D344AE5E2AF625D8002C9CE0 /* DiaHelperApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationUITests.swift; sourceTree = "<group>"; };
 		D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D344AE722AF634D2002C9CE0 /* GraphicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsViewController.swift; sourceTree = "<group>"; };
+		D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D344AE762AF63538002C9CE0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AE712AF63473002C9CE0 /* Controllers */,
 				D344AE412AF625D4002C9CE0 /* AppDelegate.swift */,
 				D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */,
 				D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */,
@@ -122,6 +129,16 @@
 				D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */,
 			);
 			path = DiaHelperApplicationUITests;
+			sourceTree = "<group>";
+		};
+		D344AE712AF63473002C9CE0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D344AE722AF634D2002C9CE0 /* GraphicsViewController.swift */,
+				D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */,
+				D344AE762AF63538002C9CE0 /* HomeViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +273,10 @@
 			files = (
 				D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */,
 				D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */,
+				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
 				D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */,
+				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
+				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
