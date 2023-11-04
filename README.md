@@ -1,3 +1,3 @@
 # DiaHelperApp
 
-Do
+Дипломна работа
