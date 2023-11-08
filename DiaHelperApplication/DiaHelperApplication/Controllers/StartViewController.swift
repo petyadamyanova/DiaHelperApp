@@ -86,7 +86,7 @@ class StartViewController: UIViewController {
         let registerViewController = RegisterViewController()
         let navController = UINavigationController(rootViewController: registerViewController)
         navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)
+        present(navController, animated: true)
     }
     
     private func setupLoginButton() {
@@ -98,7 +98,7 @@ class StartViewController: UIViewController {
         let loginViewController = LoginViewController()
         let navController = UINavigationController(rootViewController: loginViewController)
         navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)
+        present(navController, animated: true)
     }
     
     private func addSubviews() {
