@@ -30,7 +30,6 @@ class StartViewController: UIViewController {
         let button = UIButton()
         let color = UIColor(named: "newBrown")
         button.setTitle("Login", for: .normal)
-        //button.setTitleColor(.systemIndigo, for: .normal)
         
         button.setTitleColor(color, for: .normal)
         button.tintColor = UIColor(named: "newBlue")
@@ -47,7 +46,6 @@ class StartViewController: UIViewController {
         let button = UIButton()
         let color = UIColor(named: "newBrown")
         button.setTitle("Register", for: .normal)
-        //button.setTitleColor(.systemIndigo, for: .normal)
         
         button.setTitleColor(color, for: .normal)
         button.tintColor = UIColor(named: "newBlue")
@@ -68,7 +66,6 @@ class StartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //view.backgroundColor = UIColor(hex: 0xE8D9E8)
         view.backgroundColor = UIColor(named: "background")
 
         setupLoginButton()

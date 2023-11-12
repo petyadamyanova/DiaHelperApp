@@ -22,6 +22,10 @@
 		D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE7B2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift */; };
 		D344AE7E2AF6C3AD002C9CE0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE7D2AF6C3AD002C9CE0 /* RegisterViewController.swift */; };
 		D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE7F2AF8F6BE002C9CE0 /* StartViewController.swift */; };
+		D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE822B015763002C9CE0 /* EmailValidator.swift */; };
+		D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE842B01578E002C9CE0 /* PasswordValidator.swift */; };
+		D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */; };
+		D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE882B0157CF002C9CE0 /* NameValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		D344AE7B2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedValidatedTextInput.swift; sourceTree = "<group>"; };
 		D344AE7D2AF6C3AD002C9CE0 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D344AE7F2AF8F6BE002C9CE0 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		D344AE822B015763002C9CE0 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		D344AE842B01578E002C9CE0 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
+		D344AE882B0157CF002C9CE0 /* NameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +119,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AE812B01573E002C9CE0 /* Validators */,
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
 				D344AE712AF63473002C9CE0 /* Controllers */,
 				D344AE412AF625D4002C9CE0 /* AppDelegate.swift */,
@@ -159,6 +168,17 @@
 				D344AE7B2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		D344AE812B01573E002C9CE0 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				D344AE822B015763002C9CE0 /* EmailValidator.swift */,
+				D344AE842B01578E002C9CE0 /* PasswordValidator.swift */,
+				D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */,
+				D344AE882B0157CF002C9CE0 /* NameValidator.swift */,
+			);
+			path = Validators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +318,12 @@
 				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
 				D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */,
 				D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */,
+				D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */,
+				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
+				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
 				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
+				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
