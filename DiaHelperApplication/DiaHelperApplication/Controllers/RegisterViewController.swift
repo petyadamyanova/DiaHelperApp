@@ -165,6 +165,11 @@ class RegisterViewController: UIViewController {
         } else {
             removeErrorForField(field: secondPasswordField)
         }
+        
+        let mainTabBarViewController = MainTabBarViewController()
+        let navController = UINavigationController(rootViewController: mainTabBarViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     private func showErrorForField(field: RoundedValidatedTextInput, message: String) {
