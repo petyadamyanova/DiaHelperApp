@@ -27,6 +27,7 @@
 		D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */; };
 		D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE882B0157CF002C9CE0 /* NameValidator.swift */; };
 		D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */; };
+		D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
 		D344AE882B0157CF002C9CE0 /* NameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidator.swift; sourceTree = "<group>"; };
 		D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarApi.swift; sourceTree = "<group>"; };
+		D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNutritionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				D344AE782AF6B93A002C9CE0 /* LoginViewController.swift */,
 				D344AE7D2AF6C3AD002C9CE0 /* RegisterViewController.swift */,
 				D344AE7F2AF8F6BE002C9CE0 /* StartViewController.swift */,
+				D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
+				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
