@@ -35,7 +35,7 @@ class RegisterViewController: UIViewController {
     internal var nameField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
         txtField.label.text = "Name"
-        txtField.textField.placeholder = "Enter name"
+        txtField.textField.placeholder = " Enter name"
     
         return txtField
     }()
@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController {
     internal var usernameField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
         txtField.label.text = "UserName"
-        txtField.textField.placeholder = "Enter username"
+        txtField.textField.placeholder = " Enter username"
         txtField.errorField.text = "Error"
     
         return txtField
@@ -52,7 +52,7 @@ class RegisterViewController: UIViewController {
     internal var emailField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
         txtField.label.text = "Email"
-        txtField.textField.placeholder = "Enter email"
+        txtField.textField.placeholder = " Enter email"
     
         return txtField
     }()
@@ -60,7 +60,7 @@ class RegisterViewController: UIViewController {
     internal var passwordField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
         txtField.label.text = "Password"
-        txtField.textField.placeholder = "Enter password"
+        txtField.textField.placeholder = " Enter password"
         txtField.textField.isSecureTextEntry = true
     
         return txtField
@@ -69,7 +69,7 @@ class RegisterViewController: UIViewController {
     internal var secondPasswordField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
         txtField.label.text = "Repeat the password"
-        txtField.textField.placeholder = "Enter password"
+        txtField.textField.placeholder = " Enter password"
         txtField.textField.isSecureTextEntry = true
     
         return txtField
