@@ -34,12 +34,33 @@ class HomeViewController: UIViewController, ProfileViewControllerDelegate {
         
         return button
     }()
+    
+    private func setupReminderButton() {
+        let color = UIColor(named: "newBrown")
+        
+        let reminderButton = UIButton(type: .system)
+        reminderButton.setTitle("Reminder", for: .normal)
+        reminderButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        reminderButton.setTitleColor(color, for: .normal)
+        reminderButton.addTarget(self, action: #selector(didTapReminder), for: .touchUpInside)
+
+       let reminderBarButton = UIBarButtonItem(customView: reminderButton)
+       navigationItem.rightBarButtonItem = reminderBarButton
+    }
+    
+    @objc private func didTapReminder(_ action: UIAction) {
+        let addNutritionViewController = AddNutritionViewController()
+        let navController = UINavigationController(rootViewController: addNutritionViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         setupAddButton()
+        setupReminderButton()
         profileVC.delegate = self
 
         
