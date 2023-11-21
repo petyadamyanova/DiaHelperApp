@@ -124,7 +124,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func didtapSubmitButton(_ action: UIAction) {
-        guard let name = nameField.textField.text,
+        /*guard let name = nameField.textField.text,
               let email = emailField.textField.text,
               let username = usernameField.textField.text,
               let password = passwordField.textField.text,
@@ -164,7 +164,7 @@ class RegisterViewController: UIViewController {
             return
         } else {
             removeErrorForField(field: secondPasswordField)
-        }
+        }*/
         
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
