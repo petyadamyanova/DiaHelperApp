@@ -14,23 +14,23 @@ class PasswordValidator {
                containsSpecialCharacter(password)
     }
     
-    private func isValidCount(_ password: String) -> Bool {
+    func isValidCount(_ password: String) -> Bool {
         return password.count >= 8
     }
     
-    private func containsUppercaseLetter(_ password: String) -> Bool {
+    func containsUppercaseLetter(_ password: String) -> Bool {
         return password.rangeOfCharacter(from: .uppercaseLetters) != nil
     }
     
-    private func containsLowercaseLetter(_ password: String) -> Bool {
+    func containsLowercaseLetter(_ password: String) -> Bool {
         return password.rangeOfCharacter(from: .lowercaseLetters) != nil
     }
     
-    private func containsDigit(_ password: String) -> Bool {
+    func containsDigit(_ password: String) -> Bool {
         return password.rangeOfCharacter(from: .decimalDigits) != nil
     }
     
-    private func containsSpecialCharacter(_ password: String) -> Bool {
+    func containsSpecialCharacter(_ password: String) -> Bool {
         let specialCharacterSet = CharacterSet(charactersIn: "!@#$%^&*()-_=+[]{}|;:'\",.<>?/~`")
         return password.rangeOfCharacter(from: specialCharacterSet) != nil
     }

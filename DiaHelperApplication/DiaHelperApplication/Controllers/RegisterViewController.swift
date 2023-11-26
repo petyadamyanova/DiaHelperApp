@@ -124,7 +124,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func didtapSubmitButton(_ action: UIAction) {
-        /*guard let name = nameField.textField.text,
+        guard let name = nameField.textField.text,
               let email = emailField.textField.text,
               let username = usernameField.textField.text,
               let password = passwordField.textField.text,
@@ -153,10 +153,32 @@ class RegisterViewController: UIViewController {
         }
         
         if !passwordValidator.isValid(password) {
-            showErrorForField(field: secondPasswordField, message: "The passwords have to be 8 symbols")
-            return
+            if !passwordValidator.isValidCount(password){
+                showErrorForField(field: passwordField, message: "The passwords have to be 8 symbols")
+                return
+            }
+            
+            if !passwordValidator.containsUppercaseLetter(password){
+                showErrorForField(field: passwordField, message: "The passwords have to contains at least one uppercase letter!")
+                return
+            }
+            
+            if !passwordValidator.containsLowercaseLetter(password){
+                showErrorForField(field: passwordField, message: "The passwords have to contains at least one lowercase letter!")
+                return
+            }
+            
+            if !passwordValidator.containsDigit(password){
+                showErrorForField(field: passwordField, message: "The passwords have to contains at least one digit!")
+                return
+            }
+            
+            if !passwordValidator.containsSpecialCharacter(password){
+                showErrorForField(field: passwordField, message: "The passwords have to contains at least one special character!")
+                return
+            }
         } else {
-            removeErrorForField(field: secondPasswordField)
+            removeErrorForField(field: passwordField)
         }
         
         if password != password2 {
@@ -164,7 +186,7 @@ class RegisterViewController: UIViewController {
             return
         } else {
             removeErrorForField(field: secondPasswordField)
-        }*/
+        }
         
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
