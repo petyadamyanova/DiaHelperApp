@@ -30,6 +30,7 @@
 		D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */; };
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
 		D344AE932B1392A4002C9CE0 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* user.swift */; };
+		D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNutritionViewController.swift; sourceTree = "<group>"; };
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		D344AE922B1392A4002C9CE0 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				D344AE7F2AF8F6BE002C9CE0 /* StartViewController.swift */,
 				D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */,
 				D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */,
+				D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
 				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
+				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,
 				D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,

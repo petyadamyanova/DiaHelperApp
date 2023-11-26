@@ -132,7 +132,7 @@ class RegisterViewController: UIViewController {
                   return
               }
         
-        if !nameValidator.isValid(name) {
+        /*if !nameValidator.isValid(name) {
             showErrorForField(field: nameField, message: "You have to enter your name here")
         } else {
             removeErrorForField(field: nameField)
@@ -186,7 +186,12 @@ class RegisterViewController: UIViewController {
             return
         } else {
             removeErrorForField(field: secondPasswordField)
-        }
+        }*/
+        
+        /*let registrationDataViewController = RegistrationDataViewController()
+        let navController = UINavigationController(rootViewController: registrationDataViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)*/
         
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)

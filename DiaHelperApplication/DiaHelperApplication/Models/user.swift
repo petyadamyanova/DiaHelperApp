@@ -19,7 +19,7 @@ struct User: Codable {
     var sensorModel: SensorModel
 }
 
-enum PumpModel: String, Codable {
+enum PumpModel: String, Codable, CaseIterable  {
     case Medtronic
     case Omnipod
     case Danna
@@ -28,7 +28,7 @@ enum PumpModel: String, Codable {
     case None
 }
 
-enum SensorModel: String, Codable {
+enum SensorModel: String, Codable, CaseIterable  {
     case Dexcom
     case Libre
     case Other
