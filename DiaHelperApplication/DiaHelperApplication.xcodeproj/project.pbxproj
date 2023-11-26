@@ -29,6 +29,7 @@
 		D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */; };
 		D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */; };
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
+		D344AE932B1392A4002C9CE0 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* user.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarApi.swift; sourceTree = "<group>"; };
 		D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNutritionViewController.swift; sourceTree = "<group>"; };
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		D344AE922B1392A4002C9CE0 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AE912B13928B002C9CE0 /* Models */,
 				D344AE812B01573E002C9CE0 /* Validators */,
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
 				D344AE712AF63473002C9CE0 /* Controllers */,
@@ -188,6 +191,14 @@
 				D344AE882B0157CF002C9CE0 /* NameValidator.swift */,
 			);
 			path = Validators;
+			sourceTree = "<group>";
+		};
+		D344AE912B13928B002C9CE0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D344AE922B1392A4002C9CE0 /* user.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +345,7 @@
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,
 				D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
+				D344AE932B1392A4002C9CE0 /* user.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
