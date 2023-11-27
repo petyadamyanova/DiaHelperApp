@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, ProfileViewControllerDelegate {
+class HomeViewController: UIViewController {
     var timer: Timer?
     
     let profileVC = ProfileViewController()
@@ -60,8 +60,6 @@ class HomeViewController: UIViewController, ProfileViewControllerDelegate {
         view.backgroundColor = .systemGray6
         setupAddButton()
         setupReminderButton()
-        profileVC.delegate = self
-
         
         timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
                                      target: self,
@@ -126,13 +124,6 @@ class HomeViewController: UIViewController, ProfileViewControllerDelegate {
                 print("Request failed or no items.")
             }
         }
-    }
-    
-    func didSubmitNightscoutURL(_ nightscoutURL: String) {
-        print("j")
-        print(nightscoutURL)
-        self.nigtscout = nightscoutURL
-        updateLabel()
     }
 }
 
