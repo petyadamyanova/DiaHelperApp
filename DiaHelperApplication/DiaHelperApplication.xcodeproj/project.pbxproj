@@ -31,6 +31,7 @@
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
 		D344AE932B1392A4002C9CE0 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* user.swift */; };
 		D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */; };
+		D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE962B14922E002C9CE0 /* TextInput2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		D344AE922B1392A4002C9CE0 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataViewController.swift; sourceTree = "<group>"; };
+		D344AE962B14922E002C9CE0 /* TextInput2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				D344AE7B2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift */,
+				D344AE962B14922E002C9CE0 /* TextInput2.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				D344AE932B1392A4002C9CE0 /* user.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
+				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -188,15 +188,15 @@ class RegisterViewController: UIViewController {
             removeErrorForField(field: secondPasswordField)
         }*/
         
-        /*let registrationDataViewController = RegistrationDataViewController()
+        let registrationDataViewController = RegistrationDataViewController()
         let navController = UINavigationController(rootViewController: registrationDataViewController)
         navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)*/
-        
-        let mainTabBarViewController = MainTabBarViewController()
-        let navController = UINavigationController(rootViewController: mainTabBarViewController)
-        navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
+        
+//        let mainTabBarViewController = MainTabBarViewController()
+//        let navController = UINavigationController(rootViewController: mainTabBarViewController)
+//        navController.modalPresentationStyle = .fullScreen
+//        navigationController?.present(navController, animated: true)
     }
     
     private func showErrorForField(field: RoundedValidatedTextInput, message: String) {

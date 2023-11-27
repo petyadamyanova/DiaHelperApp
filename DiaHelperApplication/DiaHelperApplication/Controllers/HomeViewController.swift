@@ -49,12 +49,11 @@ class HomeViewController: UIViewController, ProfileViewControllerDelegate {
     }
     
     @objc private func didTapReminder(_ action: UIAction) {
-        let addNutritionViewController = AddNutritionViewController()
-        let navController = UINavigationController(rootViewController: addNutritionViewController)
+        let reminderViewController = ReminderViewController()
+        let navController = UINavigationController(rootViewController: reminderViewController)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
