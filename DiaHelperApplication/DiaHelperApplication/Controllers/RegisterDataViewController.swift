@@ -67,17 +67,28 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pumpPickerView {
+            pumpPickerTextField.textField.text = PumpModel.allCases[row].rawValue
             pumpModel = PumpModel.allCases[row]
         } else if pickerView == sensorPickerView {
+            sensorPickerTextField.textField.text = SensorModel.allCases[row].rawValue
             sensorModel = SensorModel.allCases[row]
         }
     }
+    
+    private var welcomeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Welcome to DiaHelper app! You have to set your personal data here: "
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+        
+    }()
     
     private var nightscoutField: TextInput2 = {
         let txtField = TextInput2()
         txtField.label.text = "Nightscout"
         txtField.textField.placeholder = "Enter Nightscout"
-        txtField.textField.isSecureTextEntry = true
         return txtField
     }()
 
@@ -85,7 +96,6 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let txtField = TextInput2()
         txtField.label.text = "Birthdate"
         txtField.textField.placeholder = "Enter birthdate"
-        txtField.textField.isSecureTextEntry = true
         return txtField
     }()
     
@@ -93,7 +103,6 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let txtField = TextInput2()
         txtField.label.text = "Year of diagnosis"
         txtField.textField.placeholder = "Enter the Year of diagnosis"
-        txtField.textField.isSecureTextEntry = true
         return txtField
     }()
     
@@ -101,10 +110,8 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let txtField = TextInput2()
         txtField.label.text = "Pump Model"
         txtField.textField.placeholder = " Select Pump Model"
-        txtField.textField.isSecureTextEntry = true
         txtField.textField.textAlignment = .left
         txtField.textField.inputView = pumpPickerView
-        txtField.textField.isSecureTextEntry = true
     
         return txtField
     }()
@@ -113,7 +120,6 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let txtField = TextInput2()
         txtField.label.text = "Sensor Model"
         txtField.textField.placeholder = " Select sensor model"
-        txtField.textField.isSecureTextEntry = true
         txtField.textField.textAlignment = .left
         txtField.textField.inputView = sensorPickerView
     
@@ -144,11 +150,12 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     private func addSubviews() {
         view.addSubview(stackView)
 
-        stackView.addArrangedSubview(nightscoutField)
+        //stackView.addArrangedSubview(welcomeLabel)
         stackView.addArrangedSubview(birtDateField)
         stackView.addArrangedSubview(yearOfDiagnosisField)
         stackView.addArrangedSubview(pumpPickerTextField)
         stackView.addArrangedSubview(sensorPickerTextField)
+        stackView.addArrangedSubview(nightscoutField)
     }
 
     private func addStackViewConstraints() {

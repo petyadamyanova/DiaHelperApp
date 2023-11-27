@@ -20,7 +20,7 @@ class TextInput2: UIStackView {
     
     public var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         return label
