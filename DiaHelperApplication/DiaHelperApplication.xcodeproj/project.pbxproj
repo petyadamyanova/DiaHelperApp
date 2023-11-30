@@ -12,7 +12,6 @@
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
 		D344AE4B2AF625D7002C9CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */; };
 		D344AE4E2AF625D7002C9CE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */; };
-		D344AE592AF625D8002C9CE0 /* DiaHelperApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */; };
 		D344AE632AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */; };
 		D344AE652AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */; };
 		D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE722AF634D2002C9CE0 /* GraphicsViewController.swift */; };
@@ -34,6 +33,7 @@
 		D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE962B14922E002C9CE0 /* TextInput2.swift */; };
 		D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */; };
 		D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */; };
+		D344AE9D2B189118002C9CE0 /* EmailValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,6 @@
 		D344AE4D2AF625D7002C9CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D344AE4F2AF625D7002C9CE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D344AE542AF625D8002C9CE0 /* DiaHelperApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationTests.swift; sourceTree = "<group>"; };
 		D344AE5E2AF625D8002C9CE0 /* DiaHelperApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationUITests.swift; sourceTree = "<group>"; };
 		D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		D344AE962B14922E002C9CE0 /* TextInput2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput2.swift; sourceTree = "<group>"; };
 		D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidator.swift; sourceTree = "<group>"; };
 		D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidator.swift; sourceTree = "<group>"; };
+		D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +153,7 @@
 		D344AE572AF625D8002C9CE0 /* DiaHelperApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */,
+				D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */,
 			);
 			path = DiaHelperApplicationTests;
 			sourceTree = "<group>";
@@ -372,7 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D344AE592AF625D8002C9CE0 /* DiaHelperApplicationTests.swift in Sources */,
+				D344AE9D2B189118002C9CE0 /* EmailValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
