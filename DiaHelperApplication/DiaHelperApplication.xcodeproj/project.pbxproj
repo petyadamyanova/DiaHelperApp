@@ -32,6 +32,8 @@
 		D344AE932B1392A4002C9CE0 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* user.swift */; };
 		D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */; };
 		D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE962B14922E002C9CE0 /* TextInput2.swift */; };
+		D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */; };
+		D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		D344AE922B1392A4002C9CE0 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataViewController.swift; sourceTree = "<group>"; };
 		D344AE962B14922E002C9CE0 /* TextInput2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput2.swift; sourceTree = "<group>"; };
+		D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidator.swift; sourceTree = "<group>"; };
+		D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,8 @@
 				D344AE842B01578E002C9CE0 /* PasswordValidator.swift */,
 				D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */,
 				D344AE882B0157CF002C9CE0 /* NameValidator.swift */,
+				D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */,
+				D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */,
 				D344AE7E2AF6C3AD002C9CE0 /* RegisterViewController.swift in Sources */,
 				D344AE792AF6B93A002C9CE0 /* LoginViewController.swift in Sources */,
 				D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */,
@@ -356,6 +363,7 @@
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
+				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
