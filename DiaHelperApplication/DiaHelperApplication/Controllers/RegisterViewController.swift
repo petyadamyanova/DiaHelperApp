@@ -211,5 +211,4 @@ class RegisterViewController: UIViewController {
         field.textField.layer.cornerRadius = 6
         field.textField.layer.borderWidth = 2
     }
-
 }

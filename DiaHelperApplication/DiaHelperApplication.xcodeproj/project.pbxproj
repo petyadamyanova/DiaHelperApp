@@ -40,6 +40,8 @@
 		D344AEA52B1DDE2D002C9CE0 /* UsernameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */; };
 		D344AEA72B1DDEA6002C9CE0 /* NameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */; };
 		D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
+		D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */; };
+		D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidatorTests.swift; sourceTree = "<group>"; };
 		D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidatorTests.swift; sourceTree = "<group>"; };
 		D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutAPI.swift; sourceTree = "<group>"; };
+		D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+rounded.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AEB52B1E6C44002C9CE0 /* Extensions */,
 				D344AEB22B1E6857002C9CE0 /* API */,
 				D344AE912B13928B002C9CE0 /* Models */,
 				D344AE812B01573E002C9CE0 /* Validators */,
@@ -237,6 +242,15 @@
 				D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		D344AEB52B1E6C44002C9CE0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */,
+				D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +392,7 @@
 				D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */,
 				D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */,
 				D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */,
+				D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
 				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
@@ -387,6 +402,7 @@
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
 				D344AE932B1392A4002C9CE0 /* user.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
+				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
