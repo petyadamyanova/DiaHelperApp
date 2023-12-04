@@ -34,6 +34,11 @@
 		D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */; };
 		D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */; };
 		D344AE9D2B189118002C9CE0 /* EmailValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */; };
+		D344AE9F2B1897D1002C9CE0 /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9E2B1897D1002C9CE0 /* PasswordValidatorTests.swift */; };
+		D344AEA12B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA02B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift */; };
+		D344AEA32B1DDC37002C9CE0 /* BirthDateValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */; };
+		D344AEA52B1DDE2D002C9CE0 /* UsernameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */; };
+		D344AEA72B1DDEA6002C9CE0 /* NameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +90,11 @@
 		D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidator.swift; sourceTree = "<group>"; };
 		D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidator.swift; sourceTree = "<group>"; };
 		D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorTests.swift; sourceTree = "<group>"; };
+		D344AE9E2B1897D1002C9CE0 /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA02B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidatorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +164,11 @@
 			isa = PBXGroup;
 			children = (
 				D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */,
+				D344AE9E2B1897D1002C9CE0 /* PasswordValidatorTests.swift */,
+				D344AEA02B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift */,
+				D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */,
+				D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */,
+				D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */,
 			);
 			path = DiaHelperApplicationTests;
 			sourceTree = "<group>";
@@ -372,7 +387,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D344AEA32B1DDC37002C9CE0 /* BirthDateValidatorTests.swift in Sources */,
+				D344AEA72B1DDEA6002C9CE0 /* NameValidatorTests.swift in Sources */,
 				D344AE9D2B189118002C9CE0 /* EmailValidatorTests.swift in Sources */,
+				D344AE9F2B1897D1002C9CE0 /* PasswordValidatorTests.swift in Sources */,
+				D344AEA12B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift in Sources */,
+				D344AEA52B1DDE2D002C9CE0 /* UsernameValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

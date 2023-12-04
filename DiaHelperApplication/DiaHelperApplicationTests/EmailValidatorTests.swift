@@ -16,7 +16,7 @@ final class EmailValidatorTests: XCTestCase {
         
         let emailValidationResult = emailValidator.isValid(emailTest)
         
-        XCTAssertTrue(emailValidationResult, "Email \(emailTest) was not valid!")
+        XCTAssertTrue(emailValidationResult, "Email \(emailTest) is not valid!")
     }
     
     func testEmailValidationIsNotValid() {
@@ -24,7 +24,7 @@ final class EmailValidatorTests: XCTestCase {
         
         let emailValidationResult = emailValidator.isValid(emailTest)
         
-        XCTAssertFalse(emailValidationResult, "Email \(emailTest) was valid!")
+        XCTAssertFalse(emailValidationResult, "Email \(emailTest) is valid!")
     }
     
     func testEmailValidationIsNotValid2() {
@@ -32,6 +32,6 @@ final class EmailValidatorTests: XCTestCase {
         
         let emailValidationResult = emailValidator.isValid(emailTest)
         
-        XCTAssertFalse(emailValidationResult, "Email \(emailTest) was valid!")
+        XCTAssertFalse(emailValidationResult, "Email \(emailTest) is valid!")
     }
 }
