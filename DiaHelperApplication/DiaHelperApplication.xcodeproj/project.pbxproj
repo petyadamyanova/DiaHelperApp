@@ -39,6 +39,7 @@
 		D344AEA32B1DDC37002C9CE0 /* BirthDateValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */; };
 		D344AEA52B1DDE2D002C9CE0 /* UsernameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */; };
 		D344AEA72B1DDEA6002C9CE0 /* NameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */; };
+		D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidatorTests.swift; sourceTree = "<group>"; };
 		D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidatorTests.swift; sourceTree = "<group>"; };
 		D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AEB22B1E6857002C9CE0 /* API */,
 				D344AE912B13928B002C9CE0 /* Models */,
 				D344AE812B01573E002C9CE0 /* Validators */,
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
@@ -226,6 +229,14 @@
 				D344AE922B1392A4002C9CE0 /* user.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D344AEB22B1E6857002C9CE0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +388,7 @@
 				D344AE932B1392A4002C9CE0 /* user.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
+				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
 				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,

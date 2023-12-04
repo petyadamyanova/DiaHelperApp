@@ -109,22 +109,22 @@ class HomeViewController: UIViewController {
     }
     
     @objc func updateLabel() {
-        takeBloodSugar(withURL: nigtscout) { result in
-            if let result = result {
-                DispatchQueue.main.async {
-                    if let resultDouble = Double(result) {
-                        let roundedValue = (resultDouble / 18.0).rounded(toPlaces: 2)
-                        self.bloodSugar.text = String(roundedValue)
-                        print("Your blood sugar is : \(roundedValue)")
-                    } else {
-                        print("Error with converting to Double.")
+            NightscoutAPI.takeBloodSugar(withURL: "petiadam.nightscout.bg") { readings in
+                if let readings = readings {
+                    DispatchQueue.main.async {
+                        if let firstReading = readings.first {
+                            let roundedValue = (Double(firstReading.value) / 18.0).rounded(toPlaces: 2)
+                            self.bloodSugar.text = String(roundedValue)
+                            print("Your blood sugar is: \(roundedValue)")
+                        } else {
+                            print("No readings available.")
+                        }
                     }
+                } else {
+                    print("Request failed or no items.")
                 }
-            } else {
-                print("Request failed or no items.")
             }
         }
-    }
 }
 
 extension Double {
