@@ -12,7 +12,7 @@ class HomeViewController: UIViewController, ProfileViewControllerDelegate {
     
     let profileVC = ProfileViewController()
     
-    private var nigtscout: String = ""
+    private var nigtscout: String?
     
     public var bloodSugar: UILabel = {
         let label = UILabel()
@@ -114,6 +114,9 @@ class HomeViewController: UIViewController, ProfileViewControllerDelegate {
     }
     
     @objc func updateLabel() {
+        guard let nigtscout else {
+            return
+        }
         takeBloodSugar(withURL: nigtscout) { result in
             if let result = result {
                 DispatchQueue.main.async {
