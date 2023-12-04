@@ -108,7 +108,7 @@ class HomeViewController: UIViewController{
     }
     
     @objc func updateLabel() {
-        takeBloodSugar(withURL: "") { readings in
+        NightscoutAPI.takeBloodSugar(withURL: "") { readings in
             if let readings = readings {
                 DispatchQueue.main.async {
                     if let firstReading = readings.first {

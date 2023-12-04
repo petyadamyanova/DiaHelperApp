@@ -31,6 +31,7 @@
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
 		D344AEAA2B1E4FA6002C9CE0 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */; };
 		D344AEAE2B1E5DA9002C9CE0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEAD2B1E5DA9002C9CE0 /* Double+rounded.swift */; };
+		D344AEB12B1E650C002C9CE0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB02B1E650C002C9CE0 /* NightscoutAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		D344AEAD2B1E5DA9002C9CE0 /* Double+rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+rounded.swift"; sourceTree = "<group>"; };
+		D344AEB02B1E650C002C9CE0 /* NightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AEAF2B1E64D3002C9CE0 /* API */,
 				D344AEA82B1E4F72002C9CE0 /* Extensions */,
 				D344AE812B01573E002C9CE0 /* Validators */,
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
@@ -202,6 +205,14 @@
 				D344AEAD2B1E5DA9002C9CE0 /* Double+rounded.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D344AEAF2B1E64D3002C9CE0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEB02B1E650C002C9CE0 /* NightscoutAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 				D344AE792AF6B93A002C9CE0 /* LoginViewController.swift in Sources */,
 				D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */,
 				D344AEAA2B1E4FA6002C9CE0 /* UIColor+Hex.swift in Sources */,
+				D344AEB12B1E650C002C9CE0 /* NightscoutAPI.swift in Sources */,
 				D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */,
 				D344AEAE2B1E5DA9002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
