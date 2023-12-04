@@ -38,14 +38,16 @@ class HomeViewController: UIViewController {
     private func setupReminderButton() {
         let color = UIColor(named: "newBrown")
         
-        let reminderButton = UIButton(type: .system)
-        reminderButton.setTitle("Reminder", for: .normal)
-        reminderButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        reminderButton.setTitleColor(color, for: .normal)
-        reminderButton.addTarget(self, action: #selector(didTapReminder), for: .touchUpInside)
+        let textAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: color as Any,
+                .font: UIFont.systemFont(ofSize: 16)
+            ]
 
-       let reminderBarButton = UIBarButtonItem(customView: reminderButton)
-       navigationItem.rightBarButtonItem = reminderBarButton
+        let reminderBarButton = UIBarButtonItem(title: "Reminder", style: .plain, target: self, action: #selector(didTapReminder))
+
+        reminderBarButton.setTitleTextAttributes(textAttributes, for: .normal)
+
+        navigationItem.rightBarButtonItem = reminderBarButton
     }
     
     @objc private func didTapReminder(_ action: UIAction) {

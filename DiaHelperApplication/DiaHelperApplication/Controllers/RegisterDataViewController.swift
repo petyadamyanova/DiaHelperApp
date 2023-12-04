@@ -135,7 +135,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
         navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)
+        navigationController?.setViewControllers([MainTabBarViewController()], animated: true)
     }
 
     private func setupDismissButton() {
