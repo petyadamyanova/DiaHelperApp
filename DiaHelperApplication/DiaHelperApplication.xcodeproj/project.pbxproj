@@ -29,6 +29,7 @@
 		D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */; };
 		D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */; };
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
+		D344AEAA2B1E4FA6002C9CE0 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarApi.swift; sourceTree = "<group>"; };
 		D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNutritionViewController.swift; sourceTree = "<group>"; };
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AEA82B1E4F72002C9CE0 /* Extensions */,
 				D344AE812B01573E002C9CE0 /* Validators */,
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
 				D344AE712AF63473002C9CE0 /* Controllers */,
@@ -188,6 +191,14 @@
 				D344AE882B0157CF002C9CE0 /* NameValidator.swift */,
 			);
 			path = Validators;
+			sourceTree = "<group>";
+		};
+		D344AEA82B1E4F72002C9CE0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,7 @@
 				D344AE7E2AF6C3AD002C9CE0 /* RegisterViewController.swift in Sources */,
 				D344AE792AF6B93A002C9CE0 /* LoginViewController.swift in Sources */,
 				D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */,
+				D344AEAA2B1E4FA6002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */,
 				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
 				D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */,
