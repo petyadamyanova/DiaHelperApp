@@ -7,25 +7,30 @@
 
 import Foundation
 
-func extractThirdArgument(from text: String) -> [String] {
-    var thirdArguments = [String]()
+struct ApiReading {
+    let date: String
+    let value: Int
+}
 
+func extractApiReadings(from text: String) -> [ApiReading] {
+    var apiReadings = [ApiReading]()
+    
     let lines = text.components(separatedBy: "\n")
     for line in lines {
         let components = line.components(separatedBy: "\t")
         if components.count >= 3 {
-            let thirdArgument = components[2]
-            thirdArguments.append(thirdArgument)
+            if let value = Int(components[2]) {
+                let apiReading = ApiReading(date: components[0], value: value)
+                apiReadings.append(apiReading)
+            }
         }
     }
 
-    return thirdArguments
+    return apiReadings
 }
 
-func takeBloodSugar(withURL nightscout: String, completion: @escaping (String?) -> Void) {
-   let urlString = "https://" + nightscout + "/api/v1/entries"
-    
-    print(nightscout)
+func takeBloodSugar(withURL nightscout: String, completion: @escaping ([ApiReading]?) -> Void) {
+    let urlString = "https://" + nightscout + "/api/v1/entries"
     
     if let url = URL(string: "https://petiadam.nightscout.bg/api/v1/entries") {
         
@@ -38,12 +43,8 @@ func takeBloodSugar(withURL nightscout: String, completion: @escaping (String?) 
                 completion(nil)
             } else if let data = data {
                 if let dataString = String(data: data, encoding: .utf8) {
-                    let results = extractThirdArgument(from: dataString)
-                    if let firstElement = results.first {
-                        completion(firstElement)
-                    } else {
-                        completion(nil)
-                    }
+                    let apiReadings = extractApiReadings(from: dataString)
+                    completion(apiReadings)
                 } else {
                     print("Error with converting data.")
                     completion(nil)
