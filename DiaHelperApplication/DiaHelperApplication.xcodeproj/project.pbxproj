@@ -44,6 +44,8 @@
 		D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
 		D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEBC2B2091B3002C9CE0 /* UserManager.swift */; };
 		D344AEBF2B209566002C9CE0 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEBE2B209566002C9CE0 /* Meal.swift */; };
+		D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC32B20A83A002C9CE0 /* NutritionTableViewCell.swift */; };
+		D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+rounded.swift"; sourceTree = "<group>"; };
 		D344AEBC2B2091B3002C9CE0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D344AEBE2B209566002C9CE0 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		D344AEC32B20A83A002C9CE0 /* NutritionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionTableViewCell.swift; sourceTree = "<group>"; };
+		D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredPlaceholderTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				D344AEC22B20A817002C9CE0 /* CustomCells */,
 				D344AEB52B1E6C44002C9CE0 /* Extensions */,
 				D344AEB22B1E6857002C9CE0 /* API */,
 				D344AE912B13928B002C9CE0 /* Models */,
@@ -215,6 +220,7 @@
 			children = (
 				D344AE7B2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift */,
 				D344AE962B14922E002C9CE0 /* TextInput2.swift */,
+				D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -257,6 +263,14 @@
 				D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D344AEC22B20A817002C9CE0 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEC32B20A83A002C9CE0 /* NutritionTableViewCell.swift */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,12 +423,14 @@
 				D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
 				D344AE932B1392A4002C9CE0 /* User.swift in Sources */,
+				D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
 				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
+				D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
