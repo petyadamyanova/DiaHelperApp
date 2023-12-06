@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var timer: Timer?
+    var currentUser: User?
     
     public var bloodSugar: UILabel = {
         let label = UILabel()
@@ -56,6 +57,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
+        currentUser = UserManager.shared.getCurrentUser()
         setupAddButton()
         setupReminderButton()
         
@@ -107,7 +109,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func updateLabel() {
-            NightscoutAPI.takeBloodSugar(withURL: "petiadam.nightscout.bg") { readings in
+        if let user = currentUser {
+            NightscoutAPI.takeBloodSugar(withURL: user.nightscout) { readings in
                 if let readings = readings {
                     DispatchQueue.main.async {
                         if let firstReading = readings.first {
@@ -122,5 +125,9 @@ class HomeViewController: UIViewController {
                     print("Request failed or no items.")
                 }
             }
+        }else{
+            print("There is no current user.")
         }
+        
+    }
 }

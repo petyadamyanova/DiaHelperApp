@@ -12,11 +12,12 @@ struct User: Codable {
     var email: String
     var username: String
     var password: String
-    var nigscout: String
+    var nightscout: String
     var birtDate: String
     var yearOfDiagnosis: String
     var pumpModel: PumpModel
     var sensorModel: SensorModel
+    var meals: [Meal] = []
 }
 
 enum PumpModel: String, Codable, CaseIterable  {

@@ -132,6 +132,11 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     }
 
     private func didTapSubmitButton(_ action: UIAction) {
+        let newUser = User(name: "User1", email: "user1@email.com", username: "User", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom)
+
+        UserManager.shared.saveUser(newUser)
+
+        
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
         navController.modalPresentationStyle = .fullScreen
