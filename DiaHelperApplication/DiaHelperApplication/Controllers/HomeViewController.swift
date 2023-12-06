@@ -10,10 +10,6 @@ import UIKit
 class HomeViewController: UIViewController {
     var timer: Timer?
     
-    let profileVC = ProfileViewController()
-    
-    private var nigtscout: String = ""
-    
     public var bloodSugar: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)

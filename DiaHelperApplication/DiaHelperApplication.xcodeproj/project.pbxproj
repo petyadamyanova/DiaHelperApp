@@ -28,7 +28,7 @@
 		D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */; };
 		D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */; };
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
-		D344AE932B1392A4002C9CE0 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* user.swift */; };
+		D344AE932B1392A4002C9CE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* User.swift */; };
 		D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */; };
 		D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE962B14922E002C9CE0 /* TextInput2.swift */; };
 		D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */; };
@@ -42,6 +42,7 @@
 		D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
 		D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */; };
 		D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
+		D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEBC2B2091B3002C9CE0 /* UserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +88,7 @@
 		D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarApi.swift; sourceTree = "<group>"; };
 		D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNutritionViewController.swift; sourceTree = "<group>"; };
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
-		D344AE922B1392A4002C9CE0 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		D344AE922B1392A4002C9CE0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataViewController.swift; sourceTree = "<group>"; };
 		D344AE962B14922E002C9CE0 /* TextInput2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput2.swift; sourceTree = "<group>"; };
 		D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidator.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutAPI.swift; sourceTree = "<group>"; };
 		D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+rounded.swift"; sourceTree = "<group>"; };
+		D344AEBC2B2091B3002C9CE0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,7 +233,8 @@
 		D344AE912B13928B002C9CE0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D344AE922B1392A4002C9CE0 /* user.swift */,
+				D344AE922B1392A4002C9CE0 /* User.swift */,
+				D344AEBC2B2091B3002C9CE0 /* UserManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -399,8 +402,9 @@
 				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,
 				D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */,
+				D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
-				D344AE932B1392A4002C9CE0 /* user.swift in Sources */,
+				D344AE932B1392A4002C9CE0 /* User.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
