@@ -220,11 +220,11 @@ extension AddNutritionViewController: UITableViewDataSource {
             cell.rightTextField.textAlignment = .center
             cell.rightTextField.delegate = self
         case 3:
-            cell.leftLabel.text = "Insulin dose (Units)"
+            cell.leftLabel.text = "Insulin dose 💉 (Units)"
             cell.rightTextField.placeholder = "Enter Value"
             cell.rightTextField.textAlignment = .center
         case 4:
-            cell.leftLabel.text = "Glucose"
+            cell.leftLabel.text = "Glucose 🩸"
             cell.rightTextField.placeholder = getGlucose()
             cell.rightTextField.textAlignment = .center
             cell.rightTextField.delegate = self

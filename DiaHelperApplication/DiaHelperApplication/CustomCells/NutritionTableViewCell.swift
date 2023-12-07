@@ -34,7 +34,7 @@ class NutritionTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             rightTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             rightTextField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            rightTextField.widthAnchor.constraint(equalToConstant: 100)  // Adjust the width as needed
+            rightTextField.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
