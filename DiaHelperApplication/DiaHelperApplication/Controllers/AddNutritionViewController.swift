@@ -101,7 +101,7 @@ extension AddNutritionViewController: UITableViewDataSource {
                 cell.rightTextField.text = selectedFoodType?.rawValue ?? ""
                 cell.rightTextField.textAlignment = .center
             case 3:
-                cell.leftLabel.text = "Left Label2"
+                cell.leftLabel.text = "Insulin dose (Units)"
                 cell.rightTextField.placeholder = "Enter Value"
                 cell.rightTextField.textAlignment = .center
             default:

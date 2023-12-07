@@ -14,6 +14,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     var yearOfDiagnosis: String = ""
     var pumpModel: PumpModel = .None
     var sensorModel: SensorModel = .None
+    var insulinType: InsulinType = .Other
     
     private lazy var pumpPickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -21,6 +22,11 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     }()
 
     private lazy var sensorPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    private lazy var insulinPickerView: UIPickerView = {
         let pickerView = UIPickerView()
         return pickerView
     }()
@@ -39,6 +45,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
 
         sensorPickerView.delegate = self
         sensorPickerView.dataSource = self
+        
+        insulinPickerView.delegate = self
+        insulinPickerView.dataSource = self
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -50,7 +59,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
             return PumpModel.allCases.count
         } else if pickerView == sensorPickerView {
             return SensorModel.allCases.count
-        } else {
+        } else if pickerView == insulinPickerView {
+            return InsulinType.allCases.count
+        }else {
             return 0
         }
     }
@@ -60,7 +71,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
             return PumpModel.allCases[row].rawValue
         } else if pickerView == sensorPickerView {
             return SensorModel.allCases[row].rawValue
-        } else {
+        } else if pickerView == insulinPickerView {
+            return InsulinType.allCases[row].rawValue
+        }else {
             return nil
         }
     }
@@ -72,6 +85,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         } else if pickerView == sensorPickerView {
             sensorPickerTextField.textField.text = SensorModel.allCases[row].rawValue
             sensorModel = SensorModel.allCases[row]
+        } else if pickerView == insulinPickerView {
+            insulinPickerTextField.textField.text = InsulinType.allCases[row].rawValue
+            insulinType = InsulinType.allCases[row]
         }
     }
     
@@ -125,6 +141,16 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     
         return txtField
     }()
+    
+    private lazy var insulinPickerTextField: TextInput2 = {
+        let txtField = TextInput2()
+        txtField.label.text = "Insulin type"
+        txtField.textField.placeholder = " Select insulin type"
+        txtField.textField.textAlignment = .left
+        txtField.textField.inputView = insulinPickerView
+    
+        return txtField
+    }()
 
     private func setupSubmitButton() {
         let submitAction = UIAction(handler: didTapSubmitButton)
@@ -132,7 +158,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     }
 
     private func didTapSubmitButton(_ action: UIAction) {
-        let newUser = User(name: "User1", email: "user1@email.com", username: "User", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom)
+        let newUser = User(name: "User1", email: "user1@email.com", username: "User", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
 
         UserManager.shared.saveUser(newUser)
 
@@ -160,6 +186,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         stackView.addArrangedSubview(yearOfDiagnosisField)
         stackView.addArrangedSubview(pumpPickerTextField)
         stackView.addArrangedSubview(sensorPickerTextField)
+        stackView.addArrangedSubview(insulinPickerTextField)
         stackView.addArrangedSubview(nightscoutField)
     }
 

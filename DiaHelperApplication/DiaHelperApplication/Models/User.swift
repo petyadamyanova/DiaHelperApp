@@ -17,6 +17,7 @@ struct User: Codable {
     var yearOfDiagnosis: String
     var pumpModel: PumpModel
     var sensorModel: SensorModel
+    var insulinType: InsulinType
     var meals: [Meal] = []
 }
 
@@ -35,4 +36,13 @@ enum SensorModel: String, Codable, CaseIterable  {
     case Other
     case None
     
+}
+
+enum InsulinType: String, Codable, CaseIterable {
+    case Novolog
+    case Humalog
+    case Apidra
+    case Fiasp
+    case Lyumjev
+    case Other
 }
