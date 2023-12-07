@@ -116,6 +116,7 @@ class HomeViewController: UIViewController {
                         if let firstReading = readings.first {
                             let roundedValue = (Double(firstReading.value) / 18.0).rounded(toPlaces: 2)
                             self.bloodSugar.text = String(roundedValue)
+                            UserManager.shared.setCurrentGlucose(String(roundedValue))
                             print("Your blood sugar is: \(roundedValue)")
                         } else {
                             print("No readings available.")

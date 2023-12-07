@@ -10,6 +10,7 @@ import Foundation
 class UserManager {
     static let shared = UserManager()
     private var users: [User] = []
+    private var currentGlucose: String?
     
     private init() {}
     
@@ -29,8 +30,16 @@ class UserManager {
         }
     }
     
+    func setCurrentGlucose(_ glucose: String){
+        currentGlucose = glucose
+    }
+    
+    func getCurrentGlucose() -> String{
+        return currentGlucose ?? ""
+    }
+    
     func getAllMeals() -> [Meal] {
-        if var user = UserManager.shared.getCurrentUser(){
+        if let user = UserManager.shared.getCurrentUser(){
             return user.meals
         }else{
             print("There is no current user.")

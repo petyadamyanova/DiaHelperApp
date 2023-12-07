@@ -61,7 +61,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
             return SensorModel.allCases.count
         } else if pickerView == insulinPickerView {
             return InsulinType.allCases.count
-        }else {
+        } else {
             return 0
         }
     }
@@ -161,7 +161,6 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let newUser = User(name: "User1", email: "user1@email.com", username: "User", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
 
         UserManager.shared.saveUser(newUser)
-
         
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)

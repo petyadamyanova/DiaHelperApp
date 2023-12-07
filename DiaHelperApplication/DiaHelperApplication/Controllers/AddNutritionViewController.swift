@@ -13,6 +13,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
     private let submitButton = UIButton()
     private var foodTypePicker: UIPickerView?
     var selectedFoodType: FoodType?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 4 ))
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 5 ))
         ])
     }
     
@@ -79,34 +80,38 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
 
 extension AddNutritionViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NutritionTableViewCell
         
         switch indexPath.row {
-            case 0:
-                cell.leftLabel.text = "Enter carbs (g)"
-                cell.rightTextField.placeholder = "Enter Value"
-                cell.rightTextField.textAlignment = .center
-            case 1:
-                cell.leftLabel.text = "Time"
-                cell.rightTextField.placeholder = getCurrentTime()
-                cell.rightTextField.delegate = self
-            case 2:
-                cell.leftLabel.text = "Food Type"
-                cell.rightTextField.placeholder = "Food Type"
-                cell.rightTextField.inputView = getFoodTypePicker()
-                cell.rightTextField.text = selectedFoodType?.rawValue ?? ""
-                cell.rightTextField.textAlignment = .center
-            case 3:
-                cell.leftLabel.text = "Insulin dose (Units)"
-                cell.rightTextField.placeholder = "Enter Value"
-                cell.rightTextField.textAlignment = .center
-            default:
-                break
-            }
+        case 0:
+            cell.leftLabel.text = "Enter carbs (g)"
+            cell.rightTextField.placeholder = "Enter Value"
+            cell.rightTextField.textAlignment = .center
+        case 1:
+            cell.leftLabel.text = "Time"
+            cell.rightTextField.placeholder = getCurrentTime()
+            cell.rightTextField.delegate = self
+        case 2:
+            cell.leftLabel.text = "Food Type"
+            cell.rightTextField.placeholder = "Food Type"
+            cell.rightTextField.inputView = getFoodTypePicker()
+            cell.rightTextField.text = selectedFoodType?.rawValue ?? ""
+            cell.rightTextField.textAlignment = .center
+        case 3:
+            cell.leftLabel.text = "Insulin dose (Units)"
+            cell.rightTextField.placeholder = "Enter Value"
+            cell.rightTextField.textAlignment = .center
+        case 4:
+            cell.leftLabel.text = "Glucose"
+            cell.rightTextField.placeholder = getGlucose()
+            cell.rightTextField.textAlignment = .center
+        default:
+            break
+        }
 
         return cell
     }
@@ -122,6 +127,10 @@ extension AddNutritionViewController: UITableViewDataSource {
         foodTypePicker = picker
 
         return picker
+    }
+    
+    private func getGlucose() -> String {
+        UserManager.shared.getCurrentGlucose()
     }
 }
 
@@ -171,7 +180,6 @@ extension AddNutritionViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let indexPath = indexPathForPickerView(pickerView) {
             selectedFoodType = FoodType.allCases[row]
-            print(FoodType.allCases[row])
             self.tableView.reloadRows(at: [indexPath], with: .none)
         } else{
             selectedFoodType = FoodType.allCases[row]
