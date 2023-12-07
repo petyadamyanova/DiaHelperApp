@@ -11,9 +11,22 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
     
     private let tableView = UITableView()
     private let submitButton = UIButton()
-    private var foodTypePicker: UIPickerView?
     var selectedFoodType: FoodType?
     
+    private lazy var foodTypePickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    public var errorField: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        label.text = "Error"
+        label.textColor = .red
+        label.isHidden = true
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +34,10 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         setupDismissButton()
         setupTableView()
         setupSubmitButton()
+        setupErrorLabel()
+        
+        foodTypePickerView.delegate = self
+        foodTypePickerView.dataSource = self
     }
     
     private func setupTableView() {
@@ -59,22 +76,120 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            submitButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16),
+            submitButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16 + 16),
             submitButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+        
+        
+        let submitAction = UIAction(handler: didtapSubmitButton)
+        submitButton.addAction(submitAction, for: .touchUpInside)
     }
     
     private func setupDismissButton() {
         let cancelAction = UIAction(handler: didTapCancelButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: cancelAction)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", primaryAction: cancelAction)
     }
     
     private func didtapSubmitButton(_ action: UIAction) {
+        var timestamp: Date = Date()
+        var bloodSugar: Double = 0.0
+        var insulinDose: Double = 0.0
+        var carbsIntake: Double = 0.0
+        var foodType: FoodType = .other
+        
+        for row in 0..<tableView.numberOfRows(inSection: 0) {
+            let indexPath = IndexPath(row: row, section: 0)
+            switch indexPath.row {
+            case 0:
+               if let text = getCellTextFieldText(indexPath: indexPath), let carbsIntake1 = Double(text) {
+                   carbsIntake = carbsIntake1
+                   hideError()
+               } else {
+                   showError(message: "Carbs intake must be a valid number.")
+                   return
+               }
+            case 1:
+               if let text = getCellTextFieldText(indexPath: indexPath) {
+                   let dateFormatter = DateFormatter()
+                   dateFormatter.dateFormat = "HH:mm"
+                   if let date = dateFormatter.date(from: text) {
+                       timestamp = date
+                       hideError()
+                   } else {
+                       showError(message: "Time has to be in HH:mm format")
+                       return
+                   }
+               }
+            case 2:
+               if let type = selectedFoodType {
+                   foodType = type
+               } else {
+                   foodType = .other
+               }
+            case 3:
+               if let text = getCellTextFieldText(indexPath: indexPath), let insulinDose1 = Double(text) {
+                   insulinDose = insulinDose1
+                   hideError()
+               } else {
+                   showError(message: "Invalid input for insulin dose.")
+                   return
+               }
+            case 4:
+                if let text = getCellTextFieldText(indexPath: indexPath), let glucose1 = Double(text) {
+                    bloodSugar = glucose1
+                    hideError()
+                } else {
+                    showError(message: "Invalid input for insulin dose.")
+                    return
+                }
+            default:
+                break
+            }
+        }
+        
+        let meal = Meal(timestamp: timestamp, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
+        
+        print(meal.carbsIntake)
+        
+        UserManager.shared.addMeal(meal)
+        
+        //print(UserManager.shared.getAllMeals())
+
+        dismiss(animated: true)
     }
-    
+
+    private func getCellTextFieldText(indexPath: IndexPath) -> String? {
+        guard let cell = tableView.cellForRow(at: indexPath) as? NutritionTableViewCell else {
+            return nil
+        }
+        return cell.rightTextField.text
+    }
+
     private func didTapCancelButton(_ action: UIAction) {
         dismiss(animated: true)
     }
+    
+    private func setupErrorLabel() {
+        view.addSubview(errorField)
+
+        errorField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+        ])
+    }
+
+    private func showError(message: String) {
+        errorField.text = message
+        errorField.isHidden = false
+    }
+
+    private func hideError() {
+        errorField.text = nil
+        errorField.isHidden = true
+    }
+
 
 }
 
@@ -88,7 +203,7 @@ extension AddNutritionViewController: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            cell.leftLabel.text = "Enter carbs (g)"
+            cell.leftLabel.text = "Enter carbs 🍽️ (g)"
             cell.rightTextField.placeholder = "Enter Value"
             cell.rightTextField.textAlignment = .center
         case 1:
@@ -98,9 +213,12 @@ extension AddNutritionViewController: UITableViewDataSource {
         case 2:
             cell.leftLabel.text = "Food Type"
             cell.rightTextField.placeholder = "Food Type"
-            cell.rightTextField.inputView = getFoodTypePicker()
-            cell.rightTextField.text = selectedFoodType?.rawValue ?? ""
+            cell.rightTextField.inputView = foodTypePickerView
+            if let type = selectedFoodType {
+                cell.rightTextField.text = type.rawValue
+            }
             cell.rightTextField.textAlignment = .center
+            cell.rightTextField.delegate = self
         case 3:
             cell.leftLabel.text = "Insulin dose (Units)"
             cell.rightTextField.placeholder = "Enter Value"
@@ -109,24 +227,12 @@ extension AddNutritionViewController: UITableViewDataSource {
             cell.leftLabel.text = "Glucose"
             cell.rightTextField.placeholder = getGlucose()
             cell.rightTextField.textAlignment = .center
+            cell.rightTextField.delegate = self
         default:
             break
         }
 
         return cell
-    }
-    
-    private func getFoodTypePicker() -> UIPickerView {
-        if let picker = foodTypePicker {
-            return picker
-        }
-
-        let picker = UIPickerView()
-        picker.delegate = self
-        picker.dataSource = self
-        foodTypePicker = picker
-
-        return picker
     }
     
     private func getGlucose() -> String {
@@ -145,6 +251,10 @@ extension AddNutritionViewController: UITableViewDelegate {
             case 1:
                 let currentTime = getCurrentTime()
                 textField.text = currentTime
+                textField.textAlignment = .center
+            case 4:
+                let glucose = getGlucose()
+                textField.text = glucose
                 textField.textAlignment = .center
             default:
                 break
@@ -178,16 +288,8 @@ extension AddNutritionViewController: UIPickerViewDelegate, UIPickerViewDataSour
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if let indexPath = indexPathForPickerView(pickerView) {
-            selectedFoodType = FoodType.allCases[row]
-            self.tableView.reloadRows(at: [indexPath], with: .none)
-        } else{
-            selectedFoodType = FoodType.allCases[row]
-        }
-    }
-
-    private func indexPathForPickerView(_ pickerView: UIPickerView) -> IndexPath? {
-        let point = pickerView.convert(CGPoint.zero, to: tableView)
-        return tableView.indexPathForRow(at: point)
+        selectedFoodType = FoodType.allCases[row]
+        
+        tableView.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
     }
 }

@@ -9,37 +9,33 @@ import Foundation
 import UIKit
 
 class CenteredPlaceholderTextField: UITextField {
-    private let customPlaceholderLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        return label
-    }()
-
     override var placeholder: String? {
-        didSet {
-            customPlaceholderLabel.text = placeholder
-        }
-    }
+          didSet {
+              updatePlaceholderAttributes()
+          }
+      }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
+      override init(frame: CGRect) {
+          super.init(frame: frame)
+          updatePlaceholderAttributes()
+      }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
+      required init?(coder: NSCoder) {
+          super.init(coder: coder)
+          updatePlaceholderAttributes()
+      }
 
-    private func commonInit() {
-        addSubview(customPlaceholderLabel)
-        customPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
+      private func updatePlaceholderAttributes() {
+          guard let placeholderText = placeholder else { return }
+          
+          let paragraphStyle = NSMutableParagraphStyle()
+          paragraphStyle.alignment = .center
 
-        NSLayoutConstraint.activate([
-            customPlaceholderLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            customPlaceholderLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            customPlaceholderLabel.topAnchor.constraint(equalTo: topAnchor),
-            customPlaceholderLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
+          let attributes: [NSAttributedString.Key: Any] = [
+              .foregroundColor: UIColor.lightGray,
+              .paragraphStyle: paragraphStyle,
+          ]
+
+          attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: attributes)
+      }
 }

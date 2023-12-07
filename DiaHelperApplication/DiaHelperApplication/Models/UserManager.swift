@@ -11,6 +11,7 @@ class UserManager {
     static let shared = UserManager()
     private var users: [User] = []
     private var currentGlucose: String?
+    private var meals: [Meal] = []
     
     private init() {}
     
@@ -24,7 +25,7 @@ class UserManager {
     
     func addMeal(_ meal: Meal) {
         if var user = UserManager.shared.getCurrentUser(){
-            user.meals.append(meal)
+            meals.append(meal)
         }else{
             print("There is no current user.")
         }
@@ -40,7 +41,7 @@ class UserManager {
     
     func getAllMeals() -> [Meal] {
         if let user = UserManager.shared.getCurrentUser(){
-            return user.meals
+            return meals
         }else{
             print("There is no current user.")
         }
