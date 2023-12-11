@@ -1,8 +1,8 @@
 //
-//  BloodSugarApi.swift
+//  ApiReading.swift
 //  DiaHelperApplication
 //
-//  Created by Petya Damyanova on 15.11.23.
+//  Created by Petya Damyanova on 11.12.23.
 //
 
 import Foundation
