@@ -7,8 +7,12 @@
 
 import UIKit
 
+protocol AddNutritionViewControllerDelegate: AnyObject {
+    func didAddMeal(_ meal: Meal)
+}
+
 class AddNutritionViewController: UIViewController, UITextFieldDelegate {
-    
+    weak var delegate: AddNutritionViewControllerDelegate?
     private let tableView = UITableView()
     private let submitButton = UIButton()
     var selectedFoodType: FoodType?
@@ -149,9 +153,9 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         
         let meal = Meal(timestamp: timestamp, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
         
-        print(meal.carbsIntake)
-        
         UserManager.shared.addMeal(meal)
+        
+        delegate?.didAddMeal(meal)
         
         //print(UserManager.shared.getAllMeals())
 
