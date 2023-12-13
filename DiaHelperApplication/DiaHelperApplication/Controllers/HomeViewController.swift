@@ -12,6 +12,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
     var currentUser: User?
     var meals: [Meal] = []
     private let tableView = UITableView()
+    private var tableViewBottomConstraint: NSLayoutConstraint!
     
     public var bloodSugar: UILabel = {
         let label = UILabel()
@@ -20,6 +21,27 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
+    }()
+    
+    public var mealsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Baskerville", size: 40)
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Meals"
+        label.textColor = UIColor(named: "newBlue")
+        
+        return label
+    }()
+    
+    public var bloodSugarContainer: UIView = {
+        let bloodSugarContainer = UIView()
+        bloodSugarContainer.translatesAutoresizingMaskIntoConstraints = false
+        bloodSugarContainer.layer.cornerRadius = 32
+        bloodSugarContainer.backgroundColor = UIColor(named: "pastelBlue")
+        bloodSugarContainer.clipsToBounds = true
+        
+        return bloodSugarContainer
     }()
     
     public var addButton: UIButton = {
@@ -71,6 +93,14 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
             }
         }
         
+        addTestMeals()
+        setupTableView()
+        addSubviews()
+        addViewConstraints()
+        setupTimer()
+    }
+    
+    private func setupTimer() {
         timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
                                      target: self,
                                      selector: #selector(updateLabel),
@@ -78,26 +108,26 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
                                      repeats: true)
         
         updateLabel()
+    }
+    
+    private func addTestMeals() {
+        meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6.7, carbsIntake: 50, foodType: .fast))
         
-        meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6, carbsIntake: 5, foodType: .fast))
-        
-        meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 4, foodType: .slow))
-        
-        setupTableView()
-        addSubviews()
-        addViewConstraints()
-        
+        meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 47.5, foodType: .slow))
     }
     
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(HomeVcMealTableViewCell.self, forCellReuseIdentifier: "Cell")
-        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         self.tableView.layer.borderColor = UIColor.systemGray6.cgColor
         self.tableView.layer.borderWidth = 1;
         self.tableView.layer.cornerRadius = 10;
+        
+        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: CGFloat((44 * (meals.count + 1))))
+        tableViewBottomConstraint.isActive = true
     }
     
     
@@ -116,31 +146,36 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
     }
     
     private func addSubviews() {
-        view.addSubview(bloodSugar)
+        bloodSugarContainer.addSubview(bloodSugar)
+        view.addSubview(bloodSugarContainer)
         view.addSubview(addButton)
-
+        view.addSubview(mealsLabel)
+        view.addSubview(tableView)
     }
     
     func addViewConstraints() {
         NSLayoutConstraint.activate([
-            bloodSugar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            bloodSugar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            bloodSugar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16)
-        ])
-        
-        NSLayoutConstraint.activate([
+            bloodSugarContainer.widthAnchor.constraint(equalToConstant: 64),
+            bloodSugarContainer.heightAnchor.constraint(equalToConstant: 64),
+            bloodSugarContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            bloodSugarContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            
+            bloodSugar.centerXAnchor.constraint(equalTo: bloodSugarContainer.centerXAnchor),
+            bloodSugar.centerYAnchor.constraint(equalTo: bloodSugarContainer.centerYAnchor),
+            
+            mealsLabel.leadingAnchor.constraint(equalTo: bloodSugarContainer.trailingAnchor, constant: 64),
+            mealsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            mealsLabel.heightAnchor.constraint(equalToConstant: 64),
+            
             addButton.widthAnchor.constraint(equalToConstant: 64),
             addButton.heightAnchor.constraint(equalToConstant: 64),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor , constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            tableView.topAnchor.constraint(equalTo: bloodSugar.bottomAnchor, constant: 16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 500)
+            tableView.topAnchor.constraint(equalTo: bloodSugarContainer.bottomAnchor, constant: 16),
+            tableViewBottomConstraint
             //CGFloat(16 + (44 * meals.count ))
         ])
     }
@@ -178,15 +213,27 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         
         if indexPath.row == 0 {
             cell.bloodSugarLabel.text = "🩸"
-            cell.carbsIntakeLabel.text = "🍽️"
+            cell.carbsIntakeLabel.text = " 🍽️"
             cell.foodTypeLabel.text = "type"
             cell.insulinDoseLabel.text = "💉"
             cell.timestampLabel.text = "   ⏰"
         } else {
             let meal = meals[indexPath.row - 1]
             cell.bloodSugarLabel.text = String(meal.bloodSugar)
-            cell.carbsIntakeLabel.text = String(meal.carbsIntake)
-            cell.insulinDoseLabel.text = String(meal.insulinDose)
+            let epsilon = 0.0001
+            
+            if abs(meal.carbsIntake.truncatingRemainder(dividingBy: 1.0)) < epsilon {
+                cell.carbsIntakeLabel.text = "\(Int(meal.carbsIntake)) g"
+            } else {
+                cell.carbsIntakeLabel.text = "\(meal.carbsIntake) g"
+            }
+
+            if abs(meal.insulinDose.truncatingRemainder(dividingBy: 1.0)) < epsilon {
+                cell.insulinDoseLabel.text = "\(Int(meal.insulinDose)) u"
+            } else {
+                cell.insulinDoseLabel.text = "\(meal.insulinDose) u"
+            }
+            
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
@@ -209,6 +256,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
         meals.append(meal)
+        tableViewBottomConstraint.constant = CGFloat(44 * (meals.count + 1))
         self.tableView.reloadData()
     }
 }
