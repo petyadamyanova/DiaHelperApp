@@ -1,14 +1,13 @@
 //
-//  ReminderViewController.swift
+//  GlucometerValueViewController.swift
 //  DiaHelperApplication
 //
-//  Created by Petya Damyanova on 21.11.23.
+//  Created by Petya Damyanova on 15.12.23.
 //
 
 import UIKit
 
-class ReminderViewController: UIViewController {
-
+class GlucometerValueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6

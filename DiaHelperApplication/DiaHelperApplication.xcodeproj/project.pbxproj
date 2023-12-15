@@ -47,6 +47,7 @@
 		D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */; };
 		D344AEC82B271D13002C9CE0 /* ApiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC72B271D13002C9CE0 /* ApiReading.swift */; };
 		D344AECA2B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */; };
+		D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredPlaceholderTextField.swift; sourceTree = "<group>"; };
 		D344AEC72B271D13002C9CE0 /* ApiReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiReading.swift; sourceTree = "<group>"; };
 		D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVcMealTableViewCell.swift; sourceTree = "<group>"; };
+		D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerValueViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */,
 				D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */,
 				D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */,
+				D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
+				D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */,
 				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
 				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,

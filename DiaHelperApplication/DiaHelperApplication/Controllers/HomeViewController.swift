@@ -56,33 +56,17 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         return button
     }()
     
-    private func setupReminderButton() {
-        let color = UIColor(named: "newBrown")
-        
-        let textAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: color as Any,
-                .font: UIFont.systemFont(ofSize: 16)
-            ]
+    public var glucometerButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "glucometerImage")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
 
-        let reminderBarButton = UIBarButtonItem(title: "Reminder", style: .plain, target: self, action: #selector(didTapReminder))
-
-        reminderBarButton.setTitleTextAttributes(textAttributes, for: .normal)
-
-        navigationItem.rightBarButtonItem = reminderBarButton
-    }
-    
-    @objc private func didTapReminder(_ action: UIAction) {
-        let reminderViewController = ReminderViewController()
-        let navController = UINavigationController(rootViewController: reminderViewController)
-        navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)
-    }
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
-        setupAddButton()
-        setupReminderButton()
         
         if let user = UserManager.shared.getCurrentUser() {
             currentUser = user
@@ -93,6 +77,8 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
             }
         }
         
+        setupAddButton()
+        setupGlucometerButton()
         addTestMeals()
         setupTableView()
         addSubviews()
@@ -136,11 +122,23 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         addButton.addAction(addAction, for: .touchUpInside)
     }
     
-    
     private func addButtonTapped(_ action: UIAction) {
         let addNutritionViewController = AddNutritionViewController()
         addNutritionViewController.delegate = self
         let navController = UINavigationController(rootViewController: addNutritionViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
+    private func setupGlucometerButton() {
+        let action1 = UIAction(handler: glucometerButtonTapped)
+        glucometerButton.addAction(action1, for: .touchUpInside)
+    }
+    
+    private func glucometerButtonTapped(_ action: UIAction) {
+        print("Glucometer button tapped!")
+        let glucometerValueViewController = GlucometerValueViewController()
+        let navController = UINavigationController(rootViewController: glucometerValueViewController)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
@@ -150,6 +148,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         view.addSubview(bloodSugarContainer)
         view.addSubview(addButton)
         view.addSubview(mealsLabel)
+        view.addSubview(glucometerButton)
         view.addSubview(tableView)
     }
     
@@ -167,6 +166,12 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
             mealsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             mealsLabel.heightAnchor.constraint(equalToConstant: 64),
             
+            glucometerButton.leadingAnchor.constraint(equalTo: mealsLabel.trailingAnchor, constant: 64),
+            glucometerButton.centerYAnchor.constraint(equalTo: mealsLabel.centerYAnchor),
+            glucometerButton.widthAnchor.constraint(equalToConstant: 64),
+            glucometerButton.heightAnchor.constraint(equalToConstant: 64),
+
+            
             addButton.widthAnchor.constraint(equalToConstant: 64),
             addButton.heightAnchor.constraint(equalToConstant: 64),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -176,7 +181,6 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: bloodSugarContainer.bottomAnchor, constant: 16),
             tableViewBottomConstraint
-            //CGFloat(16 + (44 * meals.count ))
         ])
     }
     
@@ -196,6 +200,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
                     }
                 } else {
                     print("Request failed or no items.")
+                    return
                 }
             }
         }else{
