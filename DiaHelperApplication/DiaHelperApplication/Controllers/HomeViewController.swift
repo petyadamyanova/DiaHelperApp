@@ -67,6 +67,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
+        self.navigationController?.isNavigationBarHidden = true
         
         if let user = UserManager.shared.getCurrentUser() {
             currentUser = user
