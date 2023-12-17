@@ -138,7 +138,6 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
     }
     
     @objc func glucometterButtonTapped(sender: UIButton){
-        print("Glucometer button tapped!")
         let glucometerValueViewController = GlucometerValueViewController()
         let navController = UINavigationController(rootViewController: glucometerValueViewController)
         navController.modalPresentationStyle = .fullScreen
@@ -201,6 +200,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
                         }
                     }
                 } else {
+                    print(UserManager.shared.getAllGlucometerBloodSugarTests())
                     print("Request failed or no items.")
                     return
                 }

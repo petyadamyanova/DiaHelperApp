@@ -143,7 +143,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
                     bloodSugar = glucose1
                     hideError()
                 } else {
-                    showError(message: "Invalid input for insulin dose.")
+                    showError(message: "Invalid input for glucose.")
                     return
                 }
             default:
