@@ -19,6 +19,7 @@ struct User: Codable {
     var sensorModel: SensorModel
     var insulinType: InsulinType
     var meals: [Meal] = []
+    var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
 }
 
 enum PumpModel: String, Codable, CaseIterable  {

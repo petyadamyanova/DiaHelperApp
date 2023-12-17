@@ -9,26 +9,36 @@ import Foundation
 
 class UserManager {
     static let shared = UserManager()
-    private var users: [User] = []
+    private var currentUser: User?
     private var currentGlucose: String?
     private var meals: [Meal] = []
+    private var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
     
     private init() {}
     
     func getCurrentUser() -> User? {
-        return users.first
+        return currentUser
     }
     
     func saveUser(_ user: User) {
-        users.append(user)
+        currentUser = user
     }
     
     func addMeal(_ meal: Meal) {
-        if var user = UserManager.shared.getCurrentUser(){
-            meals.append(meal)
+        meals.append(meal)
+        /*if var user = UserManager.shared.getCurrentUser(){
+            user.meals.append(meal)
         }else{
             print("There is no current user.")
-        }
+        }*/
+    }
+    
+    func addGlucometerBloodSugarTest(_ test: GlucometerBloodSugarTest){
+        glucometerBloodSugarTests.append(test)
+    }
+    
+    func getAllGlucometerBloodSugarTests() -> [GlucometerBloodSugarTest] {
+        return glucometerBloodSugarTests
     }
     
     func setCurrentGlucose(_ glucose: String){
@@ -40,13 +50,13 @@ class UserManager {
     }
     
     func getAllMeals() -> [Meal] {
-        if let user = UserManager.shared.getCurrentUser(){
-            return meals
+        /*if let user = UserManager.shared.getCurrentUser(){
+            return user.meals
         }else{
             print("There is no current user.")
-        }
+        }*/
         
-        return []
+        return meals
     }
 }
 

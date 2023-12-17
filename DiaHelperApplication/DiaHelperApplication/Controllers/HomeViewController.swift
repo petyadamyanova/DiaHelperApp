@@ -60,7 +60,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "glucometerImage")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-
+        
         return button
     }()
 
@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         }
         
         setupAddButton()
-        setupGlucometerButton()
+        glucometerAction()
         addTestMeals()
         setupTableView()
         addSubviews()
@@ -100,6 +100,8 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6.7, carbsIntake: 50, foodType: .fast))
         
         meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 47.5, foodType: .slow))
+        
+        
     }
     
     private func setupTableView() {
@@ -130,12 +132,11 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         navigationController?.present(navController, animated: true)
     }
     
-    private func setupGlucometerButton() {
-        let action1 = UIAction(handler: glucometerButtonTapped)
-        glucometerButton.addAction(action1, for: .touchUpInside)
+    private func glucometerAction() {
+        glucometerButton.addTarget(self, action: #selector(self.glucometterButtonTapped), for: .touchUpInside)
     }
     
-    private func glucometerButtonTapped(_ action: UIAction) {
+    @objc func glucometterButtonTapped(sender: UIButton){
         print("Glucometer button tapped!")
         let glucometerValueViewController = GlucometerValueViewController()
         let navController = UINavigationController(rootViewController: glucometerValueViewController)
