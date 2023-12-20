@@ -7,8 +7,9 @@
 
 import UIKit
 
-protocol GlucometerValueViewControllerDelegate: AnyObject {}
-
+protocol GlucometerValueViewControllerDelegate: AnyObject {
+    func didSubmitGlucometerTest(_ value: Double)
+}
 
 class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     weak var delegate: GlucometerValueViewControllerDelegate?
@@ -132,6 +133,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
         
         //print(UserManager.shared.getAllGlucometerBloodSugarTests())
+        delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
         
         dismiss(animated: true)
     }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDataSource  {
+class HomeViewController: UIViewController, UITableViewDataSource, GlucometerValueViewControllerDelegate  {
     var timer: Timer?
     var currentUser: User?
     var meals: [Meal] = []
@@ -139,6 +139,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
     
     @objc func glucometterButtonTapped(sender: UIButton){
         let glucometerValueViewController = GlucometerValueViewController()
+        glucometerValueViewController.delegate = self
         let navController = UINavigationController(rootViewController: glucometerValueViewController)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
@@ -187,6 +188,10 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
     
     @objc func updateLabel() {
         if let user = currentUser {
+            if user.nightscout.isEmpty {
+                self.bloodSugar.text = "-"
+                return
+            }
             NightscoutAPI.takeBloodSugar(withURL: user.nightscout) { readings in
                 if let readings = readings {
                     DispatchQueue.main.async {
@@ -197,6 +202,7 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
                             print("Your blood sugar is: \(roundedValue)")
                         } else {
                             print("No readings available.")
+                            self.bloodSugar.text = "-"
                         }
                     }
                 } else {
@@ -209,6 +215,10 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
             print("There is no current user.")
         }
         
+    }
+    
+    func updateLabelManually(_ value: Double){
+        self.bloodSugar.text = String(value)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -250,6 +260,10 @@ class HomeViewController: UIViewController, UITableViewDataSource  {
         }
         
         return cell
+    }
+    
+    func didSubmitGlucometerTest(_ value: Double) {
+        updateLabelManually(value)
     }
     
 }
