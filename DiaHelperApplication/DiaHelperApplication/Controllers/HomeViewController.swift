@@ -88,6 +88,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     }
     
     private func setupTimer() {
+        if let user = currentUser {
+            if user.nightscout.isEmpty{
+                self.bloodSugar.text = "-"
+                return
+            }
+        }
         timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
                                      target: self,
                                      selector: #selector(updateLabel),
@@ -188,10 +194,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     
     @objc func updateLabel() {
         if let user = currentUser {
-            if user.nightscout.isEmpty {
-                self.bloodSugar.text = "-"
-                return
-            }
             NightscoutAPI.takeBloodSugar(withURL: user.nightscout) { readings in
                 if let readings = readings {
                     DispatchQueue.main.async {

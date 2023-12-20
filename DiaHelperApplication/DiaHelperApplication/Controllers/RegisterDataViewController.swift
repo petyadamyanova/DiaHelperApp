@@ -158,7 +158,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     }
 
     private func didTapSubmitButton(_ action: UIAction) {
-        let newUser = User(name: "User1", email: "user1@email.com", username: "User", password: "password", nightscout: "", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
+        let newUser = User(name: "Petya Damyanova", email: "user1@email.com", username: "petiadam2006", password: "password", nightscout: "", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
 
         UserManager.shared.saveUser(newUser)
         
