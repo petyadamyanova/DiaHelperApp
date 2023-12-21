@@ -78,13 +78,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             }
         }
         
+        setupTimer()
         setupAddButton()
         glucometerAction()
         addTestMeals()
         setupTableView()
         addSubviews()
         addViewConstraints()
-        setupTimer()
     }
     
     private func setupTimer() {
@@ -94,6 +94,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
                 return
             }
         }
+        //updateLabel()
+        
         timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
                                      target: self,
                                      selector: #selector(updateLabel),
@@ -208,7 +210,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
                         }
                     }
                 } else {
-                    print(UserManager.shared.getAllGlucometerBloodSugarTests())
+                    //print(UserManager.shared.getAllGlucometerBloodSugarTests())
                     print("Request failed or no items.")
                     return
                 }
