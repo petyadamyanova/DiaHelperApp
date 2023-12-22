@@ -22,6 +22,15 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         return pickerView
     }()
     
+    private var Image: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "mealIcon")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
     public var errorField: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
@@ -36,12 +45,23 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         setupDismissButton()
+        setupImage()
         setupTableView()
         setupSubmitButton()
         setupErrorLabel()
         
         foodTypePickerView.delegate = self
         foodTypePickerView.dataSource = self
+    }
+    
+    private func setupImage(){
+        view.addSubview(Image)
+        NSLayoutConstraint.activate([
+            Image.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            Image.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            Image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            Image.heightAnchor.constraint(equalToConstant: 90)
+        ])
     }
     
     private func setupTableView() {
@@ -58,10 +78,14 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 5 ))
+            //tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            //tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 5 ))
+            tableView.topAnchor.constraint(equalTo: Image.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: Image.bottomAnchor, constant: (44 * 5 ))
         ])
     }
+    
+    
     
     private func setupSubmitButton(){
         let color = UIColor(named: "newBrown")

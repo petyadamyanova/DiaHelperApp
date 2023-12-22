@@ -130,6 +130,21 @@ class ProfileViewController: UIViewController {
         return textField
     }()
     
+    private var insulinIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "insulinIcon")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    private var insulinTypeTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +162,7 @@ class ProfileViewController: UIViewController {
         setupYearOfDiagnosisTextField()
         setupPumpTextField()
         setupSensorTextField()
+        setupInsulinTypeTextField()
         addSubviews()
         addConstraints()
     }
@@ -167,6 +183,8 @@ class ProfileViewController: UIViewController {
         view.addSubview(pumpTextField)
         view.addSubview(sensorIcon)
         view.addSubview(sensorTextField)
+        view.addSubview(insulinIcon)
+        view.addSubview(insulinTypeTextField)
         
     }
     
@@ -237,6 +255,15 @@ class ProfileViewController: UIViewController {
             sensorTextField.leadingAnchor.constraint(equalTo: sensorIcon.trailingAnchor, constant: 16),
             sensorTextField.heightAnchor.constraint(equalToConstant: 30),
             
+            insulinIcon.topAnchor.constraint(equalTo: sensorIcon.bottomAnchor, constant: 12),
+            insulinIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            insulinIcon.heightAnchor.constraint(equalToConstant: 32),
+            insulinIcon.widthAnchor.constraint(equalToConstant: 32),
+            
+            insulinTypeTextField.topAnchor.constraint(equalTo: sensorIcon.bottomAnchor, constant: 12),
+            insulinTypeTextField.leadingAnchor.constraint(equalTo: insulinIcon.trailingAnchor, constant: 16),
+            insulinTypeTextField.heightAnchor.constraint(equalToConstant: 30),
+            
         ])
     }
     
@@ -267,6 +294,10 @@ class ProfileViewController: UIViewController {
     
     private func setupSensorTextField(){
         sensorTextField.text = currentUser?.sensorModel.rawValue
+    }
+    
+    private func setupInsulinTypeTextField(){
+        insulinTypeTextField.text = currentUser?.insulinType.rawValue
     }
     
 }
