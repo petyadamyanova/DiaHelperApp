@@ -91,6 +91,12 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         }
     }
     
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        birthDateField.textField.text = dateFormatter.string(from: sender.date)
+    }
+    
     private var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome to DiaHelper app! You have to set your personal data here: "
@@ -107,14 +113,21 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         txtField.textField.placeholder = "Enter Nightscout"
         return txtField
     }()
-
-    private var birtDateField: TextInput2 = {
+    
+    private lazy var birthDateField: TextInput2 = {
         let txtField = TextInput2()
         txtField.label.text = "Birthdate"
-        txtField.textField.placeholder = "Enter birthdate"
+        txtField.textField.placeholder = "Select birthdate"
+        txtField.textField.textAlignment = .left
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        txtField.textField.inputView = datePicker
+        
         return txtField
     }()
-    
+
     private var yearOfDiagnosisField: TextInput2 = {
         let txtField = TextInput2()
         txtField.label.text = "Year of diagnosis"
@@ -181,7 +194,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         view.addSubview(stackView)
 
         //stackView.addArrangedSubview(welcomeLabel)
-        stackView.addArrangedSubview(birtDateField)
+        stackView.addArrangedSubview(birthDateField)
         stackView.addArrangedSubview(yearOfDiagnosisField)
         stackView.addArrangedSubview(pumpPickerTextField)
         stackView.addArrangedSubview(sensorPickerTextField)

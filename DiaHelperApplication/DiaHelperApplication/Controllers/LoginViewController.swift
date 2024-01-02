@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .white
         setupDismissButton()
         setupLoginButton()
+        setupSignUpLabel()
         addSubviews()
         addStackViewConstraints()
     }
@@ -32,7 +33,7 @@ class LoginViewController: UIViewController {
 
     internal var emailField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
-        txtField.label.text = "Email"
+        txtField.label.text = " Email"
         txtField.textField.placeholder = " Enter email"
 
         return txtField
@@ -40,7 +41,7 @@ class LoginViewController: UIViewController {
 
     internal var passwordField: RoundedValidatedTextInput = {
         let txtField = RoundedValidatedTextInput()
-        txtField.label.text = "Password"
+        txtField.label.text = " Password"
         txtField.textField.placeholder = " Enter password"
         txtField.textField.isSecureTextEntry = true
 
@@ -61,7 +62,22 @@ class LoginViewController: UIViewController {
 
         return button
     }()
-
+    
+    private var signUpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Don't have an account? Sign up"
+        label.textColor = UIColor(named: "newBrown")
+        label.textAlignment = .center
+        label.isUserInteractionEnabled = true
+        return label
+    }()
+    
+    private func setupSignUpLabel() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapSignUpLabel))
+        signUpLabel.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    
     private func setupLoginButton() {
         let loginAction = UIAction(handler: didTapLoginButton)
         loginButton.addAction(loginAction, for: .touchUpInside)
@@ -75,6 +91,13 @@ class LoginViewController: UIViewController {
     private func didTapCancelButton(_ action: UIAction) {
         dismiss(animated: true)
     }
+    
+    @objc private func didTapSignUpLabel() {
+        let registerViewController = RegisterViewController()
+        let navController = UINavigationController(rootViewController: registerViewController)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
+    }
 
     private func addSubviews() {
         view.addSubview(stackView)
@@ -82,6 +105,7 @@ class LoginViewController: UIViewController {
         stackView.addArrangedSubview(emailField)
         stackView.addArrangedSubview(passwordField)
         stackView.addArrangedSubview(loginButton)
+        stackView.addArrangedSubview(signUpLabel)
     }
 
     private func addStackViewConstraints() {

@@ -189,9 +189,7 @@ class RegisterViewController: UIViewController {
         }*/
         
         let registrationDataViewController = RegistrationDataViewController()
-        let navController = UINavigationController(rootViewController: registrationDataViewController)
-        navController.modalPresentationStyle = .fullScreen
-        navigationController?.present(navController, animated: true)
+        navigationController?.pushViewController(registrationDataViewController, animated: true)
         
 //        let mainTabBarViewController = MainTabBarViewController()
 //        let navController = UINavigationController(rootViewController: mainTabBarViewController)

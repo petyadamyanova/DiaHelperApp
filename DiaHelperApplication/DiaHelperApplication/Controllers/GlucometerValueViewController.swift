@@ -15,21 +15,14 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     weak var delegate: GlucometerValueViewControllerDelegate?
     private let tableView = UITableView()
     private let submitButton = UIButton()
-    var currentUser: User?
-    var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTestValue()
         setupDismissButton()
         setupTableView()
         setupSubmitButton()
         setupErrorLabel()
         view.backgroundColor = .systemGray6
-    }
-    
-    private func addTestValue() {
-        glucometerBloodSugarTests.append(GlucometerBloodSugarTest(timestamp: Date(), bloodSugar: 5.8))
     }
     
     private func setupDismissButton() {
@@ -120,7 +113,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
                     bloodSugar = glucose1
                     hideError()
                 } else {
-                    showError(message: "Invalid input for blood sugar.")
+                    showError(message: "Invalid input for blood sugar. Has to be between 2 and 30.")
                     return
                 }
             default:
@@ -183,6 +176,7 @@ extension GlucometerValueViewController: UITableViewDataSource {
         case 1:
             cell.leftLabel.text = "Enter blood sugar 🩸"
             cell.rightTextField.placeholder = "Enter Value"
+            cell.rightTextField.keyboardType = .numberPad
             cell.rightTextField.textAlignment = .center
         default:
             break

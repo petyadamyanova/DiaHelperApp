@@ -8,7 +8,7 @@
 import Foundation
 
 class NightscoutAPI {
-    static func takeBloodSugar(withURL nightscout: String, completion: @escaping ([ApiReading]?) -> Void) {
+    static func takeBloodSugar(withID nightscout: String, completion: @escaping ([ApiReading]?) -> Void) {
         let urlString = "https://" + nightscout + "/api/v1/entries"
         
         if let url = URL(string: urlString) {

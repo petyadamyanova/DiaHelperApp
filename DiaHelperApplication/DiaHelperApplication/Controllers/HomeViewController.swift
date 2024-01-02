@@ -196,7 +196,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     
     @objc func updateLabel() {
         if let user = currentUser {
-            NightscoutAPI.takeBloodSugar(withURL: user.nightscout) { readings in
+            NightscoutAPI.takeBloodSugar(withID: user.nightscout) { readings in
                 if let readings = readings {
                     DispatchQueue.main.async {
                         if let firstReading = readings.first {
