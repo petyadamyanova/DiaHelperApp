@@ -14,6 +14,16 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     private let tableView = UITableView()
     private var tableViewBottomConstraint: NSLayoutConstraint!
     
+    internal var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.alignment = .center
+
+        return stackView
+    }()
+    
     public var bloodSugar: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
@@ -84,6 +94,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         addTestMeals()
         setupTableView()
         addSubviews()
+        addStackViewConstraints()
         addViewConstraints()
     }
     
@@ -109,8 +120,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6.7, carbsIntake: 50, foodType: .fast))
         
         meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 47.5, foodType: .slow))
-        
-        
     }
     
     private func setupTableView() {
@@ -154,34 +163,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     }
     
     private func addSubviews() {
+        view.addSubview(stackView)
+
+        stackView.addArrangedSubview(bloodSugarContainer)
+        stackView.addArrangedSubview(mealsLabel)
+        stackView.addArrangedSubview(glucometerButton)
+
+        
         bloodSugarContainer.addSubview(bloodSugar)
-        view.addSubview(bloodSugarContainer)
         view.addSubview(addButton)
-        view.addSubview(mealsLabel)
-        view.addSubview(glucometerButton)
         view.addSubview(tableView)
+        view.addSubview(stackView)
     }
     
     func addViewConstraints() {
         NSLayoutConstraint.activate([
-            bloodSugarContainer.widthAnchor.constraint(equalToConstant: 64),
-            bloodSugarContainer.heightAnchor.constraint(equalToConstant: 64),
-            bloodSugarContainer.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            bloodSugarContainer.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            
-            bloodSugar.centerXAnchor.constraint(equalTo: bloodSugarContainer.centerXAnchor),
-            bloodSugar.centerYAnchor.constraint(equalTo: bloodSugarContainer.centerYAnchor),
-            
-            mealsLabel.leadingAnchor.constraint(equalTo: bloodSugarContainer.trailingAnchor, constant: 64),
-            mealsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            mealsLabel.heightAnchor.constraint(equalToConstant: 64),
-            
-            glucometerButton.leadingAnchor.constraint(equalTo: mealsLabel.trailingAnchor, constant: 64),
-            glucometerButton.centerYAnchor.constraint(equalTo: mealsLabel.centerYAnchor),
-            glucometerButton.widthAnchor.constraint(equalToConstant: 64),
-            glucometerButton.heightAnchor.constraint(equalToConstant: 64),
-
-            
             addButton.widthAnchor.constraint(equalToConstant: 64),
             addButton.heightAnchor.constraint(equalToConstant: 64),
             addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
@@ -191,6 +187,28 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: bloodSugarContainer.bottomAnchor, constant: 16),
             tableViewBottomConstraint
+        ])
+    }
+    
+    private func addStackViewConstraints() {
+        view.addConstraints([
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            
+            bloodSugarContainer.widthAnchor.constraint(equalToConstant: 64),
+            bloodSugarContainer.heightAnchor.constraint(equalToConstant: 64),
+            
+            bloodSugar.centerXAnchor.constraint(equalTo: bloodSugarContainer.centerXAnchor),
+            bloodSugar.centerYAnchor.constraint(equalTo: bloodSugarContainer.centerYAnchor),
+            
+            mealsLabel.leadingAnchor.constraint(equalTo: stackView.centerXAnchor, constant: -35),
+            mealsLabel.heightAnchor.constraint(equalToConstant: 64),
+            
+            glucometerButton.leadingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -64),
+            glucometerButton.centerYAnchor.constraint(equalTo: mealsLabel.centerYAnchor),
+            glucometerButton.widthAnchor.constraint(equalToConstant: 64),
+            glucometerButton.heightAnchor.constraint(equalToConstant: 64),
         ])
     }
     
