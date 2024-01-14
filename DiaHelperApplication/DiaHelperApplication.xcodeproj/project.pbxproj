@@ -11,7 +11,6 @@
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
 		D344AE4B2AF625D7002C9CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */; };
-		D344AE4E2AF625D7002C9CE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */; };
 		D344AE632AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */; };
 		D344AE652AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */; };
 		D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE722AF634D2002C9CE0 /* GraphicsViewController.swift */; };
@@ -49,6 +48,7 @@
 		D344AECA2B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */; };
 		D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */; };
 		D344AECE2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */; };
+		D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */; };
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +75,6 @@
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D344AE4D2AF625D7002C9CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D344AE4F2AF625D7002C9CE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D344AE542AF625D8002C9CE0 /* DiaHelperApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE5E2AF625D8002C9CE0 /* DiaHelperApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +115,7 @@
 		D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVcMealTableViewCell.swift; sourceTree = "<group>"; };
 		D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerValueViewController.swift; sourceTree = "<group>"; };
 		D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerBloodSugarTest.swift; sourceTree = "<group>"; };
+		D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinCanulaReminderField.swift; sourceTree = "<group>"; };
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,7 +178,6 @@
 				D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */,
 				D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */,
 				D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */,
-				D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */,
 				D344AE4F2AF625D7002C9CE0 /* Info.plist */,
 			);
 			path = DiaHelperApplication;
@@ -230,6 +229,7 @@
 				D344AE962B14922E002C9CE0 /* TextInput2.swift */,
 				D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */,
 				D3BC21212B503A5700FF44DC /* ReminderField.swift */,
+				D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -389,7 +389,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D344AE4E2AF625D7002C9CE0 /* LaunchScreen.storyboard in Resources */,
 				D344AE4B2AF625D7002C9CE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +424,7 @@
 				D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */,
 				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
 				D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */,
+				D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */,
 				D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */,
 				D344AEC82B271D13002C9CE0 /* ApiReading.swift in Sources */,
 				D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */,
@@ -487,17 +487,6 @@
 			targetProxy = D344AE5F2AF625D8002C9CE0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D344AE4D2AF625D7002C9CE0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D344AE662AF625D8002C9CE0 /* Debug */ = {
