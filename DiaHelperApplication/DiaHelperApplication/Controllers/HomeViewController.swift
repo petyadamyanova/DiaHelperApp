@@ -125,15 +125,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = .clear
         tableView.register(HomeVcMealTableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         self.tableView.layer.borderColor = UIColor.systemGray6.cgColor
         self.tableView.layer.borderWidth = 1;
         self.tableView.layer.cornerRadius = 10;
-        
-        tableViewBottomConstraint = tableView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: CGFloat((44 * (meals.count + 1))))
-        tableViewBottomConstraint.isActive = true
     }
     
     
@@ -186,7 +184,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor , constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: bloodSugarContainer.bottomAnchor, constant: 16),
-            tableViewBottomConstraint
+            tableView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -16),
         ])
     }
     
@@ -250,6 +248,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeVcMealTableViewCell
         
+        cell.backgroundColor = .white
+        
         if indexPath.row == 0 {
             cell.bloodSugarLabel.text = "🩸"
             cell.carbsIntakeLabel.text = " 🍽️"
@@ -299,7 +299,6 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
         meals.append(meal)
-        tableViewBottomConstraint.constant = CGFloat(44 * (meals.count + 1))
         self.tableView.reloadData()
     }
 }
