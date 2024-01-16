@@ -11,8 +11,6 @@
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
 		D344AE4B2AF625D7002C9CE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */; };
-		D344AE4E2AF625D7002C9CE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */; };
-		D344AE592AF625D8002C9CE0 /* DiaHelperApplicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */; };
 		D344AE632AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */; };
 		D344AE652AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */; };
 		D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE722AF634D2002C9CE0 /* GraphicsViewController.swift */; };
@@ -26,12 +24,32 @@
 		D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE842B01578E002C9CE0 /* PasswordValidator.swift */; };
 		D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */; };
 		D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE882B0157CF002C9CE0 /* NameValidator.swift */; };
-		D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */; };
 		D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */; };
 		D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */; };
-		D344AEAA2B1E4FA6002C9CE0 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */; };
-		D344AEAE2B1E5DA9002C9CE0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEAD2B1E5DA9002C9CE0 /* Double+rounded.swift */; };
-		D344AEB12B1E650C002C9CE0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB02B1E650C002C9CE0 /* NightscoutAPI.swift */; };
+		D344AE932B1392A4002C9CE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE922B1392A4002C9CE0 /* User.swift */; };
+		D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */; };
+		D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE962B14922E002C9CE0 /* TextInput2.swift */; };
+		D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */; };
+		D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */; };
+		D344AE9D2B189118002C9CE0 /* EmailValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */; };
+		D344AE9F2B1897D1002C9CE0 /* PasswordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE9E2B1897D1002C9CE0 /* PasswordValidatorTests.swift */; };
+		D344AEA12B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA02B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift */; };
+		D344AEA32B1DDC37002C9CE0 /* BirthDateValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */; };
+		D344AEA52B1DDE2D002C9CE0 /* UsernameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */; };
+		D344AEA72B1DDEA6002C9CE0 /* NameValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */; };
+		D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
+		D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */; };
+		D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
+		D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEBC2B2091B3002C9CE0 /* UserManager.swift */; };
+		D344AEBF2B209566002C9CE0 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEBE2B209566002C9CE0 /* Meal.swift */; };
+		D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC32B20A83A002C9CE0 /* NutritionTableViewCell.swift */; };
+		D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */; };
+		D344AEC82B271D13002C9CE0 /* ApiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC72B271D13002C9CE0 /* ApiReading.swift */; };
+		D344AECA2B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */; };
+		D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */; };
+		D344AECE2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */; };
+		D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */; };
+		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +75,8 @@
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D344AE4D2AF625D7002C9CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D344AE4F2AF625D7002C9CE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D344AE542AF625D8002C9CE0 /* DiaHelperApplicationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationTests.swift; sourceTree = "<group>"; };
 		D344AE5E2AF625D8002C9CE0 /* DiaHelperApplicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaHelperApplicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE622AF625D8002C9CE0 /* DiaHelperApplicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationUITests.swift; sourceTree = "<group>"; };
 		D344AE642AF625D8002C9CE0 /* DiaHelperApplicationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApplicationUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -75,12 +91,32 @@
 		D344AE842B01578E002C9CE0 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
 		D344AE882B0157CF002C9CE0 /* NameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidator.swift; sourceTree = "<group>"; };
-		D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodSugarApi.swift; sourceTree = "<group>"; };
 		D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNutritionViewController.swift; sourceTree = "<group>"; };
 		D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
-		D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
-		D344AEAD2B1E5DA9002C9CE0 /* Double+rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+rounded.swift"; sourceTree = "<group>"; };
-		D344AEB02B1E650C002C9CE0 /* NightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutAPI.swift; sourceTree = "<group>"; };
+		D344AE922B1392A4002C9CE0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataViewController.swift; sourceTree = "<group>"; };
+		D344AE962B14922E002C9CE0 /* TextInput2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInput2.swift; sourceTree = "<group>"; };
+		D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidator.swift; sourceTree = "<group>"; };
+		D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidator.swift; sourceTree = "<group>"; };
+		D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidatorTests.swift; sourceTree = "<group>"; };
+		D344AE9E2B1897D1002C9CE0 /* PasswordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA02B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearOfDiagnosisValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDateValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameValidatorTests.swift; sourceTree = "<group>"; };
+		D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutAPI.swift; sourceTree = "<group>"; };
+		D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+rounded.swift"; sourceTree = "<group>"; };
+		D344AEBC2B2091B3002C9CE0 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		D344AEBE2B209566002C9CE0 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		D344AEC32B20A83A002C9CE0 /* NutritionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionTableViewCell.swift; sourceTree = "<group>"; };
+		D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredPlaceholderTextField.swift; sourceTree = "<group>"; };
+		D344AEC72B271D13002C9CE0 /* ApiReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiReading.swift; sourceTree = "<group>"; };
+		D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVcMealTableViewCell.swift; sourceTree = "<group>"; };
+		D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerValueViewController.swift; sourceTree = "<group>"; };
+		D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerBloodSugarTest.swift; sourceTree = "<group>"; };
+		D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinCanulaReminderField.swift; sourceTree = "<group>"; };
+		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +167,10 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
-				D344AEAF2B1E64D3002C9CE0 /* API */,
-				D344AEA82B1E4F72002C9CE0 /* Extensions */,
+				D344AEC22B20A817002C9CE0 /* CustomCells */,
+				D344AEB52B1E6C44002C9CE0 /* Extensions */,
+				D344AEB22B1E6857002C9CE0 /* API */,
+				D344AE912B13928B002C9CE0 /* Models */,
 				D344AE812B01573E002C9CE0 /* Validators */,
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
 				D344AE712AF63473002C9CE0 /* Controllers */,
@@ -140,9 +178,7 @@
 				D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */,
 				D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */,
 				D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */,
-				D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */,
 				D344AE4F2AF625D7002C9CE0 /* Info.plist */,
-				D344AE8A2B04C14F002C9CE0 /* BloodSugarApi.swift */,
 			);
 			path = DiaHelperApplication;
 			sourceTree = "<group>";
@@ -150,7 +186,12 @@
 		D344AE572AF625D8002C9CE0 /* DiaHelperApplicationTests */ = {
 			isa = PBXGroup;
 			children = (
-				D344AE582AF625D8002C9CE0 /* DiaHelperApplicationTests.swift */,
+				D344AE9C2B189118002C9CE0 /* EmailValidatorTests.swift */,
+				D344AE9E2B1897D1002C9CE0 /* PasswordValidatorTests.swift */,
+				D344AEA02B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift */,
+				D344AEA22B1DDC37002C9CE0 /* BirthDateValidatorTests.swift */,
+				D344AEA42B1DDE2D002C9CE0 /* UsernameValidatorTests.swift */,
+				D344AEA62B1DDEA6002C9CE0 /* NameValidatorTests.swift */,
 			);
 			path = DiaHelperApplicationTests;
 			sourceTree = "<group>";
@@ -175,6 +216,8 @@
 				D344AE7F2AF8F6BE002C9CE0 /* StartViewController.swift */,
 				D344AE8C2B0D1D2A002C9CE0 /* AddNutritionViewController.swift */,
 				D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */,
+				D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */,
+				D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +226,10 @@
 			isa = PBXGroup;
 			children = (
 				D344AE7B2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift */,
+				D344AE962B14922E002C9CE0 /* TextInput2.swift */,
+				D344AEC52B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift */,
+				D3BC21212B503A5700FF44DC /* ReminderField.swift */,
+				D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -194,25 +241,48 @@
 				D344AE842B01578E002C9CE0 /* PasswordValidator.swift */,
 				D344AE862B0157B0002C9CE0 /* UsernameValidator.swift */,
 				D344AE882B0157CF002C9CE0 /* NameValidator.swift */,
+				D344AE982B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift */,
+				D344AE9A2B18900A002C9CE0 /* BirthDateValidator.swift */,
 			);
 			path = Validators;
 			sourceTree = "<group>";
 		};
-		D344AEA82B1E4F72002C9CE0 /* Extensions */ = {
+		D344AE912B13928B002C9CE0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D344AEA92B1E4FA6002C9CE0 /* UIColor+Hex.swift */,
-				D344AEAD2B1E5DA9002C9CE0 /* Double+rounded.swift */,
+				D344AE922B1392A4002C9CE0 /* User.swift */,
+				D344AEBC2B2091B3002C9CE0 /* UserManager.swift */,
+				D344AEBE2B209566002C9CE0 /* Meal.swift */,
+				D344AEC72B271D13002C9CE0 /* ApiReading.swift */,
+				D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D344AEB22B1E6857002C9CE0 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D344AEB52B1E6C44002C9CE0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D344AEB62B1E6C7A002C9CE0 /* UIColor+Hex.swift */,
+				D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D344AEAF2B1E64D3002C9CE0 /* API */ = {
+		D344AEC22B20A817002C9CE0 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				D344AEB02B1E650C002C9CE0 /* NightscoutAPI.swift */,
+				D344AEC32B20A83A002C9CE0 /* NutritionTableViewCell.swift */,
+				D344AEC92B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift */,
 			);
-			path = API;
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,7 +389,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D344AE4E2AF625D7002C9CE0 /* LaunchScreen.storyboard in Resources */,
 				D344AE4B2AF625D7002C9CE0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,25 +414,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D344AE992B188FD7002C9CE0 /* YearOfDiagnosisValidator.swift in Sources */,
 				D344AE7E2AF6C3AD002C9CE0 /* RegisterViewController.swift in Sources */,
+				D344AECE2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift in Sources */,
+				D344AECA2B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift in Sources */,
 				D344AE792AF6B93A002C9CE0 /* LoginViewController.swift in Sources */,
 				D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */,
-				D344AEAA2B1E4FA6002C9CE0 /* UIColor+Hex.swift in Sources */,
-				D344AEB12B1E650C002C9CE0 /* NightscoutAPI.swift in Sources */,
+				D344AEBF2B209566002C9CE0 /* Meal.swift in Sources */,
 				D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */,
-				D344AEAE2B1E5DA9002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
 				D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */,
+				D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */,
 				D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */,
+				D344AEC82B271D13002C9CE0 /* ApiReading.swift in Sources */,
 				D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */,
+				D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
+				D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */,
 				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
+				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,
-				D344AE8B2B04C14F002C9CE0 /* BloodSugarApi.swift in Sources */,
+				D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */,
 				D344AE7C2AF6C31F002C9CE0 /* RoundedValidatedTextInput.swift in Sources */,
+				D344AE932B1392A4002C9CE0 /* User.swift in Sources */,
+				D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
+				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
+				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
+				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
+				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
+				D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */,
+				D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,7 +455,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D344AE592AF625D8002C9CE0 /* DiaHelperApplicationTests.swift in Sources */,
+				D344AEA32B1DDC37002C9CE0 /* BirthDateValidatorTests.swift in Sources */,
+				D344AEA72B1DDEA6002C9CE0 /* NameValidatorTests.swift in Sources */,
+				D344AE9D2B189118002C9CE0 /* EmailValidatorTests.swift in Sources */,
+				D344AE9F2B1897D1002C9CE0 /* PasswordValidatorTests.swift in Sources */,
+				D344AEA12B1DD846002C9CE0 /* YearOfDiagnosisValidatorTests.swift in Sources */,
+				D344AEA52B1DDE2D002C9CE0 /* UsernameValidatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,17 +487,6 @@
 			targetProxy = D344AE5F2AF625D8002C9CE0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D344AE4C2AF625D7002C9CE0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D344AE4D2AF625D7002C9CE0 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D344AE662AF625D8002C9CE0 /* Debug */ = {
