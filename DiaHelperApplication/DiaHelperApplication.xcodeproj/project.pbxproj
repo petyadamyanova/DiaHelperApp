@@ -49,6 +49,7 @@
 		D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */; };
 		D344AECE2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */; };
 		D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */; };
+		D3B5268B2B5C01D1009E8265 /* ProtocolsReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */; };
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,7 @@
 		D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerValueViewController.swift; sourceTree = "<group>"; };
 		D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerBloodSugarTest.swift; sourceTree = "<group>"; };
 		D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinCanulaReminderField.swift; sourceTree = "<group>"; };
+		D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsReminderViewController.swift; sourceTree = "<group>"; };
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +220,7 @@
 				D344AE8E2B0D22EA002C9CE0 /* ReminderViewController.swift */,
 				D344AE942B139613002C9CE0 /* RegisterDataViewController.swift */,
 				D344AECB2B2C4B53002C9CE0 /* GlucometerValueViewController.swift */,
+				D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
+				D3B5268B2B5C01D1009E8265 /* ProtocolsReminderViewController.swift in Sources */,
 				D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */,
 				D344AE732AF634D2002C9CE0 /* GraphicsViewController.swift in Sources */,
 				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,

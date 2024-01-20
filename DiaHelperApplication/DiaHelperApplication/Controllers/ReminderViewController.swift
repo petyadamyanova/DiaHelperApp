@@ -18,6 +18,7 @@ class ReminderViewController: UIViewController {
         createPumpDatePicker()
         createInsulinCanulaDatePicker()
         createGlucometerCanulaDatePicker()
+        setupProtocolsButton()
         addSubviews()
         addStackViewConstraints()
     }
@@ -227,6 +228,35 @@ class ReminderViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    public var protocolsButton: UIButton = {
+        let color = UIColor(named: "newBlue")
+        
+        let button = UIButton(type: .system)
+        button.setTitle("protocols", for: .normal)
+        //button.titleLabel?.font = UIFont(name: "Baskerville", size: 35)
+        button.setTitleColor(color, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 35)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        var buttonConfiguration = UIButton.Configuration.tinted()
+        buttonConfiguration.cornerStyle = .large
+        button.configuration = buttonConfiguration
+        
+        return button
+    }()
+    
+    private func setupProtocolsButton() {
+        let action = UIAction(handler: protocolsButtonTapped)
+        protocolsButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func protocolsButtonTapped(_ action: UIAction) {
+        let protocolsReminderViewController = ProtocolsReminderViewController()
+        let navController = UINavigationController(rootViewController: protocolsReminderViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
     let separatorView1: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -291,6 +321,7 @@ class ReminderViewController: UIViewController {
         verticalStackView.addArrangedSubview(separatorView4)
         verticalStackView.addArrangedSubview(glucometerCanulaStackView)
         verticalStackView.addArrangedSubview(separatorView5)
+        verticalStackView.addArrangedSubview(protocolsButton)
     
         view.addSubview(verticalStackView)
     }
