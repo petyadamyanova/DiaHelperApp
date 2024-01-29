@@ -174,7 +174,11 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let newUser = User(name: "Petya Damyanova", email: "user1@email.com", username: "petiadam2006", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
 
         UserManager.shared.saveUser(newUser)
-        
+
+        let api = registerUserAPI()
+            api.registerUser(name: "Petya Damyanova", email: "user1@email.com", username: "petiadam2006", password: "password", password2: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: "Medtronic", sensorModel: "Dexcom", insulinType: "Fiasp")
+
+    
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
         navController.modalPresentationStyle = .fullScreen

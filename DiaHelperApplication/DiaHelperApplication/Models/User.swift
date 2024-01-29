@@ -36,7 +36,6 @@ enum SensorModel: String, Codable, CaseIterable  {
     case Libre
     case Other
     case None
-    
 }
 
 enum InsulinType: String, Codable, CaseIterable {
