@@ -124,9 +124,6 @@ class LoginViewController: UIViewController {
         
         let loginUserAPI = LoginUserAPI()
         loginUserAPI.loginUser(email: email, password: password)
-
-        
-        //proverka - dali sa validni
         
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)

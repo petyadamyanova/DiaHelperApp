@@ -47,7 +47,7 @@ enum InsulinType: String, Codable, CaseIterable {
 }
 
 struct LoginResponse: Codable {
-    var id: UUID
+    var id: String
     var username: String
     var email: String
     var password_hash: String

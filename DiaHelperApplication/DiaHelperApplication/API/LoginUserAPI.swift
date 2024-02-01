@@ -38,6 +38,8 @@ class LoginUserAPI {
                     print("Login Response: \(loginResponse)")
                     
                     let newUser = User(name: loginResponse.username, email: loginResponse.email, username: loginResponse.username, nightscout: loginResponse.nightscout, birtDate: loginResponse.birtDate, yearOfDiagnosis: loginResponse.yearOfDiagnosis, pumpModel: PumpModel(rawValue: loginResponse.pumpModel) ?? .Other, sensorModel: SensorModel(rawValue: loginResponse.sensorModel) ?? .Other, insulinType: InsulinType(rawValue: loginResponse.insulinType) ?? .Other)
+                    
+                    UserManager.shared.setCurrentUserId(id: loginResponse.id)
 
                     UserManager.shared.saveUser(newUser)
                 } catch {

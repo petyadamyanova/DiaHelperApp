@@ -11,6 +11,7 @@ class UserManager {
     static let shared = UserManager()
     private var currentUser: User?
     private var currentGlucose: String?
+    private var currentUserId: String?
     private var meals: [Meal] = []
     private var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
     
@@ -18,6 +19,14 @@ class UserManager {
     
     func getCurrentUser() -> User? {
         return currentUser
+    }
+    
+    func getCurrentUserId() -> String {
+        return currentUserId ?? ""
+    }
+    
+    func setCurrentUserId(id: String){
+        currentUserId = id
     }
     
     func saveUser(_ user: User) {

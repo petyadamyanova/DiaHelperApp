@@ -82,16 +82,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         if let user = UserManager.shared.getCurrentUser() {
             currentUser = user
             
-            if let meals = currentUser?.meals, !meals.isEmpty {
+            /*if let meals = currentUser?.meals, !meals.isEmpty {
                 self.meals = meals
                 tableView.reloadData()
-            }
+            }*/
+        }
+        let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
+        //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())
+        print(UserManager.shared.getCurrentUserId())
+        
+        FetchMealsAPI.shared.fetchMeals(for: userID) { [weak self] meals in
+            guard let self = self, let meals = meals else { return }
+            
+            self.meals = meals
+            tableView.reloadData()
         }
         
         setupTimer()
         setupAddButton()
         glucometerAction()
-        addTestMeals()
+        //addTestMeals()
         setupTableView()
         addSubviews()
         addStackViewConstraints()
@@ -116,11 +126,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         updateLabel()
     }
     
-    private func addTestMeals() {
+    /*private func addTestMeals() {
         meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6.7, carbsIntake: 50, foodType: .fast))
         
         meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 47.5, foodType: .slow))
-    }
+    }*/
     
     private func setupTableView() {
         tableView.dataSource = self
@@ -274,9 +284,18 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             }
             
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-            cell.timestampLabel.text = dateFormatter.string(from: meal.timestamp)
+            let timestampString = meal.timestamp
+
+            let dateFormatterInput = DateFormatter()
+            dateFormatterInput.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+            if let date = dateFormatterInput.date(from: timestampString) {
+                let dateFormatterOutput = DateFormatter()
+                dateFormatterOutput.dateFormat = "HH:mm"
+                cell.timestampLabel.text = dateFormatterOutput.string(from: date)
+            } else {
+                cell.timestampLabel.text = "Invalid Timestamp"
+            }
             
             cell.foodTypeLabel.text = meal.foodType.rawValue
         }
@@ -298,7 +317,18 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
-        meals.append(meal)
-        self.tableView.reloadData()
+        //meals.append(meal)
+        //self.tableView.reloadData()
+        let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
+        //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        
+        FetchMealsAPI.shared.fetchMeals(for:userID) { [weak self] fetchedMeals in
+            guard let self = self, let fetchedMeals = fetchedMeals else {
+                return
+            }
+
+            self.meals = fetchedMeals
+            self.tableView.reloadData()
+        }
     }
 }

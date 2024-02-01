@@ -53,6 +53,8 @@
 		D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */; };
 		D3B5268B2B5C01D1009E8265 /* ProtocolsReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */; };
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
+		D3D5D9112B6C209700DB32FE /* FetchMealsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */; };
+		D3D5D9132B6C2C6B00DB32FE /* AddMealApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinCanulaReminderField.swift; sourceTree = "<group>"; };
 		D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsReminderViewController.swift; sourceTree = "<group>"; };
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
+		D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsAPI.swift; sourceTree = "<group>"; };
+		D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +276,8 @@
 				D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */,
 				D399AB062B680616005DBAFA /* registerUserAPI.swift */,
 				D399AB082B6954CB005DBAFA /* LoginUserAPI.swift */,
+				D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */,
+				D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				D344AE852B01578E002C9CE0 /* PasswordValidator.swift in Sources */,
 				D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
+				D3D5D9132B6C2C6B00DB32FE /* AddMealApi.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,
 				D3B5268B2B5C01D1009E8265 /* ProtocolsReminderViewController.swift in Sources */,
 				D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */,
@@ -451,6 +458,7 @@
 				D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D399AB092B6954CB005DBAFA /* LoginUserAPI.swift in Sources */,
+				D3D5D9112B6C209700DB32FE /* FetchMealsAPI.swift in Sources */,
 				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
