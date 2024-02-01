@@ -8,7 +8,13 @@
 import UIKit
 
 class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    var name: String = ""
+    var email: String = ""
+    var username: String = ""
+    var password: String = ""
+    var password2: String = ""
 
+    
     var nigscout: String = ""
     var birtDate: String = ""
     var yearOfDiagnosis: String = ""
@@ -169,21 +175,26 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         let submitAction = UIAction(handler: didTapSubmitButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", primaryAction: submitAction)
     }
-
+    
     private func didTapSubmitButton(_ action: UIAction) {
-        let newUser = User(name: "Petya Damyanova", email: "user1@email.com", username: "petiadam2006", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
-
-        UserManager.shared.saveUser(newUser)
+        guard let nightscout = nightscoutField.textField.text,
+              let birthDate = birthDateField.textField.text,
+              let yearOfDiagnosis = yearOfDiagnosisField.textField.text else {
+                  return
+              }
 
         let api = registerUserAPI()
-            api.registerUser(name: "Petya Damyanova", email: "user1@email.com", username: "petiadam2006", password: "password", password2: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: "Medtronic", sensorModel: "Dexcom", insulinType: "Fiasp")
+        api.registerUser(name: name, email: email, username: username, password: password, password2: password2, nightscout: nightscout, birtDate: birthDate, yearOfDiagnosis: yearOfDiagnosis, pumpModel: pumpModel.rawValue, sensorModel: sensorModel.rawValue, insulinType: insulinType.rawValue)
+        
+        let loginUserAPI = LoginUserAPI()
+        loginUserAPI.loginUser(email: email, password: password)
 
-    
         let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
         navController.modalPresentationStyle = .fullScreen
-        navigationController?.setViewControllers([MainTabBarViewController()], animated: true)
+        navigationController?.setViewControllers([mainTabBarViewController], animated: true)
     }
+
 
     private func setupDismissButton() {
         let cancelAction = UIAction(handler: didTapCancelButton)

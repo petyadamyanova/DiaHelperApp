@@ -132,7 +132,7 @@ class RegisterViewController: UIViewController {
                   return
               }
         
-        /*if !nameValidator.isValid(name) {
+        if !nameValidator.isValid(name) {
             showErrorForField(field: nameField, message: "You have to enter your name here")
         } else {
             removeErrorForField(field: nameField)
@@ -186,15 +186,18 @@ class RegisterViewController: UIViewController {
             return
         } else {
             removeErrorForField(field: secondPasswordField)
-        }*/
+        }
         
         let registrationDataViewController = RegistrationDataViewController()
-        navigationController?.pushViewController(registrationDataViewController, animated: true)
+        registrationDataViewController.name = name
+        registrationDataViewController.email = email
+        registrationDataViewController.username = username
+        registrationDataViewController.password = password
+        registrationDataViewController.password2 = password2
         
-//        let mainTabBarViewController = MainTabBarViewController()
-//        let navController = UINavigationController(rootViewController: mainTabBarViewController)
-//        navController.modalPresentationStyle = .fullScreen
-//        navigationController?.present(navController, animated: true)
+        let navController = UINavigationController(rootViewController: registrationDataViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     private func showErrorForField(field: RoundedValidatedTextInput, message: String) {
