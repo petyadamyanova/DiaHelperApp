@@ -121,14 +121,30 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        let glucometerBloodSugarTest = GlucometerBloodSugarTest(timestamp: timestamp, bloodSugar: bloodSugar)
+        let formatter = ISO8601DateFormatter()
+        let timestampString = formatter.string(from: timestamp)
+        
+        let glucometerBloodSugarTest = GlucometerBloodSugarTest(timestamp: timestampString, bloodSugar: bloodSugar)
+        let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
+        //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())
+        print(UserManager.shared.getCurrentUserId())
+        
+        let glucometerAPI = AddGlucometerBloodSugarTestAPI()
+        glucometerAPI.addGlucometerBloodSugarTest(glucometerBloodSugarTest, forUserId: userID.uuidString) { error in
+            if let error = error {
+                print("Error adding glucometer test: \(error)")
+            } else {
+                DispatchQueue.main.async {
+                    self.delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
+                    self.dismiss(animated: true)
+                }
+            }
+        }
+
+        UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
+
         
         UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
-        
-        //print(UserManager.shared.getAllGlucometerBloodSugarTests())
-        delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
-        
-        dismiss(animated: true)
     }
     
     private func getCellTextFieldText(indexPath: IndexPath) -> String? {

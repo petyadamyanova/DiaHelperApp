@@ -55,6 +55,7 @@
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
 		D3D5D9112B6C209700DB32FE /* FetchMealsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */; };
 		D3D5D9132B6C2C6B00DB32FE /* AddMealApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */; };
+		D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9142B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
 		D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsAPI.swift; sourceTree = "<group>"; };
 		D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealApi.swift; sourceTree = "<group>"; };
+		D3D5D9142B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGlucometerBloodSugarTestAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 				D399AB082B6954CB005DBAFA /* LoginUserAPI.swift */,
 				D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */,
 				D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */,
+				D3D5D9142B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
 				D399AB072B680616005DBAFA /* registerUserAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
+				D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */,
 				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
 				D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */,
 				D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */,

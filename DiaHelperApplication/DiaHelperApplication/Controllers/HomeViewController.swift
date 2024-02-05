@@ -81,12 +81,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         
         if let user = UserManager.shared.getCurrentUser() {
             currentUser = user
-            
-            /*if let meals = currentUser?.meals, !meals.isEmpty {
-                self.meals = meals
-                tableView.reloadData()
-            }*/
         }
+        
         let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
         //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())
         print(UserManager.shared.getCurrentUserId())
@@ -101,7 +97,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         setupTimer()
         setupAddButton()
         glucometerAction()
-        //addTestMeals()
         setupTableView()
         addSubviews()
         addStackViewConstraints()
@@ -115,7 +110,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
                 return
             }
         }
-        //updateLabel()
         
         timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
                                      target: self,
@@ -125,12 +119,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         
         updateLabel()
     }
-    
-    /*private func addTestMeals() {
-        meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6.7, carbsIntake: 50, foodType: .fast))
-        
-        meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 47.5, foodType: .slow))
-    }*/
     
     private func setupTableView() {
         tableView.dataSource = self

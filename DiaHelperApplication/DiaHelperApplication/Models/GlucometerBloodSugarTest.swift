@@ -8,6 +8,6 @@
 import Foundation
 
 struct GlucometerBloodSugarTest: Codable {
-    var timestamp: Date
+    var timestamp: String
     var bloodSugar: Double
 }
