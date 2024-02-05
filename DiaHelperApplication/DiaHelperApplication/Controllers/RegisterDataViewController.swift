@@ -187,12 +187,34 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         api.registerUser(name: name, email: email, username: username, password: password, password2: password2, nightscout: nightscout, birtDate: birthDate, yearOfDiagnosis: yearOfDiagnosis, pumpModel: pumpModel.rawValue, sensorModel: sensorModel.rawValue, insulinType: insulinType.rawValue)
         
         let loginUserAPI = LoginUserAPI()
-        loginUserAPI.loginUser(email: email, password: password)
+        loginUserAPI.loginUser(email: email, password: password) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let user):
+                    // Login successful
+                    let mainTabBarViewController = MainTabBarViewController()
+                    let navController = UINavigationController(rootViewController: mainTabBarViewController)
+                    navController.modalPresentationStyle = .fullScreen
+                    self.navigationController?.setViewControllers([mainTabBarViewController], animated: true)
 
-        let mainTabBarViewController = MainTabBarViewController()
+                case .failure(let error):
+                    // Handle login failure
+                    switch error {
+                    case NetworkError.userNotFound:
+                       print("error")
+                    default:
+                        print("error")
+                    }
+                    // Optionally, display an error message to the user
+                    print("Error during login: \(error)")
+                }
+            }
+        }
+
+        /*let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)
         navController.modalPresentationStyle = .fullScreen
-        navigationController?.setViewControllers([mainTabBarViewController], animated: true)
+        navigationController?.setViewControllers([mainTabBarViewController], animated: true)*/
     }
 
 
