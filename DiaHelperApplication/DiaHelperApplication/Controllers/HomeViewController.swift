@@ -12,7 +12,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     var currentUser: User?
     var meals: [Meal] = []
     private let tableView = UITableView()
-    private var tableViewBottomConstraint: NSLayoutConstraint!
     
     internal var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -83,8 +82,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             currentUser = user
         }
         
-        let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
-        //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         print(UserManager.shared.getCurrentUserId())
         
         FetchMealsAPI.shared.fetchMeals(for: userID) { [weak self] meals in
@@ -242,6 +240,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count + 1
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeVcMealTableViewCell
@@ -264,7 +263,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             } else {
                 cell.carbsIntakeLabel.text = "\(meal.carbsIntake) g"
             }
-
+            
             if abs(meal.insulinDose.truncatingRemainder(dividingBy: 1.0)) < epsilon {
                 cell.insulinDoseLabel.text = "\(Int(meal.insulinDose)) u"
             } else {
@@ -273,10 +272,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             
             
             let timestampString = meal.timestamp
-
+            
             let dateFormatterInput = DateFormatter()
             dateFormatterInput.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-
+            
             if let date = dateFormatterInput.date(from: timestampString) {
                 let dateFormatterOutput = DateFormatter()
                 dateFormatterOutput.dateFormat = "HH:mm"
@@ -305,10 +304,8 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
-        //meals.append(meal)
-        //self.tableView.reloadData()
-        let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
-        //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        print(UserManager.shared.getCurrentUserId())
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
         FetchMealsAPI.shared.fetchMeals(for:userID) { [weak self] fetchedMeals in
             guard let self = self, let fetchedMeals = fetchedMeals else {
@@ -320,3 +317,4 @@ extension HomeViewController: AddNutritionViewControllerDelegate {
         }
     }
 }
+

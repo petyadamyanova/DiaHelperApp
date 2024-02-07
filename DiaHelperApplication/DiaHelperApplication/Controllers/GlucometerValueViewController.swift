@@ -125,8 +125,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         let timestampString = formatter.string(from: timestamp)
         
         let glucometerBloodSugarTest = GlucometerBloodSugarTest(timestamp: timestampString, bloodSugar: bloodSugar)
-        let userID = UUID(uuidString: "73B0C145-3820-4697-9144-CF4319C37656")!
-        //let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         print(UserManager.shared.getCurrentUserId())
         
         let glucometerAPI = AddGlucometerBloodSugarTestAPI()

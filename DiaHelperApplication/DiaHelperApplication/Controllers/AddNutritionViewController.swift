@@ -175,15 +175,15 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        let userId = "73B0C145-3820-4697-9144-CF4319C37656"
+        //let userId = "73B0C145-3820-4697-9144-CF4319C37656"
         let formatter = ISO8601DateFormatter()
         let timestampString = formatter.string(from: timestamp)
-
+        let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
-        let meal = Meal(id: userId, timestamp: timestampString, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
+        let meal = Meal(id: userId.uuidString, timestamp: timestampString, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
         let addMealAPI = AddMealAPI()
 
-        addMealAPI.addMeal(userId: userId, meal: meal) { error in
+        addMealAPI.addMeal(userId: userId.uuidString, meal: meal) { error in
             if let error = error {
                 print("Error adding meal: \(error)")
             } else {

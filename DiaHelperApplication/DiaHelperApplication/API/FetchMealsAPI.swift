@@ -10,7 +10,6 @@ import Foundation
 class FetchMealsAPI {
     static let shared = FetchMealsAPI()
     func fetchMeals(for userId: UUID, completion: @escaping ([Meal]?) -> Void) {
-        
         // for user: User
         /*guard let userId = user.id else {
             print("Invalid user ID.")

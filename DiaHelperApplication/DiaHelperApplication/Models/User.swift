@@ -50,7 +50,6 @@ struct LoginResponse: Codable {
     var id: String
     var username: String
     var email: String
-    var password_hash: String
     var nightscout: String
     var birtDate: String
     var yearOfDiagnosis: String
