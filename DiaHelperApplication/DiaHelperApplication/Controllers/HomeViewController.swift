@@ -290,6 +290,33 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if indexPath.row > 0 && indexPath.row <= meals.count {
+                let deletedMeal = meals.remove(at: indexPath.row - 1)
+                
+                deleteMealFromAPI(mealId: deletedMeal.id)
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }
+        }
+    }
+
+    func deleteMealFromAPI(mealId: String) {
+        let userId = UserManager.shared.getCurrentUserId()
+
+        let deleteMealAPI = DeleteMealAPI()
+        deleteMealAPI.deleteMeal(userId: userId, mealId: mealId) { error in
+            if let error = error {
+                print("Error deleting meal from API: \(error)")
+            } else {
+                print("Meal deleted successfully from API")
+            }
+        }
+    }
+    
     func didSubmitGlucometerTest(_ value: Double) {
         updateLabelManually(value)
     }
