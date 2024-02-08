@@ -174,8 +174,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
                 break
             }
         }
-        
-        //let userId = "73B0C145-3820-4697-9144-CF4319C37656"
+    
         let formatter = ISO8601DateFormatter()
         let timestampString = formatter.string(from: timestamp)
         let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
@@ -194,8 +193,6 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         UserManager.shared.addMeal(meal)
         
         delegate?.didAddMeal(meal)
-        
-        //print(UserManager.shared.getAllMeals())
 
         dismiss(animated: true)
     }

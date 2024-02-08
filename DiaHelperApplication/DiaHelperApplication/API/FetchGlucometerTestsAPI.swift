@@ -1,16 +1,18 @@
 //
-//  FetchMealsAPI.swift
+//  FetchGlucometerTestsAPI.swift
 //  DiaHelperApplication
 //
-//  Created by Petya Damyanova on 1.02.24.
+//  Created by Petya Damyanova on 8.02.24.
 //
 
 import Foundation
+import UIKit
 
-class FetchMealsAPI {
-    static let shared = FetchMealsAPI()
-    func fetchMeals(for userId: UUID, completion: @escaping ([Meal]?) -> Void) {
-        let apiUrl = "http://localhost:8080/users/\(userId)/meals"
+class FetchGlucometerTestsAPI {
+    static let shared = FetchGlucometerTestsAPI()
+    
+    func fetchGlucometerTests(for userId: UUID, completion: @escaping ([GlucometerBloodSugarTest]?) -> Void){
+        let apiUrl = "http://localhost:8080/users/\(userId)/glucometer-tests"
 
         guard let url = URL(string: apiUrl) else {
             print("Invalid URL.")
@@ -29,10 +31,10 @@ class FetchMealsAPI {
             } else if let data = data {
                 do {
                     let decoder = JSONDecoder()
-                    let meals = try decoder.decode([Meal].self, from: data)
+                    let glucometerTests = try decoder.decode([GlucometerBloodSugarTest].self, from: data)
 
                     DispatchQueue.main.async {
-                        completion(meals)
+                        completion(glucometerTests)
                     }
                 } catch {
                     print("Error decoding response: \(error)")

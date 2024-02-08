@@ -15,13 +15,18 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     weak var delegate: GlucometerValueViewControllerDelegate?
     private let tableView = UITableView()
     private let submitButton = UIButton()
+    private let viewButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDismissButton()
         setupTableView()
         setupSubmitButton()
+        setupViewButton()
         setupErrorLabel()
+        addSubviews()
+        addViewConstraints()
+        
         view.backgroundColor = .systemGray6
     }
     
@@ -48,18 +53,43 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(NutritionTableViewCell.self, forCellReuseIdentifier: "Cell")
-        view.addSubview(tableView)
         
         self.tableView.layer.borderColor = UIColor.systemGray6.cgColor
         self.tableView.layer.borderWidth = 1;
         self.tableView.layer.cornerRadius = 10;
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func addSubviews() {
+        view.addSubview(tableView)
+        
+        view.addSubview(submitButton)
+        view.addSubview(viewButton)
+        view.addSubview(errorField)
+    }
+    
+    func addViewConstraints() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 2 ))
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 2 )),
+            
+            submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            submitButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16 + 16),
+            submitButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            viewButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            viewButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            viewButton.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 16),
+            viewButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+        
         ])
     }
     
@@ -73,20 +103,24 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         var buttonConfiguration = UIButton.Configuration.tinted()
         buttonConfiguration.cornerStyle = .large
         submitButton.configuration = buttonConfiguration
-        
-        view.addSubview(submitButton)
 
         submitButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            submitButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16 + 16),
-            submitButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
-        
         
         let submitAction = UIAction(handler: didtapSubmitButton)
         submitButton.addAction(submitAction, for: .touchUpInside)
+    }
+    
+    private func setupViewButton(){
+        let color = UIColor(named: "newBrown")
+        viewButton.setTitle("View values", for: .normal)
+        
+        viewButton.setTitleColor(color, for: .normal)
+        viewButton.tintColor = UIColor(named: "newBlue")
+
+        viewButton.translatesAutoresizingMaskIntoConstraints = false
+
+        let viewAction = UIAction(handler: didtapViewButton)
+        viewButton.addAction(viewAction, for: .touchUpInside)
     }
     
     private func didtapSubmitButton(_ action: UIAction) {
@@ -146,6 +180,13 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
     }
     
+    private func didtapViewButton(_ action: UIAction) {
+        let viewController = GlucometerTestsViewController()
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
     private func getCellTextFieldText(indexPath: IndexPath) -> String? {
         guard let cell = tableView.cellForRow(at: indexPath) as? NutritionTableViewCell else {
             return nil
@@ -154,14 +195,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setupErrorLabel() {
-        view.addSubview(errorField)
-
         errorField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
-        ])
     }
 
     private func showError(message: String) {

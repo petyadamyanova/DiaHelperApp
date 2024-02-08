@@ -145,6 +145,34 @@ class ProfileViewController: UIViewController {
         return textField
     }()
     
+    public var editButton: UIButton = {
+        let color = UIColor(named: "newBlue")
+        
+        let button = UIButton(type: .system)
+        button.setTitle("edit", for: .normal)
+        button.setTitleColor(color, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 35)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        var buttonConfiguration = UIButton.Configuration.tinted()
+        buttonConfiguration.cornerStyle = .large
+        button.configuration = buttonConfiguration
+        
+        return button
+    }()
+    
+    private func setupEditButton() {
+        let action = UIAction(handler: editButtonTapped)
+        editButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func editButtonTapped(_ action: UIAction) {
+        let protocolsReminderViewController = EditProfileViewController()
+        let navController = UINavigationController(rootViewController: protocolsReminderViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,6 +191,7 @@ class ProfileViewController: UIViewController {
         setupPumpTextField()
         setupSensorTextField()
         setupInsulinTypeTextField()
+        setupEditButton()
         addSubviews()
         addConstraints()
     }
@@ -185,7 +214,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(sensorTextField)
         view.addSubview(insulinIcon)
         view.addSubview(insulinTypeTextField)
-        
+        view.addSubview(editButton)
     }
     
     private func addConstraints() {
@@ -263,6 +292,10 @@ class ProfileViewController: UIViewController {
             insulinTypeTextField.topAnchor.constraint(equalTo: sensorIcon.bottomAnchor, constant: 12),
             insulinTypeTextField.leadingAnchor.constraint(equalTo: insulinIcon.trailingAnchor, constant: 16),
             insulinTypeTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            editButton.topAnchor.constraint(equalTo: insulinTypeTextField.bottomAnchor, constant: 12),
+            editButton.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
+            editButton.widthAnchor.constraint(equalToConstant: 90),
             
         ])
     }
