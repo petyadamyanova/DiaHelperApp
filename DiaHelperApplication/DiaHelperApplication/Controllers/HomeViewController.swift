@@ -347,7 +347,6 @@ extension HomeViewController: AddNutritionViewControllerDelegate {
             }
 
             self.meals.insert(meal, at: 0)
-            self.meals = fetchedMeals
             self.tableView.reloadData()
         }
     }
