@@ -103,7 +103,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     
     private func setupTimer() {
         if let user = currentUser {
-            if user.nightscout.isEmpty{
+            if user.nightscout.isEmpty || user.nightscout == "none"{
                 self.bloodSugar.text = "-"
                 return
             }
@@ -236,6 +236,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     
     func updateLabelManually(_ value: Double){
         self.bloodSugar.text = String(value)
+        UserManager.shared.setCurrentGlucose(self.bloodSugar.text!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
