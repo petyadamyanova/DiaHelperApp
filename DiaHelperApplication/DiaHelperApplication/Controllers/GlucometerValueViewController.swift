@@ -134,13 +134,27 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
                 if let text = getCellTextFieldText(indexPath: indexPath) {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
-                    if let date = dateFormatter.date(from: text) {
-                        timestamp = date
-                        hideError()
-                    } else {
-                        showError(message: "Time has to be in HH:mm format")
-                        return
-                    }
+                    
+                    // Get the current date
+                    let currentDate = Date()
+                    
+                    // Get the calendar and components
+                    var calendar = Calendar.current
+                    calendar.timeZone = TimeZone.current
+                    var components = calendar.dateComponents([.year, .month, .day], from: currentDate)
+                    
+                    // Get the hours and minutes from the selected time
+                    let timeComponents = dateFormatter.date(from: text)
+                    components.hour = calendar.component(.hour, from: timeComponents!)
+                    components.minute = calendar.component(.minute, from: timeComponents!)
+                    
+                    // Create a new date with the current day, year, and selected time
+                    timestamp = calendar.date(from: components) ?? Date()
+                    
+                    hideError()
+                } else {
+                    showError(message: "Failed to get the selected time")
+                    return
                 }
             case 1:
                 if let text = getCellTextFieldText(indexPath: indexPath), let glucose1 = Double(text), glucose1 >= 2 && glucose1 <= 30 {
