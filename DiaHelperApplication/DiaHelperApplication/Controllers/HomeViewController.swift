@@ -124,6 +124,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         tableView.backgroundColor = .clear
         tableView.register(HomeVcMealTableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = true
         
         self.tableView.layer.borderColor = UIColor.systemGray6.cgColor
         self.tableView.layer.borderWidth = 1;
@@ -253,6 +254,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             cell.foodTypeLabel.text = "type"
             cell.insulinDoseLabel.text = "💉"
             cell.timestampLabel.text = "   ⏰"
+            cell.dateLabel.text = ""
         } else {
             let meal = meals[indexPath.row - 1]
             cell.bloodSugarLabel.text = String(meal.bloodSugar)
@@ -343,9 +345,9 @@ extension HomeViewController: AddNutritionViewControllerDelegate {
                 return
             }
 
+            self.meals.insert(meal, at: 0)
             self.meals = fetchedMeals
             self.tableView.reloadData()
         }
     }
 }
-
