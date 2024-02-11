@@ -11,10 +11,12 @@ import UIKit
 
 class HomeVcMealTableViewCell: UITableViewCell {
     let timestampLabel = UILabel()
+    let dateLabel = UILabel()
     let bloodSugarLabel = UILabel()
     let insulinDoseLabel = UILabel()
     let carbsIntakeLabel = UILabel()
     let foodTypeLabel = UILabel()
+    let dateTimeStackView = UIStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,11 +28,18 @@ class HomeVcMealTableViewCell: UITableViewCell {
     }
     
     private func addConstraints() {
-        contentView.addSubview(timestampLabel)
-        timestampLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(dateTimeStackView)
+
+        dateTimeStackView.axis = .vertical
+        dateTimeStackView.spacing = 4
+        dateTimeStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        dateTimeStackView.addArrangedSubview(timestampLabel)
+        dateTimeStackView.addArrangedSubview(dateLabel)
+            
         NSLayoutConstraint.activate([
-            timestampLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            timestampLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            dateTimeStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            dateTimeStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
 
         contentView.addSubview(bloodSugarLabel)

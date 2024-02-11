@@ -278,8 +278,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             
             if let date = dateFormatterInput.date(from: timestampString) {
                 let dateFormatterOutput = DateFormatter()
+                let dateFormatterOutput2 = DateFormatter()
                 dateFormatterOutput.dateFormat = "HH:mm"
+                dateFormatterOutput2.dateFormat = "MM-dd"
                 cell.timestampLabel.text = dateFormatterOutput.string(from: date)
+                cell.dateLabel.text = dateFormatterOutput2.string(from: date)
+                cell.dateLabel.font = UIFont.italicSystemFont(ofSize: 14)
             } else {
                 cell.timestampLabel.text = "Invalid Timestamp"
             }
@@ -325,7 +329,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
+        return 65
     }
 }
 
