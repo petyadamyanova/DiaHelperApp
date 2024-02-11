@@ -208,8 +208,8 @@ class RegisterViewController: UIViewController {
     
     private func removeErrorForField(field: RoundedValidatedTextInput) {
         field.errorField.isHidden = true
-        field.textField.layer.borderColor = UIColor.black.cgColor
-        field.textField.layer.cornerRadius = 6
-        field.textField.layer.borderWidth = 2
+        field.textField.layer.borderColor = UIColor(named: "newBrown")?.cgColor ?? UIColor.lightGray.cgColor
+        field.textField.layer.cornerRadius = 8
+        field.textField.layer.borderWidth = 1
     }
 }

@@ -21,7 +21,6 @@ class RoundedValidatedTextInput: UIStackView {
     public var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
-        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         return label
     }()
@@ -29,7 +28,6 @@ class RoundedValidatedTextInput: UIStackView {
     public var errorField: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         label.text = "Error"
         
         return label
@@ -37,11 +35,12 @@ class RoundedValidatedTextInput: UIStackView {
     
     public var textField: UITextField = {
         let textField = UITextField()
-        textField.setContentHuggingPriority(.defaultLow, for: .vertical)
         textField.addConstraint(textField.heightAnchor.constraint(equalToConstant: 35))
         
         textField.layer.cornerRadius = 8
         textField.layer.borderWidth = 1
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         
         if let color = UIColor(named: "newBrown") {
             textField.layer.borderColor = color.cgColor
