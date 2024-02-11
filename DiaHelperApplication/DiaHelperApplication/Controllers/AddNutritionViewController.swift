@@ -140,13 +140,6 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
                if let text = getCellTextFieldText(indexPath: indexPath) {
                    let dateFormatter = DateFormatter()
                    dateFormatter.dateFormat = "HH:mm"
-                   /*if let date = dateFormatter.date(from: text) {
-                       timestamp = date
-                       hideError()
-                   } else {
-                       showError(message: "Time has to be in HH:mm format")
-                       return
-                   }*/
                    
                    if let enteredTime = dateFormatter.date(from: text) {
                        let calendar = Calendar.current
@@ -188,7 +181,6 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         }
     
         let formatter = ISO8601DateFormatter()
-        //formatter.formatOptions = [.withFractionalSeconds]
         let timestampString = formatter.string(from: timestamp)
         
         print(timestampString)

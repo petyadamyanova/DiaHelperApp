@@ -335,7 +335,7 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
-        print(UserManager.shared.getCurrentUserId())
+        //print(UserManager.shared.getCurrentUserId())
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
         FetchMealsAPI.shared.fetchMeals(for:userID) { [weak self] fetchedMeals in

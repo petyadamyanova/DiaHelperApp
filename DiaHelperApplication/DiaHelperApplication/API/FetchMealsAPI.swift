@@ -32,7 +32,7 @@ class FetchMealsAPI {
                     let meals = try decoder.decode([Meal].self, from: data)
 
                     DispatchQueue.main.async {
-                        completion(meals)
+                        completion(meals.reversed())
                     }
                 } catch {
                     print("Error decoding response: \(error)")
