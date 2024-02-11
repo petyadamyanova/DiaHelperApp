@@ -27,12 +27,6 @@ class ProfileViewController: UIViewController {
         return imageView
     }()
     
-    private var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private var usernameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .gray
@@ -198,7 +192,6 @@ class ProfileViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(profileImage)
-        view.addSubview(nameLabel)
         view.addSubview(usernameLabel)
         view.addSubview(emailIcon)
         view.addSubview(emailTextField)
@@ -224,11 +217,8 @@ class ProfileViewController: UIViewController {
             profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             profileImage.heightAnchor.constraint(equalToConstant: 200),
             
-            nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16),
-            nameLabel.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
-            
-            usernameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
-            usernameLabel.centerXAnchor.constraint(equalTo: nameLabel.centerXAnchor),
+            usernameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16),
+            usernameLabel.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
             
             emailIcon.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 30),
             emailIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
@@ -301,7 +291,6 @@ class ProfileViewController: UIViewController {
     }
     
     private func setUpNameLabel(){
-        nameLabel.text = currentUser?.name
         usernameLabel.text = currentUser?.username
     }
     
