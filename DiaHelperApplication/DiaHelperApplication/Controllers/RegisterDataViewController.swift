@@ -22,6 +22,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     var sensorModel: SensorModel = .None
     var insulinType: InsulinType = .Other
     
+    private let birthDateValidator = BirthDateValidator()
+    private let yearOfDiagnosisValidator = YearOfDiagnosisValidator()
+    
     private lazy var pumpPickerView: UIPickerView = {
         let pickerView = UIPickerView()
         return pickerView
@@ -170,6 +173,15 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     
         return txtField
     }()
+    
+    private var errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .red
+        label.numberOfLines = 0
+        label.isHidden = true
+        return label
+    }()
 
     private func setupSubmitButton() {
         let submitAction = UIAction(handler: didTapSubmitButton)
@@ -177,12 +189,28 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     }
     
     private func didTapSubmitButton(_ action: UIAction) {
-        guard let nightscout = nightscoutField.textField.text,
-              let birthDate = birthDateField.textField.text,
-              let yearOfDiagnosis = yearOfDiagnosisField.textField.text else {
-                  return
-              }
+        guard var nightscout = nightscoutField.textField.text,
+                  let birthDate = birthDateField.textField.text,
+                  let yearOfDiagnosis = yearOfDiagnosisField.textField.text else {
+                      return
+                  }
+        
+        if !birthDateValidator.isValid(birthDate) {
+            showError(message: "Birthday is not valid!")
+            return
+        }
+        
+        if !yearOfDiagnosisValidator.isValid(yearOfDiagnosis, birthDate) {
+            showError(message: "Year of diagnosis is not valid!")
+            return
+        }
+        
+        if nightscout.isEmpty {
+            nightscout = "none"
+        }
 
+        errorLabel.isHidden = true
+        
         let api = registerUserAPI()
         api.registerUser(name: name, email: email, username: username, password: password, password2: password2, nightscout: nightscout, birtDate: birthDate, yearOfDiagnosis: yearOfDiagnosis, pumpModel: pumpModel.rawValue, sensorModel: sensorModel.rawValue, insulinType: insulinType.rawValue)
         
@@ -237,6 +265,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         stackView.addArrangedSubview(sensorPickerTextField)
         stackView.addArrangedSubview(insulinPickerTextField)
         stackView.addArrangedSubview(nightscoutField)
+        stackView.addArrangedSubview(errorLabel)
     }
 
     private func addStackViewConstraints() {
@@ -254,4 +283,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         stackView.spacing = 16
         return stackView
     }()
+    
+    private func showError(message: String) {
+        errorLabel.text = message
+        errorLabel.isHidden = false
+    }
 }
