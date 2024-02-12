@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, EditProfileDelegate {
     var currentUser: User?
     
     private var stackView: UIStackView = {
@@ -162,6 +162,7 @@ class ProfileViewController: UIViewController {
     
     private func editButtonTapped(_ action: UIAction) {
         let protocolsReminderViewController = EditProfileViewController()
+        protocolsReminderViewController.delegate = self
         let navController = UINavigationController(rootViewController: protocolsReminderViewController)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
@@ -322,6 +323,10 @@ class ProfileViewController: UIViewController {
         insulinTypeTextField.text = currentUser?.insulinType.rawValue
     }
     
+    func didUpdateUsername(_ newUsername: String) {
+        usernameLabel.text = newUsername
+    }
+
 }
 
 
