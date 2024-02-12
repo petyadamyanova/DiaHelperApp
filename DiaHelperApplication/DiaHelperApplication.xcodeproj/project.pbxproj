@@ -60,6 +60,7 @@
 		D3D59E202B755DAF004679CE /* GlucometerTestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E1F2B755DAF004679CE /* GlucometerTestViewCell.swift */; };
 		D3D59E242B79992A004679CE /* UpdateUsernameAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E232B79992A004679CE /* UpdateUsernameAPI.swift */; };
 		D3D59E262B79A6D0004679CE /* UpdateEmailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E252B79A6D0004679CE /* UpdateEmailAPI.swift */; };
+		D3D59E282B79ABD4004679CE /* UpdateNightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E272B79ABD4004679CE /* UpdateNightscoutAPI.swift */; };
 		D3D5D9112B6C209700DB32FE /* FetchMealsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */; };
 		D3D5D9132B6C2C6B00DB32FE /* AddMealApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */; };
 		D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D5D9142B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift */; };
@@ -140,6 +141,7 @@
 		D3D59E1F2B755DAF004679CE /* GlucometerTestViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerTestViewCell.swift; sourceTree = "<group>"; };
 		D3D59E232B79992A004679CE /* UpdateUsernameAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUsernameAPI.swift; sourceTree = "<group>"; };
 		D3D59E252B79A6D0004679CE /* UpdateEmailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailAPI.swift; sourceTree = "<group>"; };
+		D3D59E272B79ABD4004679CE /* UpdateNightscoutAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateNightscoutAPI.swift; sourceTree = "<group>"; };
 		D3D5D9102B6C209700DB32FE /* FetchMealsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsAPI.swift; sourceTree = "<group>"; };
 		D3D5D9122B6C2C6B00DB32FE /* AddMealApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealApi.swift; sourceTree = "<group>"; };
 		D3D5D9142B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGlucometerBloodSugarTestAPI.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */,
 				D3D59E232B79992A004679CE /* UpdateUsernameAPI.swift */,
 				D3D59E252B79A6D0004679CE /* UpdateEmailAPI.swift */,
+				D3D59E272B79ABD4004679CE /* UpdateNightscoutAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				D3D59E262B79A6D0004679CE /* UpdateEmailAPI.swift in Sources */,
 				D399AB072B680616005DBAFA /* registerUserAPI.swift in Sources */,
 				D3D59E242B79992A004679CE /* UpdateUsernameAPI.swift in Sources */,
+				D3D59E282B79ABD4004679CE /* UpdateNightscoutAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
 				D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */,
 				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,

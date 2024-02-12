@@ -330,6 +330,10 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     func didUpdateEmail(_ newEmail: String) {
         emailTextField.text = newEmail
     }
+    
+    func didUpdateNightscout(_ newNightscout: String) {
+        nightscoutTextField.text = newNightscout
+    }
 
 }
 

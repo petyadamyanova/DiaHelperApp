@@ -110,12 +110,26 @@ class EditProfileViewController: UIViewController {
             
             updateEmailAPI.updateEmail(userId: userId!.uuidString, newEmail: newEmail!) { error in
                 if let error = error {
-                    // Handle the error
                     print("Error updating username: \(error)")
                 } else {
-                    // Username updated successfully
-                    print("Username updated successfully")
                     self.delegate?.didUpdateEmail(newEmail!)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                
+            }
+        }
+        
+        if nightscoutField.textField.text?.isEmpty == false {
+            let newNightscout = nightscoutField.textField.text
+            let updateNightscoutAPI = UpdateNightscoutAPI.shared
+            
+            updateNightscoutAPI.updateNightscout(userId: userId!.uuidString, newNightscout: newNightscout!) { error in
+                if let error = error {
+                    print("Error updating username: \(error)")
+                } else {
+                    self.delegate?.didUpdateNightscout(newNightscout!)
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -146,4 +160,5 @@ class EditProfileViewController: UIViewController {
 protocol EditProfileDelegate: AnyObject {
     func didUpdateUsername(_ newUsername: String)
     func didUpdateEmail(_ newEmail: String)
+    func didUpdateNightscout(_ newEmail: String)
 }
