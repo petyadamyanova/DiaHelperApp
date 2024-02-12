@@ -34,7 +34,7 @@ class FetchGlucometerTestsAPI {
                     let glucometerTests = try decoder.decode([GlucometerBloodSugarTest].self, from: data)
 
                     DispatchQueue.main.async {
-                        completion(glucometerTests)
+                        completion(glucometerTests.reversed())
                     }
                 } catch {
                     print("Error decoding response: \(error)")

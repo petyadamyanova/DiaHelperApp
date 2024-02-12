@@ -60,6 +60,7 @@ class GlucometerTestsViewController: UIViewController, UITableViewDataSource, UI
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.isScrollEnabled = true
         tableView.backgroundColor = .systemGray6
         tableView.register(GlucometerTestCell.self, forCellReuseIdentifier: "GlucometerTestCell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
