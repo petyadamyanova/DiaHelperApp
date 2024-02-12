@@ -81,26 +81,46 @@ class EditProfileViewController: UIViewController {
     }
     
     private func submitButtonTapped(_ action: UIAction) {
-        guard let newUsername = usernameField.textField.text else { let newUsername =  usernameField.textField.placeholder
-            return
-        }
-        
         let userIdString = UserManager.shared.getCurrentUserId()
         let userId = UUID(uuidString: userIdString)
         
-        let updateUsernameAPI = UpdateUsernameAPI.shared
-
-        updateUsernameAPI.updateUsername(userId: userId!.uuidString, newUsername: newUsername) { error in
-            if let error = error {
-                // Handle the error
-                print("Error updating username: \(error)")
-            } else {
-                // Username updated successfully
-                print("Username updated successfully")
-                self.delegate?.didUpdateUsername(newUsername)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
+        if usernameField.textField.text?.isEmpty == false {
+            let newUsername = usernameField.textField.text
+            let updateUsernameAPI = UpdateUsernameAPI.shared
+            
+            updateUsernameAPI.updateUsername(userId: userId!.uuidString, newUsername: newUsername!) { error in
+                if let error = error {
+                    // Handle the error
+                    print("Error updating username: \(error)")
+                } else {
+                    // Username updated successfully
+                    print("Username updated successfully")
+                    self.delegate?.didUpdateUsername(newUsername!)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 }
+                
+            }
+        }
+        
+        if emailField.textField.text?.isEmpty == false {
+            let newEmail = emailField.textField.text
+            let updateEmailAPI = UpdateEmailAPI.shared
+            
+            updateEmailAPI.updateEmail(userId: userId!.uuidString, newEmail: newEmail!) { error in
+                if let error = error {
+                    // Handle the error
+                    print("Error updating username: \(error)")
+                } else {
+                    // Username updated successfully
+                    print("Username updated successfully")
+                    self.delegate?.didUpdateEmail(newEmail!)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                
             }
         }
     }
@@ -125,4 +145,5 @@ class EditProfileViewController: UIViewController {
 
 protocol EditProfileDelegate: AnyObject {
     func didUpdateUsername(_ newUsername: String)
+    func didUpdateEmail(_ newEmail: String)
 }

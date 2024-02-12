@@ -326,6 +326,10 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     func didUpdateUsername(_ newUsername: String) {
         usernameLabel.text = newUsername
     }
+    
+    func didUpdateEmail(_ newEmail: String) {
+        emailTextField.text = newEmail
+    }
 
 }
 
