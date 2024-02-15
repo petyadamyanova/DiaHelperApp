@@ -41,7 +41,7 @@ class ReminderViewController: UIViewController {
 
         fetchStartTimesAPI.fetchStartTimes(for: userId) { startTime in
             if let startTime = startTime?.first {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     if let sensorStartDate = self.dateFromString(startTime.sensorStartDateTime) {
                         self.setStartAndEndDate(for: self.sensorField, with: sensorStartDate, endDateOffset: 10)
                     }
@@ -50,8 +50,11 @@ class ReminderViewController: UIViewController {
                         self.setStartAndEndDate(for: self.pumpField, with: pumpStartDate, endDateOffset: 3)
                     }
 
-                    self.insulinCanulaField.startDateField.text = startTime.insulinCanulaStartDateTime
-                    self.glucometerCanulaField.startDateField.text = startTime.glucometerCanulaStartDateTime
+                    let insulinCanulaStartDate = startTime.insulinCanulaStartDateTime
+                    setStartTimeForCanulaField(field: self.insulinCanulaField, startDateString: insulinCanulaStartDate)
+                    
+                    let glucometerCanulaStartDate = startTime.glucometerCanulaStartDateTime
+                    setStartTimeForCanulaField(field: self.glucometerCanulaField, startDateString: glucometerCanulaStartDate)
                 }
 
 
@@ -303,31 +306,37 @@ class ReminderViewController: UIViewController {
     
     private func submitButtonTapped(_ action: UIAction) {
         let dateFormatter = DateFormatter()
-           dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
 
-       let sensorStartDateString = dateFormatter.string(from: datePicker.date)
-       let pumpStartDateString = dateFormatter.string(from: datePicker.date)
-       let insulinCanulaStartDateString = dateFormatter.string(from: datePicker.date)
-       let glucometerCanulaStartDateString = dateFormatter.string(from: datePicker.date)
+        if let sensorStartDateString = sensorField.startDateField.text,
+               let sensorStartDate = dateFormatter.date(from: sensorStartDateString),
+               let pumpStartDateString = pumpField.startDateField.text,
+               let pumpStartDate = dateFormatter.date(from: pumpStartDateString),
+               let insulinCanulaStartDateString = insulinCanulaField.startDateField.text,
+               let insulinCanulaStartDate = dateFormatter.date(from: insulinCanulaStartDateString),
+               let glucometerCanulaStartDateString = glucometerCanulaField.startDateField.text,
+               let glucometerCanulaStartDate = dateFormatter.date(from: glucometerCanulaStartDateString) {
 
+                let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
 
-        let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
-        
-        let startTimesData = StartTimes(
-            sensorStartDateTime: sensorStartDateString,
-            pumpStartDateTime: pumpStartDateString,
-            insulinCanulaStartDateTime: insulinCanulaStartDateString,
-            glucometerCanulaStartDateTime: glucometerCanulaStartDateString
-        )
-        
-        let addStartTimeAPI = AddStartTimeAPI()
+                let startTimesData = StartTimes(
+                    sensorStartDateTime: dateFormatter.string(from: sensorStartDate),
+                    pumpStartDateTime: dateFormatter.string(from: pumpStartDate),
+                    insulinCanulaStartDateTime: dateFormatter.string(from: insulinCanulaStartDate),
+                    glucometerCanulaStartDateTime: dateFormatter.string(from: glucometerCanulaStartDate)
+                )
 
-        addStartTimeAPI.addStartTime(userId: userId.uuidString, startTime: startTimesData) { error in
-           if let error = error {
-               print("Error submitting start times: \(error)")
-           } else {
-               print("Start times submitted successfully!")
-           }
+                let addStartTimeAPI = AddStartTimeAPI()
+
+                addStartTimeAPI.addStartTime(userId: userId.uuidString, startTime: startTimesData) { error in
+                    if let error = error {
+                        print("Error submitting start times: \(error)")
+                    } else {
+                        print("Start times submitted successfully!")
+                    }
+                }
+        } else {
+            print("Invalid date format for one of the fields")
         }
     }
     
@@ -340,6 +349,17 @@ class ReminderViewController: UIViewController {
         if let endDate = Calendar.current.date(byAdding: .day, value: endDateOffset, to: startDate) {
             field.endDateField.text = dateFormatter.string(from: endDate)
             scheduleNotification(startDate, endDate)
+        }
+    }
+    
+    func setStartTimeForCanulaField(field: InsulinCanulaReminderField, startDateString: String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+
+        if let startDate = dateFormatter.date(from: startDateString) {
+            field.startDateField.text = dateFormatter.string(from: startDate)
+        } else {
+            print("Invalid date format for canula field")
         }
     }
     
