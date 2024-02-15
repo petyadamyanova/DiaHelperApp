@@ -83,7 +83,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         }
         
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
-        print(UserManager.shared.getCurrentUserId())
+        //print(UserManager.shared.getCurrentUserId())
         
         FetchMealsAPI.shared.fetchMeals(for: userID) { [weak self] meals in
             guard let self = self, let meals = meals else { return }

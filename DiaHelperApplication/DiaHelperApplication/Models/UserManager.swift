@@ -35,11 +35,6 @@ class UserManager {
     
     func addMeal(_ meal: Meal) {
         meals.append(meal)
-        /*if var user = UserManager.shared.getCurrentUser(){
-            user.meals.append(meal)
-        }else{
-            print("There is no current user.")
-        }*/
     }
     
     func addGlucometerBloodSugarTest(_ test: GlucometerBloodSugarTest){
@@ -59,12 +54,6 @@ class UserManager {
     }
     
     func getAllMeals() -> [Meal] {
-        /*if let user = UserManager.shared.getCurrentUser(){
-            return user.meals
-        }else{
-            print("There is no current user.")
-        }*/
-        
         return meals
     }
 }

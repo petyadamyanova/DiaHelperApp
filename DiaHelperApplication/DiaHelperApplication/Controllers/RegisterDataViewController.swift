@@ -218,7 +218,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         loginUserAPI.loginUser(email: email, password: password) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let user):
+                case .success(_):
                     // Login successful
                     let mainTabBarViewController = MainTabBarViewController()
                     let navController = UINavigationController(rootViewController: mainTabBarViewController)
@@ -229,15 +229,14 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
                     // Handle login failure
                     switch error {
                     case NetworkError.userNotFound:
-                       print("error")
+                       print("error: User not found")
                     default:
                         print("error")
                     }
-                    // Optionally, display an error message to the user
-                    print("Error during login: \(error)")
                 }
             }
         }
+        
 
         /*let mainTabBarViewController = MainTabBarViewController()
         let navController = UINavigationController(rootViewController: mainTabBarViewController)

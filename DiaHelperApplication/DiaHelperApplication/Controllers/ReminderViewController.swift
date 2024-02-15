@@ -19,8 +19,47 @@ class ReminderViewController: UIViewController {
         createInsulinCanulaDatePicker()
         createGlucometerCanulaDatePicker()
         setupProtocolsButton()
+        setupSubmitButton()
         addSubviews()
         addStackViewConstraints()
+        fetchStartTime()
+    }
+    
+    func dateFromString(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+        return dateFormatter.date(from: dateString)
+    }
+    
+    func fetchStartTime() {
+        guard let userId = UUID(uuidString: UserManager.shared.getCurrentUserId()) else {
+            print("Invalid user ID.")
+            return
+        }
+
+        let fetchStartTimesAPI = FetchStartTimesAPI.shared
+
+        fetchStartTimesAPI.fetchStartTimes(for: userId) { startTime in
+            if let startTime = startTime?.first {
+                DispatchQueue.main.async {
+                    if let sensorStartDate = self.dateFromString(startTime.sensorStartDateTime) {
+                        self.setStartAndEndDate(for: self.sensorField, with: sensorStartDate, endDateOffset: 10)
+                    }
+
+                    if let pumpStartDate = self.dateFromString(startTime.pumpStartDateTime) {
+                        self.setStartAndEndDate(for: self.pumpField, with: pumpStartDate, endDateOffset: 3)
+                    }
+
+                    self.insulinCanulaField.startDateField.text = startTime.insulinCanulaStartDateTime
+                    self.glucometerCanulaField.startDateField.text = startTime.glucometerCanulaStartDateTime
+                }
+
+
+                print("Fetched start time: \(startTime)")
+            } else {
+                print("Error fetching start time.")
+            }
+        }
     }
     
     internal var verticalStackView: UIStackView = {
@@ -188,33 +227,18 @@ class ReminderViewController: UIViewController {
     }
     
     @objc func doneSensorPressed(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        
-        sensorField.startDateField.text = dateFormatter.string(from: datePicker.date)
+        setStartAndEndDate(for: sensorField, with: datePicker.date, endDateOffset: 10)
         self.view.endEditing(true)
-        
-        if let endDate = Calendar.current.date(byAdding: .day, value: 10, to: datePicker.date) {
-            sensorField.endDateField.text = dateFormatter.string(from: endDate)
-            scheduleNotification(datePicker.date, endDate)
-        }
     }
     
     @objc func donePumpPressed(){
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        
-        pumpField.startDateField.text = dateFormatter.string(from: datePicker.date)
+        setStartAndEndDate(for: pumpField, with: datePicker.date, endDateOffset: 3)
         self.view.endEditing(true)
-        
-        if let endDate = Calendar.current.date(byAdding: .day, value: 3, to: datePicker.date) {
-            pumpField.endDateField.text = dateFormatter.string(from: endDate)
-        }
     }
     
     @objc func doneInsulinCanulaPressed(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
         
         insulinCanulaField.startDateField.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
@@ -222,7 +246,7 @@ class ReminderViewController: UIViewController {
     
     @objc func doneGlucometerCanulaPressed(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
         
         glucometerCanulaField.startDateField.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
@@ -255,6 +279,68 @@ class ReminderViewController: UIViewController {
         let navController = UINavigationController(rootViewController: protocolsReminderViewController)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
+    }
+    
+    public var submitButton: UIButton = {
+        let color = UIColor(named: "newBlue")
+        
+        let button = UIButton(type: .system)
+        button.setTitle("Submit", for: .normal)
+        button.setTitleColor(color, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 35)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        var buttonConfiguration = UIButton.Configuration.tinted()
+        buttonConfiguration.cornerStyle = .large
+        button.configuration = buttonConfiguration
+        return button
+    }()
+    
+    private func setupSubmitButton() {
+        let action = UIAction(handler: submitButtonTapped)
+        submitButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func submitButtonTapped(_ action: UIAction) {
+        let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+
+       let sensorStartDateString = dateFormatter.string(from: datePicker.date)
+       let pumpStartDateString = dateFormatter.string(from: datePicker.date)
+       let insulinCanulaStartDateString = dateFormatter.string(from: datePicker.date)
+       let glucometerCanulaStartDateString = dateFormatter.string(from: datePicker.date)
+
+
+        let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        
+        let startTimesData = StartTimes(
+            sensorStartDateTime: sensorStartDateString,
+            pumpStartDateTime: pumpStartDateString,
+            insulinCanulaStartDateTime: insulinCanulaStartDateString,
+            glucometerCanulaStartDateTime: glucometerCanulaStartDateString
+        )
+        
+        let addStartTimeAPI = AddStartTimeAPI()
+
+        addStartTimeAPI.addStartTime(userId: userId.uuidString, startTime: startTimesData) { error in
+           if let error = error {
+               print("Error submitting start times: \(error)")
+           } else {
+               print("Start times submitted successfully!")
+           }
+        }
+    }
+    
+    func setStartAndEndDate(for field: ReminderField, with startDate: Date, endDateOffset: Int) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
+
+        field.startDateField.text = dateFormatter.string(from: startDate)
+        
+        if let endDate = Calendar.current.date(byAdding: .day, value: endDateOffset, to: startDate) {
+            field.endDateField.text = dateFormatter.string(from: endDate)
+            scheduleNotification(startDate, endDate)
+        }
     }
     
     let separatorView1: UIView = {
@@ -322,6 +408,7 @@ class ReminderViewController: UIViewController {
         verticalStackView.addArrangedSubview(glucometerCanulaStackView)
         verticalStackView.addArrangedSubview(separatorView5)
         verticalStackView.addArrangedSubview(protocolsButton)
+        verticalStackView.addArrangedSubview(submitButton)
     
         view.addSubview(verticalStackView)
     }

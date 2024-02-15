@@ -15,7 +15,6 @@ class NightscoutAPI {
             let session = URLSession.shared
             
             let task = session.dataTask(with: url) { (data, response, error) in
-                
                 if let error = error {
                     print("Error: \(error)")
                     completion(nil)
@@ -29,7 +28,6 @@ class NightscoutAPI {
                     }
                 }
             }
-            
             task.resume()
         }
     }
