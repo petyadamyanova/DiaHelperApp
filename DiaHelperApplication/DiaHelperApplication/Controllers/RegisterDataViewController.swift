@@ -211,7 +211,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
 
         errorLabel.isHidden = true
         
-        let api = registerUserAPI()
+        let api = RegisterUserAPI()
         api.registerUser(name: name, email: email, username: username, password: password, password2: password2, nightscout: nightscout, birtDate: birthDate, yearOfDiagnosis: yearOfDiagnosis, pumpModel: pumpModel.rawValue, sensorModel: sensorModel.rawValue, insulinType: insulinType.rawValue)
         
         let loginUserAPI = LoginUserAPI()

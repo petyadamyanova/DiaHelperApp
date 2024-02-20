@@ -1,5 +1,5 @@
 //
-//  registerUserAPI.swift
+//  RegisterUserAPI.swift
 //  DiaHelperApplication
 //
 //  Created by Petya Damyanova on 29.01.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class registerUserAPI{
+class RegisterUserAPI{
     func registerUser(name: String, email: String, username: String, password: String, password2: String, nightscout: String, birtDate: String, yearOfDiagnosis: String, pumpModel: String, sensorModel: String, insulinType: String) {
         guard let url = URL(string: "http://localhost:8080/users/") else { return }
 
