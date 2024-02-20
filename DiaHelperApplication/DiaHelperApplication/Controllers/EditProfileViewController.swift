@@ -10,6 +10,7 @@ import UIKit
 
 class EditProfileViewController: UIViewController {
     weak var delegate: EditProfileDelegate?
+    private let emailValidator = EmailValidator()
     
     internal var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -47,6 +48,13 @@ class EditProfileViewController: UIViewController {
         let textField = RoundedValidatedTextInput()
         textField.label.text = "Nightscout"
         textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.nightscout ?? "")"
+        return textField
+    }()
+    
+    private var birthDateField: RoundedValidatedTextInput = {
+        let textField = RoundedValidatedTextInput()
+        textField.label.text = "Birthdate"
+        textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.birtDate ?? "")"
         return textField
     }()
     
@@ -108,6 +116,13 @@ class EditProfileViewController: UIViewController {
             let newEmail = emailField.textField.text
             let updateEmailAPI = UpdateEmailAPI.shared
             
+            if !emailValidator.isValid(newEmail!) {
+                showErrorForField(field: emailField, message: "Invalid email format")
+                return
+            } else {
+                removeErrorForField(field: emailField)
+            }
+            
             updateEmailAPI.updateEmail(userId: userId!.uuidString, newEmail: newEmail!) { error in
                 if let error = error {
                     print("Error updating username: \(error)")
@@ -137,6 +152,31 @@ class EditProfileViewController: UIViewController {
                 
             }
         }
+        
+        if let newBirthDateString = birthDateField.textField.text, !newBirthDateString.isEmpty {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+
+            if dateFormatter.date(from: newBirthDateString) != nil {
+                let updateBirthDateAPI = UpdateBirthDateAPI.shared
+
+                updateBirthDateAPI.updateBirthDate(userId: userId!.uuidString, newBirthDate: newBirthDateString) { error in
+                    if let error = error {
+                        print("Error updating birth date: \(error)")
+                    } else {
+                        self.delegate?.didUpdateBirthDate(newBirthDateString)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                            self.removeErrorForField(field: self.birthDateField)
+                        }
+                    }
+                }
+            } else {
+                showErrorForField(field: birthDateField, message: "Invalid date format. Please use dd/MM/yyyy.")
+                return
+                
+            }
+        }
     }
     
     private func addSubviews() {
@@ -144,6 +184,7 @@ class EditProfileViewController: UIViewController {
         stackView.addArrangedSubview(usernameField)
         stackView.addArrangedSubview(emailField)
         stackView.addArrangedSubview(nightscoutField)
+        stackView.addArrangedSubview(birthDateField)
         stackView.addArrangedSubview(submitButton)
     }
     
@@ -155,10 +196,26 @@ class EditProfileViewController: UIViewController {
         ])
     }
     
+    private func showErrorForField(field: RoundedValidatedTextInput, message: String) {
+        field.errorField.isHidden = false
+        field.errorField.textColor = UIColor.systemRed
+        field.errorField.text = message
+    }
+    
+    private func removeErrorForField(field: RoundedValidatedTextInput) {
+        field.errorField.isHidden = true
+        field.textField.layer.borderColor = UIColor(named: "newBrown")?.cgColor ?? UIColor.lightGray.cgColor
+        field.textField.layer.cornerRadius = 8
+        field.textField.layer.borderWidth = 1
+    }
+    
 }
 
 protocol EditProfileDelegate: AnyObject {
     func didUpdateUsername(_ newUsername: String)
     func didUpdateEmail(_ newEmail: String)
-    func didUpdateNightscout(_ newEmail: String)
+    func didUpdateNightscout(_ newNightscout: String)
+    func didUpdateBirthDate(_ newBirthDate: String)
 }
+
+

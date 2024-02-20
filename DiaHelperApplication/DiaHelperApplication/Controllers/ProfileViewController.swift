@@ -334,6 +334,10 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     func didUpdateNightscout(_ newNightscout: String) {
         nightscoutTextField.text = newNightscout
     }
+    
+    func didUpdateBirthDate(_ newBirthDate: String) {
+        birthDateTextField.text = newBirthDate
+    }
 
 }
 

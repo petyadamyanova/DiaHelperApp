@@ -282,7 +282,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
                 let dateFormatterOutput = DateFormatter()
                 let dateFormatterOutput2 = DateFormatter()
                 dateFormatterOutput.dateFormat = "HH:mm"
-                dateFormatterOutput2.dateFormat = "MM-dd"
+                dateFormatterOutput2.dateFormat = "dd-MM"
                 cell.timestampLabel.text = dateFormatterOutput.string(from: date)
                 cell.dateLabel.text = dateFormatterOutput2.string(from: date)
                 cell.dateLabel.font = UIFont.italicSystemFont(ofSize: 14)

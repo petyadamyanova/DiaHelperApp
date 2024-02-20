@@ -53,6 +53,7 @@
 		D3B5268B2B5C01D1009E8265 /* ProtocolsReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */; };
 		D3B710642B7E6C85004C95D8 /* FetchStartTimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */; };
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
+		D3BF35D12B852B8E00CCC138 /* UpdateBirthDateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BF35D02B852B8E00CCC138 /* UpdateBirthDateAPI.swift */; };
 		D3D59E182B740892004679CE /* DeleteMealAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E172B740892004679CE /* DeleteMealAPI.swift */; };
 		D3D59E1A2B74C954004679CE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E192B74C954004679CE /* EditProfileViewController.swift */; };
 		D3D59E1C2B755B65004679CE /* FetchGlucometerTestsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */; };
@@ -136,6 +137,7 @@
 		D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsReminderViewController.swift; sourceTree = "<group>"; };
 		D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStartTimesAPI.swift; sourceTree = "<group>"; };
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
+		D3BF35D02B852B8E00CCC138 /* UpdateBirthDateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBirthDateAPI.swift; sourceTree = "<group>"; };
 		D3D59E172B740892004679CE /* DeleteMealAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMealAPI.swift; sourceTree = "<group>"; };
 		D3D59E192B74C954004679CE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGlucometerTestsAPI.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				D3D59E272B79ABD4004679CE /* UpdateNightscoutAPI.swift */,
 				D3D86FAC2B7E0DB800765725 /* AddStartTimeAPI.swift */,
 				D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */,
+				D3BF35D02B852B8E00CCC138 /* UpdateBirthDateAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */,
 				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
 				D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */,
+				D3BF35D12B852B8E00CCC138 /* UpdateBirthDateAPI.swift in Sources */,
 				D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
 			);
