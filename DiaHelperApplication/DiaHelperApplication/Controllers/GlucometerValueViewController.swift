@@ -187,9 +187,6 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-
-        UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
-
         
         UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
     }

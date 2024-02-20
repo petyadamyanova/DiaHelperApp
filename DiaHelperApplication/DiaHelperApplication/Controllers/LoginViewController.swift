@@ -126,7 +126,7 @@ class LoginViewController: UIViewController {
         loginUserAPI.loginUser(email: email, password: password) { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let user):
+                case .success(_):
                     // Login successful
                     let mainTabBarViewController = MainTabBarViewController()
                     let navController = UINavigationController(rootViewController: mainTabBarViewController)

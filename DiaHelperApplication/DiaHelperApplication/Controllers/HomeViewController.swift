@@ -83,7 +83,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         }
         
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
-        //print(UserManager.shared.getCurrentUserId())
         
         FetchMealsAPI.shared.fetchMeals(for: userID) { [weak self] meals in
             guard let self = self, let meals = meals else { return }
@@ -338,11 +337,10 @@ extension HomeViewController: UITableViewDelegate {
 
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
-        //print(UserManager.shared.getCurrentUserId())
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
         FetchMealsAPI.shared.fetchMeals(for:userID) { [weak self] fetchedMeals in
-            guard let self = self, let fetchedMeals = fetchedMeals else {
+            guard let self = self, let _ = fetchedMeals else {
                 return
             }
 

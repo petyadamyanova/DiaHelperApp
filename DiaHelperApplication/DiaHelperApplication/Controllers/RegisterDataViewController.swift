@@ -236,12 +236,6 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
                 }
             }
         }
-        
-
-        /*let mainTabBarViewController = MainTabBarViewController()
-        let navController = UINavigationController(rootViewController: mainTabBarViewController)
-        navController.modalPresentationStyle = .fullScreen
-        navigationController?.setViewControllers([mainTabBarViewController], animated: true)*/
     }
 
 
