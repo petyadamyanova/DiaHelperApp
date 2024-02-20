@@ -328,7 +328,9 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     }
     
     func didUpdateEmail(_ newEmail: String) {
-        emailTextField.text = newEmail
+        DispatchQueue.main.async {
+            self.birthDateTextField.text = newEmail
+        }
     }
     
     func didUpdateNightscout(_ newNightscout: String) {
@@ -337,6 +339,22 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     
     func didUpdateBirthDate(_ newBirthDate: String) {
         birthDateTextField.text = newBirthDate
+    }
+    
+    func didUpdatePumpModel(_ newPumpModel: String) {
+        pumpTextField.text = newPumpModel
+    }
+    
+    func didUpdateSensorModel(_ newSensorModel: String) {
+        sensorTextField.text = newSensorModel
+    }
+    
+    func didUpdateInsulinType(_ newInsulinType: String) {
+        insulinTypeTextField.text = newInsulinType
+    }
+    
+    func didUpdateYearOfDiagnosis(_ newYearOfDiagnosis: String){
+        yearOfDiagnosisTextField.text = newYearOfDiagnosis
     }
 
 }

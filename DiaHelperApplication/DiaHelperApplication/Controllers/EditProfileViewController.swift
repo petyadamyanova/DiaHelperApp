@@ -8,9 +8,13 @@
 import Foundation
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     weak var delegate: EditProfileDelegate?
     private let emailValidator = EmailValidator()
+    private let yearOfDiagnosisValidator = YearOfDiagnosisValidator()
+    var pumpModel = UserManager.shared.getCurrentUser()?.pumpModel
+    var sensorModel = UserManager.shared.getCurrentUser()?.sensorModel
+    var insulinType = UserManager.shared.getCurrentUser()?.insulinType
     
     internal var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -28,6 +32,73 @@ class EditProfileViewController: UIViewController {
         setupSubmitButton()
         addSubviews()
         addConstraints()
+        
+        pumpPickerView.delegate = self
+        pumpPickerView.dataSource = self
+
+        sensorPickerView.delegate = self
+        sensorPickerView.dataSource = self
+        
+        insulinPickerView.delegate = self
+        insulinPickerView.dataSource = self
+    }
+    
+    private lazy var pumpPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+
+    private lazy var sensorPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    private lazy var insulinPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
+    }()
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == pumpPickerView {
+            return PumpModel.allCases.count
+        } else if pickerView == sensorPickerView {
+            return SensorModel.allCases.count
+        } else if pickerView == insulinPickerView {
+            return InsulinType.allCases.count
+        } else {
+            return 0
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == pumpPickerView {
+            return PumpModel.allCases[row].rawValue
+        } else if pickerView == sensorPickerView {
+            return SensorModel.allCases[row].rawValue
+        } else if pickerView == insulinPickerView {
+            return InsulinType.allCases[row].rawValue
+        }else {
+            return nil
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        DispatchQueue.main.async { [self] in
+            if pickerView == pumpPickerView {
+                pumpField.textField.text = PumpModel.allCases[row].rawValue
+                pumpModel = PumpModel.allCases[row]
+            } else if pickerView == sensorPickerView {
+                sensorField.textField.text = SensorModel.allCases[row].rawValue
+                sensorModel = SensorModel.allCases[row]
+            } else if pickerView == insulinPickerView {
+                insulinField.textField.text = InsulinType.allCases[row].rawValue
+                insulinType = InsulinType.allCases[row]
+            }
+        }
     }
     
     private var usernameField: RoundedValidatedTextInput = {
@@ -55,6 +126,37 @@ class EditProfileViewController: UIViewController {
         let textField = RoundedValidatedTextInput()
         textField.label.text = "Birthdate"
         textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.birtDate ?? "")"
+        return textField
+    }()
+    
+    private var yearOfDiagnosisField: RoundedValidatedTextInput = {
+        let textField = RoundedValidatedTextInput()
+        textField.label.text = "Year of diagnosis"
+        textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.yearOfDiagnosis ?? "")"
+        return textField
+    }()
+    
+    private lazy var pumpField: RoundedValidatedTextInput = {
+        let textField = RoundedValidatedTextInput()
+        textField.label.text = "Pump Model"
+        textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.pumpModel.rawValue ?? "")"
+        textField.textField.inputView = pumpPickerView
+        return textField
+    }()
+    
+    private lazy var sensorField: RoundedValidatedTextInput = {
+        let textField = RoundedValidatedTextInput()
+        textField.label.text = "Sensor Model"
+        textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.sensorModel.rawValue ?? "")"
+        textField.textField.inputView = sensorPickerView
+        return textField
+    }()
+    
+    private lazy var insulinField: RoundedValidatedTextInput = {
+        let textField = RoundedValidatedTextInput()
+        textField.label.text = "Insulin Type"
+        textField.textField.placeholder = " \(UserManager.shared.getCurrentUser()?.insulinType.rawValue ?? "")"
+        textField.textField.inputView = insulinPickerView
         return textField
     }()
     
@@ -91,12 +193,12 @@ class EditProfileViewController: UIViewController {
     private func submitButtonTapped(_ action: UIAction) {
         let userIdString = UserManager.shared.getCurrentUserId()
         let userId = UUID(uuidString: userIdString)
+        let updateUserInfoAPI = UpdateUserInfoAPI.shared
         
         if usernameField.textField.text?.isEmpty == false {
             let newUsername = usernameField.textField.text
-            let updateUsernameAPI = UpdateUsernameAPI.shared
             
-            updateUsernameAPI.updateUsername(userId: userId!.uuidString, newUsername: newUsername!) { error in
+            updateUserInfoAPI.updateUsername(userId: userId!.uuidString, newUsername: newUsername!) { error in
                 if let error = error {
                     // Handle the error
                     print("Error updating username: \(error)")
@@ -114,7 +216,6 @@ class EditProfileViewController: UIViewController {
         
         if emailField.textField.text?.isEmpty == false {
             let newEmail = emailField.textField.text
-            let updateEmailAPI = UpdateEmailAPI.shared
             
             if !emailValidator.isValid(newEmail!) {
                 showErrorForField(field: emailField, message: "Invalid email format")
@@ -123,7 +224,7 @@ class EditProfileViewController: UIViewController {
                 removeErrorForField(field: emailField)
             }
             
-            updateEmailAPI.updateEmail(userId: userId!.uuidString, newEmail: newEmail!) { error in
+            updateUserInfoAPI.updateEmail(userId: userId!.uuidString, newEmail: newEmail!) { error in
                 if let error = error {
                     print("Error updating username: \(error)")
                 } else {
@@ -138,9 +239,8 @@ class EditProfileViewController: UIViewController {
         
         if nightscoutField.textField.text?.isEmpty == false {
             let newNightscout = nightscoutField.textField.text
-            let updateNightscoutAPI = UpdateNightscoutAPI.shared
             
-            updateNightscoutAPI.updateNightscout(userId: userId!.uuidString, newNightscout: newNightscout!) { error in
+            updateUserInfoAPI.updateNightscout(userId: userId!.uuidString, newNightscout: newNightscout!) { error in
                 if let error = error {
                     print("Error updating username: \(error)")
                 } else {
@@ -153,14 +253,63 @@ class EditProfileViewController: UIViewController {
             }
         }
         
+        if pumpModel?.rawValue.isEmpty == false {
+            let newPumpModel = pumpModel!.rawValue
+            
+            updateUserInfoAPI.updatePumpModel(userId: userId!.uuidString, newPumpModel: newPumpModel) { error in
+                if let error = error {
+                    print("Error updating username: \(error)")
+                } else {
+                    self.delegate?.didUpdatePumpModel(newPumpModel)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                
+            }
+        }
+        
+        if sensorModel?.rawValue.isEmpty == false {
+            let newSensorModel = sensorModel!.rawValue
+            
+            updateUserInfoAPI.updateSensorModel(userId: userId!.uuidString, newSensorModel: newSensorModel) { error in
+                if let error = error {
+                    print("Error updating username: \(error)")
+                } else {
+                    self.delegate?.didUpdateSensorModel(newSensorModel)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                
+            }
+        }
+        
+        if insulinType?.rawValue.isEmpty == false {
+            let newInsulinType = insulinType!.rawValue
+            
+            updateUserInfoAPI.updateInsulinType(userId: userId!.uuidString, newInsulinType: newInsulinType) { error in
+                if let error = error {
+                    print("Error updating username: \(error)")
+                } else {
+                    self.delegate?.didUpdateInsulinType(newInsulinType)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                
+            }
+        }
+        
+        
+        
         if let newBirthDateString = birthDateField.textField.text, !newBirthDateString.isEmpty {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
 
             if dateFormatter.date(from: newBirthDateString) != nil {
-                let updateBirthDateAPI = UpdateBirthDateAPI.shared
 
-                updateBirthDateAPI.updateBirthDate(userId: userId!.uuidString, newBirthDate: newBirthDateString) { error in
+                updateUserInfoAPI.updateBirthDate(userId: userId!.uuidString, newBirthDate: newBirthDateString) { error in
                     if let error = error {
                         print("Error updating birth date: \(error)")
                     } else {
@@ -177,6 +326,30 @@ class EditProfileViewController: UIViewController {
                 
             }
         }
+        
+        if let newYearOfDiagnosisString = yearOfDiagnosisField.textField.text, !newYearOfDiagnosisString.isEmpty {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy"
+
+            if dateFormatter.date(from: newYearOfDiagnosisString) != nil {
+
+                updateUserInfoAPI.updateYearOfDiagnosis(userId: userId!.uuidString, newYearOfDiagnosis: newYearOfDiagnosisString) { error in
+                    if let error = error {
+                        print("Error updating birth date: \(error)")
+                    } else {
+                        self.delegate?.didUpdateYearOfDiagnosis(newYearOfDiagnosisString)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                            self.removeErrorForField(field: self.yearOfDiagnosisField)
+                        }
+                    }
+                }
+            } else {
+                showErrorForField(field: yearOfDiagnosisField, message: "Invalid date format. Please use yyyy.")
+                return
+                
+            }
+        }
     }
     
     private func addSubviews() {
@@ -185,6 +358,10 @@ class EditProfileViewController: UIViewController {
         stackView.addArrangedSubview(emailField)
         stackView.addArrangedSubview(nightscoutField)
         stackView.addArrangedSubview(birthDateField)
+        stackView.addArrangedSubview(yearOfDiagnosisField)
+        stackView.addArrangedSubview(pumpField)
+        stackView.addArrangedSubview(sensorField)
+        stackView.addArrangedSubview(insulinField)
         stackView.addArrangedSubview(submitButton)
     }
     
@@ -216,6 +393,10 @@ protocol EditProfileDelegate: AnyObject {
     func didUpdateEmail(_ newEmail: String)
     func didUpdateNightscout(_ newNightscout: String)
     func didUpdateBirthDate(_ newBirthDate: String)
+    func didUpdateYearOfDiagnosis(_ newYearOfDiagnosis: String)
+    func didUpdatePumpModel(_ newPumpModel: String)
+    func didUpdateSensorModel(_ newSensorModel: String)
+    func didUpdateInsulinType(_ newInsulintype: String)
 }
 
 
