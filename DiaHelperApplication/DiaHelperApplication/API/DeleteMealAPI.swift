@@ -9,7 +9,13 @@ import Foundation
 
 class DeleteMealAPI {
     func deleteMeal(userId: String, mealId: String, completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: "http://localhost:8080/users/\(userId)/meals/\(mealId)") else {
+        /*guard let url = URL(string: "http://localhost:8080/users/\(userId)/meals/\(mealId)") else {
+            completion(nil)
+            return
+        }*/
+        
+        guard let url = API.url(for: .deleteMeal(userId: userId, mealId: mealId)) else {
+            print("Invalid URL.")
             completion(nil)
             return
         }

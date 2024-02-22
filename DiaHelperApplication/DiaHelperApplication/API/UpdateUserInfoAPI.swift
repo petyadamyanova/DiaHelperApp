@@ -11,49 +11,50 @@ class UpdateUserInfoAPI {
     static let shared = UpdateUserInfoAPI()
 
     private init() {}
-
+    
     func updateUsername(userId: String, newUsername: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-username"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateUsernameRequest(newUsername: newUsername), completion: completion)
+        let endpoint = APIEndpoint.updateUsername(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateUsernameRequest(newUsername: newUsername), completion: completion)
     }
 
     func updateEmail(userId: String, newEmail: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-email"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateEmailRequest(newEmail: newEmail), completion: completion)
+        let endpoint = APIEndpoint.updateEmail(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateEmailRequest(newEmail: newEmail), completion: completion)
     }
 
     func updateNightscout(userId: String, newNightscout: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-nightscout"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateNightscoutRequest(newNightscout: newNightscout), completion: completion)
+        let endpoint = APIEndpoint.updateNightscout(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateNightscoutRequest(newNightscout: newNightscout), completion: completion)
     }
 
     func updateBirthDate(userId: String, newBirthDate: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-birthdate"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateBirthDateRequest(newBirthDate: newBirthDate), completion: completion)
+        let endpoint = APIEndpoint.updateBirthDate(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateBirthDateRequest(newBirthDate: newBirthDate), completion: completion)
     }
 
     func updateInsulinType(userId: String, newInsulinType: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-insulin-type"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateInsulinTypeRequest(newInsulinType: newInsulinType), completion: completion)
+        let endpoint = APIEndpoint.updateInsulinType(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateInsulinTypeRequest(newInsulinType: newInsulinType), completion: completion)
     }
 
     func updatePumpModel(userId: String, newPumpModel: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-pump-model"
-        performUpdateRequest(urlString: urlString, requestBody: UpdatePumpModelRequest(newPumpModel: newPumpModel), completion: completion)
+        let endpoint = APIEndpoint.updatePumpModel(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdatePumpModelRequest(newPumpModel: newPumpModel), completion: completion)
     }
     
     func updateSensorModel(userId: String, newSensorModel: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-sensor-model"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateSensorModelRequest(newSensorModel: newSensorModel), completion: completion)
+        let endpoint = APIEndpoint.updateSensorModel(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateSensorModelRequest(newSensorModel: newSensorModel), completion: completion)
     }
 
     func updateYearOfDiagnosis(userId: String, newYearOfDiagnosis: String, completion: @escaping (Error?) -> Void) {
-        let urlString = "http://localhost:8080/users/\(userId)/update-year-of-diagnosis"
-        performUpdateRequest(urlString: urlString, requestBody: UpdateYearOfDiagnosisRequest(newYearOfDiagnosis: newYearOfDiagnosis), completion: completion)
+        let endpoint = APIEndpoint.updateYearOfDiagnosis(userId: userId)
+        performUpdateRequest(endpoint: endpoint, requestBody: UpdateYearOfDiagnosisRequest(newYearOfDiagnosis: newYearOfDiagnosis), completion: completion)
     }
 
-    private func performUpdateRequest<T: Codable>(urlString: String, requestBody: T, completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: urlString) else {
+    private func performUpdateRequest<T: Codable>(endpoint: APIEndpoint, requestBody: T, completion: @escaping (Error?) -> Void) {
+        
+        guard let url = API.url(for: endpoint, userId: nil) else {
             let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
             completion(error)
             return

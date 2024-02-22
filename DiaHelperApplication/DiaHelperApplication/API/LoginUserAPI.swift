@@ -9,7 +9,7 @@ import Foundation
 
 class LoginUserAPI {
     func loginUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
-        guard let url = URL(string: "http://localhost:8080/users/login") else {
+        guard let url = API.url(for: .login) else {
             completion(.failure(NetworkError.invalidURL))
             return
         }

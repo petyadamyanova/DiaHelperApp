@@ -12,9 +12,7 @@ class FetchGlucometerTestsAPI {
     static let shared = FetchGlucometerTestsAPI()
     
     func fetchGlucometerTests(for userId: UUID, completion: @escaping ([GlucometerBloodSugarTest]?) -> Void){
-        let apiUrl = "http://localhost:8080/users/\(userId)/glucometer-tests"
-
-        guard let url = URL(string: apiUrl) else {
+        guard let url = API.url(for: .fetchTest(userId: userId.uuidString)) else {
             print("Invalid URL.")
             completion(nil)
             return

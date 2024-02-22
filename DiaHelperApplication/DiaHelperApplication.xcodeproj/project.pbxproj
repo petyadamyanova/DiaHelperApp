@@ -54,6 +54,7 @@
 		D3B710642B7E6C85004C95D8 /* FetchStartTimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */; };
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
 		D3BF35D32B85382A00CCC138 /* UpdateUserInfoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */; };
+		D3BFE01E2B8774AF0049AC23 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BFE01D2B8774AF0049AC23 /* API.swift */; };
 		D3D59E182B740892004679CE /* DeleteMealAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E172B740892004679CE /* DeleteMealAPI.swift */; };
 		D3D59E1A2B74C954004679CE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E192B74C954004679CE /* EditProfileViewController.swift */; };
 		D3D59E1C2B755B65004679CE /* FetchGlucometerTestsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */; };
@@ -135,6 +136,7 @@
 		D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStartTimesAPI.swift; sourceTree = "<group>"; };
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
 		D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoAPI.swift; sourceTree = "<group>"; };
+		D3BFE01D2B8774AF0049AC23 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D3D59E172B740892004679CE /* DeleteMealAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMealAPI.swift; sourceTree = "<group>"; };
 		D3D59E192B74C954004679CE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGlucometerTestsAPI.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				D3D86FAC2B7E0DB800765725 /* AddStartTimeAPI.swift */,
 				D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */,
 				D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */,
+				D3BFE01D2B8774AF0049AC23 /* API.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */,
 				D344AEC42B20A83A002C9CE0 /* NutritionTableViewCell.swift in Sources */,
 				D344AE772AF63538002C9CE0 /* HomeViewController.swift in Sources */,
+				D3BFE01E2B8774AF0049AC23 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,6 +675,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7GP3UDP4HR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiaHelperApplication/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -697,6 +702,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7GP3UDP4HR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiaHelperApplication/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -9,7 +9,8 @@ import Foundation
 
 class RegisterUserAPI{
     func registerUser(name: String, email: String, username: String, password: String, password2: String, nightscout: String, birtDate: String, yearOfDiagnosis: String, pumpModel: String, sensorModel: String, insulinType: String) {
-        guard let url = URL(string: "http://localhost:8080/users/") else { return }
+        
+        guard let url = API.url(for: .registerUser) else { return }
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

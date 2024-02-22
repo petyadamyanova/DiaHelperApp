@@ -20,6 +20,7 @@ class RoundedValidatedTextInput: UIStackView {
     
     public var label: UILabel = {
         let label = UILabel()
+        label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 16)
         
         return label

@@ -10,9 +10,7 @@ import Foundation
 class FetchMealsAPI {
     static let shared = FetchMealsAPI()
     func fetchMeals(for userId: UUID, completion: @escaping ([Meal]?) -> Void) {
-        let apiUrl = "http://localhost:8080/users/\(userId)/meals"
-
-        guard let url = URL(string: apiUrl) else {
+        guard let url = API.url(for: .fetchMeals(userId: userId.uuidString)) else {
             print("Invalid URL.")
             completion(nil)
             return

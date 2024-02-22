@@ -9,7 +9,8 @@ import Foundation
 
 class AddMealAPI {
     func addMeal(userId: String, meal: Meal, completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: "http://localhost:8080/users/\(userId)/meals") else {
+        guard let url = API.url(for: .addMeal(userId: userId)) else {
+            print("Invalid URL.")
             completion(nil)
             return
         }

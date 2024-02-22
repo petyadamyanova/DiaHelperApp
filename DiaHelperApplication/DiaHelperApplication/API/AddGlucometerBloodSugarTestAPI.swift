@@ -9,7 +9,9 @@ import Foundation
 
 class AddGlucometerBloodSugarTestAPI{
     func addGlucometerBloodSugarTest(_ test: GlucometerBloodSugarTest, forUserId userId: String, completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: "http://localhost:8080/users/\(userId)/glucometer-tests") else {
+        
+        guard let url = API.url(for: .addGlucometerBloodSugarTest(userId: userId)) else {
+            print("Invalid URL.")
             completion(nil)
             return
         }

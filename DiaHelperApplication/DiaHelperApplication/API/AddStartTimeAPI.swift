@@ -9,7 +9,8 @@ import Foundation
 
 class AddStartTimeAPI {
     func addStartTime(userId: String, startTime: StartTimes, completion: @escaping (Error?) -> Void) {
-        guard let url = URL(string: "http://localhost:8080/users/\(userId)/start-times") else {
+        guard let url = API.url(for: .addStartTime(userId: userId)) else {
+            print("Invalid URL.")
             completion(nil)
             return
         }
