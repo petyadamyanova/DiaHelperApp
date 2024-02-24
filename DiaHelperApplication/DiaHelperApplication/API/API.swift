@@ -80,5 +80,18 @@ enum NetworkError: Error {
     case encodingError
     case userNotFound
     case responseParsingFailed
+    case invalidResponse
     case userAlreadyExists
+    case invalidPassword
 }
+
+enum LoginError: Error {
+    case userNotFound
+    case invalidPassword
+    case invalidEmailOrPassword
+}
+
+struct ErrorResponse: Codable {
+    let error: String
+}
+

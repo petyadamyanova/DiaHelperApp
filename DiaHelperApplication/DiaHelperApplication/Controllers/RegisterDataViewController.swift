@@ -241,31 +241,19 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
             
             activityIndicator.stopAnimating()
             
-            let loginUserAPI = LoginUserAPI()
-            loginUserAPI.loginUser(email: email, password: password) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(_):
-                        // Login successful
-                        let mainTabBarViewController = MainTabBarViewController()
-                        let navController = UINavigationController(rootViewController: mainTabBarViewController)
-                        navController.modalPresentationStyle = .fullScreen
-                        self.navigationController?.setViewControllers([mainTabBarViewController], animated: true)
-                        
-                    case .failure(let error):
-                        // Handle login failure
-                        switch error {
-                        case NetworkError.userNotFound:
-                            print("error: User not found")
-                            self.showError(message: "User not found")
-                            return
-                        default:
-                            self.showError(message: "Error: User with this email already exists")
-                            self.activityIndicator.stopAnimating()
-                            return
-                        }
-                    }
-                }
+            do {
+                try await LoginUserAPI().loginUser(email: email, password: password)
+                
+                activityIndicator.stopAnimating()
+                // Login successful
+                let mainTabBarViewController = MainTabBarViewController()
+                let navController = UINavigationController(rootViewController: mainTabBarViewController)
+                navController.modalPresentationStyle = .fullScreen
+                navigationController?.setViewControllers([mainTabBarViewController], animated: true)
+            } catch {
+                self.activityIndicator.stopAnimating()
+                self.showError(message: "Error: User with this email already exists")
+                return
             }
         } catch NetworkError.userAlreadyExists {
             showError(message: "Error: User with this email already exists")

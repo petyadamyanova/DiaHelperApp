@@ -77,9 +77,18 @@ class LoginViewController: UIViewController {
         signUpLabel.addGestureRecognizer(tapGestureRecognizer)
     }
     
+    private var activityIndicator: UIActivityIndicatorView = {
+       let indicator = UIActivityIndicatorView(style: .medium)
+       indicator.hidesWhenStopped = true
+       return indicator
+    }()
     
     private func setupLoginButton() {
-        let loginAction = UIAction(handler: didTapLoginButton)
+        let loginAction = UIAction { [weak self] action in
+            Task {
+                await self?.didTapLoginButton(action)
+            }
+        }
         loginButton.addAction(loginAction, for: .touchUpInside)
     }
 
@@ -106,6 +115,7 @@ class LoginViewController: UIViewController {
         stackView.addArrangedSubview(passwordField)
         stackView.addArrangedSubview(loginButton)
         stackView.addArrangedSubview(signUpLabel)
+        stackView.addArrangedSubview(activityIndicator)
     }
 
     private func addStackViewConstraints() {
@@ -116,35 +126,40 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    private func didTapLoginButton(_ action: UIAction) {
+    private func didTapLoginButton(_ action: UIAction) async {
         guard let email = emailField.textField.text,
               let password = passwordField.textField.text else {
             return
         }
-
-        let loginUserAPI = LoginUserAPI()
-        loginUserAPI.loginUser(email: email, password: password) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    // Login successful
-                    let mainTabBarViewController = MainTabBarViewController()
-                    let navController = UINavigationController(rootViewController: mainTabBarViewController)
-                    navController.modalPresentationStyle = .fullScreen
-                    self.navigationController?.setViewControllers([mainTabBarViewController], animated: true)
-
-                case .failure(let error):
-                    // Handle login failure
-                    switch error {
-                    case NetworkError.userNotFound:
-                        self.showErrorForField(field: self.emailField, message: "Incorrect email")
-                    default:
-                        self.showErrorForField(field: self.emailField, message: "Incorrect email or password")
-                    }
-                    // Optionally, display an error message to the user
-                    print("Error during login: \(error)")
-                }
+        
+        activityIndicator.startAnimating()
+        
+        do {
+            let newUser = try await LoginUserAPI().loginUser(email: email, password: password)
+            
+            activityIndicator.stopAnimating()
+            // Login successful
+            let mainTabBarViewController = MainTabBarViewController()
+            let navController = UINavigationController(rootViewController: mainTabBarViewController)
+            navController.modalPresentationStyle = .fullScreen
+            navigationController?.setViewControllers([mainTabBarViewController], animated: true)
+            
+        } catch let loginError as LoginError {
+            // Проверка за специфичните грешки
+            switch loginError {
+            case .userNotFound:
+                showErrorForField(field: emailField, message: "Incorrect email")
+            case .invalidPassword:
+                showErrorForField(field: passwordField, message: "Incorrect password")
+            case .invalidEmailOrPassword:
+                showErrorForField(field: emailField, message: "Incorrect email or password")
             }
+            activityIndicator.stopAnimating()
+            return
+        } catch {
+            showErrorForField(field: emailField, message: "Unexpected error. Try again")
+            activityIndicator.stopAnimating()
+            return
         }
     }
 
