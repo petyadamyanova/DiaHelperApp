@@ -58,9 +58,3 @@ class LoginUserAPI {
     }
 }
 
-enum NetworkError: Error {
-    case invalidURL
-    case encodingError
-    case userNotFound
-}
-

@@ -182,18 +182,29 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         label.isHidden = true
         return label
     }()
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
 
     private func setupSubmitButton() {
-        let submitAction = UIAction(handler: didTapSubmitButton)
+        let submitAction = UIAction { [weak self] action in
+            Task {
+                await self?.didTapSubmitButton(action)
+            }
+        }
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", primaryAction: submitAction)
     }
     
-    private func didTapSubmitButton(_ action: UIAction) {
+    private func didTapSubmitButton(_ action: UIAction) async {
         guard var nightscout = nightscoutField.textField.text,
-                  let birthDate = birthDateField.textField.text,
-                  let yearOfDiagnosis = yearOfDiagnosisField.textField.text else {
-                      return
-                  }
+              let birthDate = birthDateField.textField.text,
+              let yearOfDiagnosis = yearOfDiagnosisField.textField.text else {
+            return
+        }
         
         if !birthDateValidator.isValid(birthDate) {
             showError(message: "Birthday is not valid!")
@@ -208,33 +219,62 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         if nightscout.isEmpty {
             nightscout = "none"
         }
-
+        
         errorLabel.isHidden = true
         
-        let api = RegisterUserAPI()
-        api.registerUser(name: name, email: email, username: username, password: password, password2: password2, nightscout: nightscout, birtDate: birthDate, yearOfDiagnosis: yearOfDiagnosis, pumpModel: pumpModel.rawValue, sensorModel: sensorModel.rawValue, insulinType: insulinType.rawValue)
+        activityIndicator.startAnimating()
         
-        let loginUserAPI = LoginUserAPI()
-        loginUserAPI.loginUser(email: email, password: password) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(_):
-                    // Login successful
-                    let mainTabBarViewController = MainTabBarViewController()
-                    let navController = UINavigationController(rootViewController: mainTabBarViewController)
-                    navController.modalPresentationStyle = .fullScreen
-                    self.navigationController?.setViewControllers([mainTabBarViewController], animated: true)
-
-                case .failure(let error):
-                    // Handle login failure
-                    switch error {
-                    case NetworkError.userNotFound:
-                       print("error: User not found")
-                    default:
-                        print("error")
+        do {
+            try await RegisterUserAPI().registerUser(
+                name: name,
+                email: email,
+                username: username,
+                password: password,
+                password2: password2,
+                nightscout: nightscout,
+                birtDate: birthDate,
+                yearOfDiagnosis: yearOfDiagnosis,
+                pumpModel: pumpModel.rawValue,
+                sensorModel: sensorModel.rawValue,
+                insulinType: insulinType.rawValue
+            )
+            
+            activityIndicator.stopAnimating()
+            
+            let loginUserAPI = LoginUserAPI()
+            loginUserAPI.loginUser(email: email, password: password) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        // Login successful
+                        let mainTabBarViewController = MainTabBarViewController()
+                        let navController = UINavigationController(rootViewController: mainTabBarViewController)
+                        navController.modalPresentationStyle = .fullScreen
+                        self.navigationController?.setViewControllers([mainTabBarViewController], animated: true)
+                        
+                    case .failure(let error):
+                        // Handle login failure
+                        switch error {
+                        case NetworkError.userNotFound:
+                            print("error: User not found")
+                            self.showError(message: "User not found")
+                            return
+                        default:
+                            self.showError(message: "Error: User with this email already exists")
+                            self.activityIndicator.stopAnimating()
+                            return
+                        }
                     }
                 }
             }
+        } catch NetworkError.userAlreadyExists {
+            showError(message: "Error: User with this email already exists")
+            activityIndicator.stopAnimating()
+            return
+        } catch {
+            showError(message: "Error: \(error.localizedDescription)")
+            activityIndicator.stopAnimating()
+            return
         }
     }
 
@@ -258,6 +298,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         stackView.addArrangedSubview(sensorPickerTextField)
         stackView.addArrangedSubview(insulinPickerTextField)
         stackView.addArrangedSubview(nightscoutField)
+        stackView.addArrangedSubview(activityIndicator)
         stackView.addArrangedSubview(errorLabel)
     }
 

@@ -74,3 +74,11 @@ class API {
         return URL(string: urlString)
     }
 }
+
+enum NetworkError: Error {
+    case invalidURL
+    case encodingError
+    case userNotFound
+    case responseParsingFailed
+    case userAlreadyExists
+}
