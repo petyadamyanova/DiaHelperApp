@@ -40,6 +40,12 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         label.isHidden = true
         return label
     }()
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+       let indicator = UIActivityIndicatorView(style: .medium)
+       indicator.hidesWhenStopped = true
+       return indicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +55,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         setupTableView()
         setupSubmitButton()
         setupErrorLabel()
+        view.addSubview(activityIndicator)
         
         foodTypePickerView.delegate = self
         foodTypePickerView.dataSource = self
@@ -108,8 +115,11 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             submitButton.heightAnchor.constraint(equalToConstant: 44)
         ])
         
-        
-        let submitAction = UIAction(handler: didtapSubmitButton)
+        let submitAction = UIAction { [weak self] action in
+            Task {
+                await self?.didtapSubmitButton(action)
+            }
+        }
         submitButton.addAction(submitAction, for: .touchUpInside)
     }
     
@@ -118,7 +128,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", primaryAction: cancelAction)
     }
     
-    private func didtapSubmitButton(_ action: UIAction) {
+    private func didtapSubmitButton(_ action: UIAction) async {
         var timestamp: Date = Date()
         var bloodSugar: Double = 0.0
         var insulinDose: Double = 0.0
@@ -186,22 +196,26 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         print(timestampString)
         let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
-        let meal = Meal(id: userId.uuidString, timestamp: timestampString, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
-        let addMealAPI = AddMealAPI()
-
-        addMealAPI.addMeal(userId: userId.uuidString, meal: meal) { error in
-            if let error = error {
-                print("Error adding meal: \(error)")
-            } else {
-                print("Meal added successfully.")
-            }
+        do {
+            let meal = Meal(id: userId.uuidString, timestamp: timestampString, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
+            let addMealAPI = AddMealAPI()
+            
+            activityIndicator.startAnimating()
+            
+            try await addMealAPI.addMeal(userId: userId.uuidString, meal: meal)
+            
+            activityIndicator.stopAnimating()
+            
+            UserManager.shared.addMeal(meal)
+            
+            delegate?.didAddMeal(meal)
+            
+            dismiss(animated: true)
+        } catch {
+            print("Error adding meal: \(error)")
+            activityIndicator.stopAnimating()
+            
         }
-        
-        UserManager.shared.addMeal(meal)
-        
-        delegate?.didAddMeal(meal)
-
-        dismiss(animated: true)
     }
 
     private func getCellTextFieldText(indexPath: IndexPath) -> String? {
