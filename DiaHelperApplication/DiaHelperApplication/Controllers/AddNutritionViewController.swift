@@ -55,7 +55,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         setupTableView()
         setupSubmitButton()
         setupErrorLabel()
-        view.addSubview(activityIndicator)
+        setupActivityIndicator()
         
         foodTypePickerView.delegate = self
         foodTypePickerView.dataSource = self
@@ -85,8 +85,6 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            //tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            //tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 5 ))
             tableView.topAnchor.constraint(equalTo: Image.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: Image.bottomAnchor, constant: (44 * 5 ))
         ])
@@ -237,6 +235,16 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+        ])
+    }
+    
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            activityIndicator.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 8),
         ])
     }
 

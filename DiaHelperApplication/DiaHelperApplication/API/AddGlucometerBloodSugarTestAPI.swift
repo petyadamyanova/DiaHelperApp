@@ -8,12 +8,10 @@
 import Foundation
 
 class AddGlucometerBloodSugarTestAPI{
-    func addGlucometerBloodSugarTest(_ test: GlucometerBloodSugarTest, forUserId userId: String, completion: @escaping (Error?) -> Void) {
+    func addGlucometerBloodSugarTest(_ test: GlucometerBloodSugarTest, forUserId userId: String) async throws {
         
         guard let url = API.url(for: .addGlucometerBloodSugarTest(userId: userId)) else {
-            print("Invalid URL.")
-            completion(nil)
-            return
+            throw NetworkError.invalidURL
         }
         
         var request = URLRequest(url: url)
@@ -21,23 +19,9 @@ class AddGlucometerBloodSugarTestAPI{
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()
-        do {
-            request.httpBody = try encoder.encode(test)
-        } catch {
-            print("Error encoding glucometer test: \(error)")
-            completion(error)
-            return
-        }
+        request.httpBody = try encoder.encode(test)
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Error: \(error)")
-                completion(error)
-            } else {
-                completion(nil)
-            }
-        }
-        
-        task.resume()
+        try await URLSession.shared.data(for: request)
     }
+
 }

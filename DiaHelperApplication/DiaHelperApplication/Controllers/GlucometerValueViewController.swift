@@ -61,12 +61,19 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private var activityIndicator: UIActivityIndicatorView = {
+       let indicator = UIActivityIndicatorView(style: .medium)
+       indicator.hidesWhenStopped = true
+       return indicator
+    }()
+    
     private func addSubviews() {
         view.addSubview(tableView)
         
         view.addSubview(submitButton)
         view.addSubview(viewButton)
         view.addSubview(errorField)
+        view.addSubview(activityIndicator)
     }
     
     func addViewConstraints() {
@@ -89,6 +96,10 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
             errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+            
+            activityIndicator.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            activityIndicator.topAnchor.constraint(equalTo: viewButton.bottomAnchor, constant: 8)
         
         ])
     }
@@ -106,7 +117,11 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
 
         submitButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let submitAction = UIAction(handler: didtapSubmitButton)
+        let submitAction = UIAction { [weak self] action in
+            Task {
+                await self?.didtapSubmitButton(action)
+            }
+        }
         submitButton.addAction(submitAction, for: .touchUpInside)
     }
     
@@ -123,7 +138,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         viewButton.addAction(viewAction, for: .touchUpInside)
     }
     
-    private func didtapSubmitButton(_ action: UIAction) {
+    private func didtapSubmitButton(_ action: UIAction) async {
         var timestamp: Date = Date()
         var bloodSugar: Double = 0.0
         
@@ -177,17 +192,23 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         print(UserManager.shared.getCurrentUserId())
         
         let glucometerAPI = AddGlucometerBloodSugarTestAPI()
-        glucometerAPI.addGlucometerBloodSugarTest(glucometerBloodSugarTest, forUserId: userID.uuidString) { error in
-            if let error = error {
-                print("Error adding glucometer test: \(error)")
-            } else {
-                DispatchQueue.main.async {
-                    self.delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
-                    self.dismiss(animated: true)
-                }
+
+        do {
+            activityIndicator.startAnimating()
+            
+            try await glucometerAPI.addGlucometerBloodSugarTest(glucometerBloodSugarTest, forUserId: userID.uuidString)
+            
+            activityIndicator.stopAnimating()
+            
+            DispatchQueue.main.async {
+                self.delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
+                self.dismiss(animated: true)
             }
+        } catch {
+            activityIndicator.stopAnimating()
+            print("Error adding glucometer test: \(error)")
+           
         }
-        
         UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
     }
     
