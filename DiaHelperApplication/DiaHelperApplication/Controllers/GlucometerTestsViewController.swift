@@ -29,7 +29,17 @@ class GlucometerTestsViewController: UIViewController, UITableViewDataSource, UI
         view.backgroundColor = .systemGray6
         setupDismissButton()
         setupTableView()
-        fetchGlucometerTests()
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+
+        Task {
+            do {
+                let tests = try await FetchGlucometerTestsAPI.shared.fetchGlucometerTests(for: userID)
+                self.glucometerTests = tests
+                self.tableView.reloadData()
+            } catch {
+                print("Error fetching glucometer tests: \(error)")
+            }
+        }
         addSubviews()
         addViewConstraints()
     }
@@ -80,16 +90,6 @@ class GlucometerTestsViewController: UIViewController, UITableViewDataSource, UI
             tableView.topAnchor.constraint(equalTo: separatorView1.bottomAnchor, constant: 16),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-
-    private func fetchGlucometerTests() {
-        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
-        FetchGlucometerTestsAPI.shared.fetchGlucometerTests(for: userID) { [weak self] tests in
-            guard let self = self, let tests = tests else { return }
-
-            self.glucometerTests = tests
-            self.tableView.reloadData()
-        }
     }
 
 

@@ -99,7 +99,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
             
             activityIndicator.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             activityIndicator.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            activityIndicator.topAnchor.constraint(equalTo: viewButton.bottomAnchor, constant: 8)
+            activityIndicator.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 32)
         
         ])
     }
