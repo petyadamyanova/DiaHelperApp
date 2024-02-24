@@ -39,7 +39,16 @@ class LoginUserAPI {
             UserManager.shared.saveUser(newUser)
             
             return newUser
-        }catch {
+        } catch let loginError as LoginError {
+            switch loginError {
+            case .userNotFound:
+                throw LoginError.userNotFound
+            case .invalidPassword:
+                throw LoginError.invalidPassword
+            case .invalidEmailOrPassword:
+                throw LoginError.invalidEmailOrPassword
+            }
+        } catch {
             throw LoginError.invalidEmailOrPassword
         }
     }

@@ -145,7 +145,6 @@ class LoginViewController: UIViewController {
             navigationController?.setViewControllers([mainTabBarViewController], animated: true)
             
         } catch let loginError as LoginError {
-            // Проверка за специфичните грешки
             switch loginError {
             case .userNotFound:
                 showErrorForField(field: emailField, message: "Incorrect email")
