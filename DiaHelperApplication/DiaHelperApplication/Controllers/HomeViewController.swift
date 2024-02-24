@@ -84,11 +84,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
-        FetchMealsAPI.shared.fetchMeals(for: userID) { [weak self] meals in
-            guard let self = self, let meals = meals else { return }
-            
-            self.meals = meals
-            tableView.reloadData()
+        Task {
+            do {
+                let meals = try await FetchMealsAPI.shared.fetchMeals(for: userID)
+                
+                self.meals = meals
+                tableView.reloadData()
+            } catch {
+                print("Error fetching meals: \(error)")
+            }
         }
         
         setupTimer()
@@ -339,13 +343,16 @@ extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
-        FetchMealsAPI.shared.fetchMeals(for:userID) { [weak self] fetchedMeals in
-            guard let self = self, let _ = fetchedMeals else {
-                return
+        Task {
+            do {
+                let meals = try await FetchMealsAPI.shared.fetchMeals(for: userID)
+                
+                self.meals = meals
+                tableView.reloadData()
+            } catch {
+                print("Error fetching meals: \(error)")
             }
-
-            self.meals.insert(meal, at: 0)
-            self.tableView.reloadData()
         }
+
     }
 }
