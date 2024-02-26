@@ -190,8 +190,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
     
         let formatter = ISO8601DateFormatter()
         let timestampString = formatter.string(from: timestamp)
-        
-        print(timestampString)
+     
         let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
         do {
@@ -205,14 +204,11 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             activityIndicator.stopAnimating()
             
             UserManager.shared.addMeal(meal)
-            
             delegate?.didAddMeal(meal)
-            
             dismiss(animated: true)
         } catch {
             print("Error adding meal: \(error)")
             activityIndicator.stopAnimating()
-            
         }
     }
 

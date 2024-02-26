@@ -207,7 +207,7 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         }
         
         if !birthDateValidator.isValid(birthDate) {
-            showError(message: "Birthday is not valid!")
+            showError(message: "Entered birthdate is not valid!")
             return
         }
         
