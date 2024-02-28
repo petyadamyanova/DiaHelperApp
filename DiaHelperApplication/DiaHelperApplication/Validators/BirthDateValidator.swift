@@ -11,6 +11,16 @@ class BirthDateValidator {
     func isValid(_ birthDate: String) -> Bool {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        return dateFormatter.date(from: birthDate) != nil
+        
+        guard let date = dateFormatter.date(from: birthDate) else {
+            return false  // Invalid birthDate format
+        }
+
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+
+        let birthYear = calendar.component(.year, from: date)
+
+        return birthYear <= currentYear
     }
 }

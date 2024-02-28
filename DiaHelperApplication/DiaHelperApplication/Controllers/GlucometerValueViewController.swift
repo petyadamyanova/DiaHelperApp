@@ -15,13 +15,18 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     weak var delegate: GlucometerValueViewControllerDelegate?
     private let tableView = UITableView()
     private let submitButton = UIButton()
+    private let viewButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupDismissButton()
         setupTableView()
         setupSubmitButton()
+        setupViewButton()
         setupErrorLabel()
+        addSubviews()
+        addViewConstraints()
+        
         view.backgroundColor = .systemGray6
     }
     
@@ -48,18 +53,54 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(NutritionTableViewCell.self, forCellReuseIdentifier: "Cell")
-        view.addSubview(tableView)
         
         self.tableView.layer.borderColor = UIColor.systemGray6.cgColor
         self.tableView.layer.borderWidth = 1;
         self.tableView.layer.cornerRadius = 10;
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+       let indicator = UIActivityIndicatorView(style: .medium)
+       indicator.hidesWhenStopped = true
+       return indicator
+    }()
+    
+    private func addSubviews() {
+        view.addSubview(tableView)
+        
+        view.addSubview(submitButton)
+        view.addSubview(viewButton)
+        view.addSubview(errorField)
+        view.addSubview(activityIndicator)
+    }
+    
+    func addViewConstraints() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 2 ))
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 2 )),
+            
+            submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            submitButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16 + 16),
+            submitButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            viewButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            viewButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            viewButton.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 16),
+            viewButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+            
+            activityIndicator.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            activityIndicator.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 32)
+        
         ])
     }
     
@@ -73,23 +114,31 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         var buttonConfiguration = UIButton.Configuration.tinted()
         buttonConfiguration.cornerStyle = .large
         submitButton.configuration = buttonConfiguration
-        
-        view.addSubview(submitButton)
 
         submitButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            submitButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            submitButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            submitButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16 + 16),
-            submitButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
         
-        
-        let submitAction = UIAction(handler: didtapSubmitButton)
+        let submitAction = UIAction { [weak self] action in
+            Task {
+                await self?.didtapSubmitButton(action)
+            }
+        }
         submitButton.addAction(submitAction, for: .touchUpInside)
     }
     
-    private func didtapSubmitButton(_ action: UIAction) {
+    private func setupViewButton(){
+        let color = UIColor(named: "newBrown")
+        viewButton.setTitle("View values", for: .normal)
+        
+        viewButton.setTitleColor(color, for: .normal)
+        viewButton.tintColor = UIColor(named: "newBlue")
+
+        viewButton.translatesAutoresizingMaskIntoConstraints = false
+
+        let viewAction = UIAction(handler: didtapViewButton)
+        viewButton.addAction(viewAction, for: .touchUpInside)
+    }
+    
+    private func didtapSubmitButton(_ action: UIAction) async {
         var timestamp: Date = Date()
         var bloodSugar: Double = 0.0
         
@@ -100,13 +149,27 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
                 if let text = getCellTextFieldText(indexPath: indexPath) {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "HH:mm"
-                    if let date = dateFormatter.date(from: text) {
-                        timestamp = date
-                        hideError()
-                    } else {
-                        showError(message: "Time has to be in HH:mm format")
-                        return
-                    }
+                    
+                    // Get the current date
+                    let currentDate = Date()
+                    
+                    // Get the calendar and components
+                    var calendar = Calendar.current
+                    calendar.timeZone = TimeZone.current
+                    var components = calendar.dateComponents([.year, .month, .day], from: currentDate)
+                    
+                    // Get the hours and minutes from the selected time
+                    let timeComponents = dateFormatter.date(from: text)
+                    components.hour = calendar.component(.hour, from: timeComponents!)
+                    components.minute = calendar.component(.minute, from: timeComponents!)
+                    
+                    // Create a new date with the current day, year, and selected time
+                    timestamp = calendar.date(from: components) ?? Date()
+                    
+                    hideError()
+                } else {
+                    showError(message: "Failed to get the selected time")
+                    return
                 }
             case 1:
                 if let text = getCellTextFieldText(indexPath: indexPath), let glucose1 = Double(text), glucose1 >= 2 && glucose1 <= 30 {
@@ -121,14 +184,39 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        let glucometerBloodSugarTest = GlucometerBloodSugarTest(timestamp: timestamp, bloodSugar: bloodSugar)
+        let formatter = ISO8601DateFormatter()
+        let timestampString = formatter.string(from: timestamp)
         
+        let glucometerBloodSugarTest = GlucometerBloodSugarTest(timestamp: timestampString, bloodSugar: bloodSugar)
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        print(UserManager.shared.getCurrentUserId())
+        
+        let glucometerAPI = AddGlucometerBloodSugarTestAPI()
+
+        do {
+            activityIndicator.startAnimating()
+            
+            try await glucometerAPI.addGlucometerBloodSugarTest(glucometerBloodSugarTest, forUserId: userID.uuidString)
+            
+            activityIndicator.stopAnimating()
+            
+            DispatchQueue.main.async {
+                self.delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
+                self.dismiss(animated: true)
+            }
+        } catch {
+            activityIndicator.stopAnimating()
+            print("Error adding glucometer test: \(error)")
+           
+        }
         UserManager.shared.addGlucometerBloodSugarTest(glucometerBloodSugarTest)
-        
-        //print(UserManager.shared.getAllGlucometerBloodSugarTests())
-        delegate?.didSubmitGlucometerTest(glucometerBloodSugarTest.bloodSugar)
-        
-        dismiss(animated: true)
+    }
+    
+    private func didtapViewButton(_ action: UIAction) {
+        let viewController = GlucometerTestsViewController()
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
     }
     
     private func getCellTextFieldText(indexPath: IndexPath) -> String? {
@@ -139,14 +227,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setupErrorLabel() {
-        view.addSubview(errorField)
-
         errorField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
-        ])
     }
 
     private func showError(message: String) {

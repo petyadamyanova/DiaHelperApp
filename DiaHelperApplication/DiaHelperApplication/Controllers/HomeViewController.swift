@@ -12,7 +12,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     var currentUser: User?
     var meals: [Meal] = []
     private let tableView = UITableView()
-    private var tableViewBottomConstraint: NSLayoutConstraint!
     
     internal var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -81,17 +80,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         
         if let user = UserManager.shared.getCurrentUser() {
             currentUser = user
-            
-            if let meals = currentUser?.meals, !meals.isEmpty {
+        }
+        
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        
+        Task {
+            do {
+                let meals = try await FetchMealsAPI.shared.fetchMeals(for: userID)
+                
                 self.meals = meals
                 tableView.reloadData()
+            } catch {
+                print("Error fetching meals: \(error)")
             }
         }
         
         setupTimer()
         setupAddButton()
         glucometerAction()
-        addTestMeals()
         setupTableView()
         addSubviews()
         addStackViewConstraints()
@@ -100,12 +106,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     
     private func setupTimer() {
         if let user = currentUser {
-            if user.nightscout.isEmpty{
+            if user.nightscout.isEmpty || user.nightscout == "none"{
                 self.bloodSugar.text = "-"
                 return
             }
         }
-        //updateLabel()
         
         timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
                                      target: self,
@@ -116,18 +121,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         updateLabel()
     }
     
-    private func addTestMeals() {
-        meals.append(Meal(timestamp: Date(), bloodSugar: 5.6, insulinDose: 6.7, carbsIntake: 50, foodType: .fast))
-        
-        meals.append(Meal(timestamp: Date(), bloodSugar: 5.7, insulinDose: 8, carbsIntake: 47.5, foodType: .slow))
-    }
-    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = .clear
         tableView.register(HomeVcMealTableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = true
         
         self.tableView.layer.borderColor = UIColor.systemGray6.cgColor
         self.tableView.layer.borderWidth = 1;
@@ -239,11 +239,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
     
     func updateLabelManually(_ value: Double){
         self.bloodSugar.text = String(value)
+        UserManager.shared.setCurrentGlucose(self.bloodSugar.text!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return meals.count + 1
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HomeVcMealTableViewCell
@@ -256,6 +258,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             cell.foodTypeLabel.text = "type"
             cell.insulinDoseLabel.text = "💉"
             cell.timestampLabel.text = "   ⏰"
+            cell.dateLabel.text = ""
         } else {
             let meal = meals[indexPath.row - 1]
             cell.bloodSugarLabel.text = String(meal.bloodSugar)
@@ -266,7 +269,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             } else {
                 cell.carbsIntakeLabel.text = "\(meal.carbsIntake) g"
             }
-
+            
             if abs(meal.insulinDose.truncatingRemainder(dividingBy: 1.0)) < epsilon {
                 cell.insulinDoseLabel.text = "\(Int(meal.insulinDose)) u"
             } else {
@@ -274,14 +277,54 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
             }
             
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-            cell.timestampLabel.text = dateFormatter.string(from: meal.timestamp)
+            let timestampString = meal.timestamp
+            
+            let dateFormatterInput = DateFormatter()
+            dateFormatterInput.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            
+            if let date = dateFormatterInput.date(from: timestampString) {
+                let dateFormatterOutput = DateFormatter()
+                let dateFormatterOutput2 = DateFormatter()
+                dateFormatterOutput.dateFormat = "HH:mm"
+                dateFormatterOutput2.dateFormat = "dd-MM"
+                cell.timestampLabel.text = dateFormatterOutput.string(from: date)
+                cell.dateLabel.text = dateFormatterOutput2.string(from: date)
+                cell.dateLabel.font = UIFont.italicSystemFont(ofSize: 14)
+            } else {
+                cell.timestampLabel.text = "Invalid Timestamp"
+            }
             
             cell.foodTypeLabel.text = meal.foodType.rawValue
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            if indexPath.row > 0 && indexPath.row <= meals.count {
+                let deletedMeal = meals.remove(at: indexPath.row - 1)
+                
+                deleteMealFromAPI(mealId: deletedMeal.id)
+                
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            }
+        }
+    }
+
+    func deleteMealFromAPI(mealId: String) {
+        let userId = UserManager.shared.getCurrentUserId()
+
+        let deleteMealAPI = DeleteMealAPI()
+        deleteMealAPI.deleteMeal(userId: userId, mealId: mealId) { error in
+            if let error = error {
+                print("Error deleting meal from API: \(error)")
+            } else {
+                print("Meal deleted successfully from API")
+            }
+        }
     }
     
     func didSubmitGlucometerTest(_ value: Double) {
@@ -292,13 +335,24 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0
+        return 65
     }
 }
 
 extension HomeViewController: AddNutritionViewControllerDelegate {
     func didAddMeal(_ meal: Meal) {
-        meals.append(meal)
-        self.tableView.reloadData()
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        
+        Task {
+            do {
+                let meals = try await FetchMealsAPI.shared.fetchMeals(for: userID)
+                
+                self.meals = meals
+                tableView.reloadData()
+            } catch {
+                print("Error fetching meals: \(error)")
+            }
+        }
+
     }
 }

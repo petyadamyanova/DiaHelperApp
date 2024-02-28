@@ -8,10 +8,8 @@
 import Foundation
 
 struct User: Codable {
-    var name: String
     var email: String
     var username: String
-    var password: String
     var nightscout: String
     var birtDate: String
     var yearOfDiagnosis: String
@@ -36,7 +34,6 @@ enum SensorModel: String, Codable, CaseIterable  {
     case Libre
     case Other
     case None
-    
 }
 
 enum InsulinType: String, Codable, CaseIterable {
@@ -46,4 +43,16 @@ enum InsulinType: String, Codable, CaseIterable {
     case Fiasp
     case Lyumjev
     case Other
+}
+
+struct LoginResponse: Codable {
+    var id: String
+    var username: String
+    var email: String
+    var nightscout: String
+    var birtDate: String
+    var yearOfDiagnosis: String
+    var pumpModel: String
+    var sensorModel: String
+    var insulinType: String
 }

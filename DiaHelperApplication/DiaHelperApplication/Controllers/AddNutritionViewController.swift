@@ -40,6 +40,12 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         label.isHidden = true
         return label
     }()
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+       let indicator = UIActivityIndicatorView(style: .medium)
+       indicator.hidesWhenStopped = true
+       return indicator
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +55,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         setupTableView()
         setupSubmitButton()
         setupErrorLabel()
+        setupActivityIndicator()
         
         foodTypePickerView.delegate = self
         foodTypePickerView.dataSource = self
@@ -78,8 +85,6 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            //tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            //tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16 + (44 * 5 ))
             tableView.topAnchor.constraint(equalTo: Image.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: Image.bottomAnchor, constant: (44 * 5 ))
         ])
@@ -108,8 +113,11 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             submitButton.heightAnchor.constraint(equalToConstant: 44)
         ])
         
-        
-        let submitAction = UIAction(handler: didtapSubmitButton)
+        let submitAction = UIAction { [weak self] action in
+            Task {
+                await self?.didtapSubmitButton(action)
+            }
+        }
         submitButton.addAction(submitAction, for: .touchUpInside)
     }
     
@@ -118,7 +126,7 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", primaryAction: cancelAction)
     }
     
-    private func didtapSubmitButton(_ action: UIAction) {
+    private func didtapSubmitButton(_ action: UIAction) async {
         var timestamp: Date = Date()
         var bloodSugar: Double = 0.0
         var insulinDose: Double = 0.0
@@ -140,11 +148,16 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
                if let text = getCellTextFieldText(indexPath: indexPath) {
                    let dateFormatter = DateFormatter()
                    dateFormatter.dateFormat = "HH:mm"
-                   if let date = dateFormatter.date(from: text) {
-                       timestamp = date
+                   
+                   if let enteredTime = dateFormatter.date(from: text) {
+                       let calendar = Calendar.current
+                       let currentDate = Date()
+                       let timeComponents = calendar.dateComponents([.hour, .minute], from: enteredTime)
+                       let updatedTimestamp = calendar.date(bySettingHour: timeComponents.hour!, minute: timeComponents.minute!, second: 0, of: currentDate)!
+                       timestamp = updatedTimestamp
                        hideError()
                    } else {
-                       showError(message: "Time has to be in HH:mm format")
+                       showError(message: "Invalid time format. Please use HH:mm")
                        return
                    }
                }
@@ -174,16 +187,29 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
                 break
             }
         }
+    
+        let formatter = ISO8601DateFormatter()
+        let timestampString = formatter.string(from: timestamp)
+     
+        let userId = UUID(uuidString: UserManager.shared.getCurrentUserId())!
         
-        let meal = Meal(timestamp: timestamp, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
-        
-        UserManager.shared.addMeal(meal)
-        
-        delegate?.didAddMeal(meal)
-        
-        //print(UserManager.shared.getAllMeals())
-
-        dismiss(animated: true)
+        do {
+            let meal = Meal(id: userId.uuidString, timestamp: timestampString, bloodSugar: bloodSugar, insulinDose: insulinDose, carbsIntake: carbsIntake, foodType: foodType)
+            let addMealAPI = AddMealAPI()
+            
+            activityIndicator.startAnimating()
+            
+            try await addMealAPI.addMeal(userId: userId.uuidString, meal: meal)
+            
+            activityIndicator.stopAnimating()
+            
+            UserManager.shared.addMeal(meal)
+            delegate?.didAddMeal(meal)
+            dismiss(animated: true)
+        } catch {
+            print("Error adding meal: \(error)")
+            activityIndicator.stopAnimating()
+        }
     }
 
     private func getCellTextFieldText(indexPath: IndexPath) -> String? {
@@ -205,6 +231,16 @@ class AddNutritionViewController: UIViewController, UITextFieldDelegate {
             errorField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             errorField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             errorField.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 8),
+        ])
+    }
+    
+    private func setupActivityIndicator(){
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            activityIndicator.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            activityIndicator.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 8),
         ])
     }
 

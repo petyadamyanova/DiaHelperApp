@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, EditProfileDelegate {
     var currentUser: User?
     
     private var stackView: UIStackView = {
@@ -25,12 +25,6 @@ class ProfileViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
-    }()
-    
-    private var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }()
     
     private var usernameLabel: UILabel = {
@@ -145,6 +139,35 @@ class ProfileViewController: UIViewController {
         return textField
     }()
     
+    public var editButton: UIButton = {
+        let color = UIColor(named: "newBlue")
+        
+        let button = UIButton(type: .system)
+        button.setTitle("edit", for: .normal)
+        button.setTitleColor(color, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 35)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        var buttonConfiguration = UIButton.Configuration.tinted()
+        buttonConfiguration.cornerStyle = .large
+        button.configuration = buttonConfiguration
+        
+        return button
+    }()
+    
+    private func setupEditButton() {
+        let action = UIAction(handler: editButtonTapped)
+        editButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func editButtonTapped(_ action: UIAction) {
+        let protocolsReminderViewController = EditProfileViewController()
+        protocolsReminderViewController.delegate = self
+        let navController = UINavigationController(rootViewController: protocolsReminderViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,13 +186,13 @@ class ProfileViewController: UIViewController {
         setupPumpTextField()
         setupSensorTextField()
         setupInsulinTypeTextField()
+        setupEditButton()
         addSubviews()
         addConstraints()
     }
     
     private func addSubviews() {
         view.addSubview(profileImage)
-        view.addSubview(nameLabel)
         view.addSubview(usernameLabel)
         view.addSubview(emailIcon)
         view.addSubview(emailTextField)
@@ -185,7 +208,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(sensorTextField)
         view.addSubview(insulinIcon)
         view.addSubview(insulinTypeTextField)
-        
+        view.addSubview(editButton)
     }
     
     private func addConstraints() {
@@ -195,11 +218,8 @@ class ProfileViewController: UIViewController {
             profileImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             profileImage.heightAnchor.constraint(equalToConstant: 200),
             
-            nameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16),
-            nameLabel.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
-            
-            usernameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
-            usernameLabel.centerXAnchor.constraint(equalTo: nameLabel.centerXAnchor),
+            usernameLabel.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 16),
+            usernameLabel.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
             
             emailIcon.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 30),
             emailIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
@@ -264,11 +284,14 @@ class ProfileViewController: UIViewController {
             insulinTypeTextField.leadingAnchor.constraint(equalTo: insulinIcon.trailingAnchor, constant: 16),
             insulinTypeTextField.heightAnchor.constraint(equalToConstant: 30),
             
+            editButton.topAnchor.constraint(equalTo: insulinTypeTextField.bottomAnchor, constant: 12),
+            editButton.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
+            editButton.widthAnchor.constraint(equalToConstant: 90),
+            
         ])
     }
     
     private func setUpNameLabel(){
-        nameLabel.text = currentUser?.name
         usernameLabel.text = currentUser?.username
     }
     
@@ -300,6 +323,40 @@ class ProfileViewController: UIViewController {
         insulinTypeTextField.text = currentUser?.insulinType.rawValue
     }
     
+    func didUpdateUsername(_ newUsername: String) {
+        usernameLabel.text = newUsername
+    }
+    
+    func didUpdateEmail(_ newEmail: String) {
+        DispatchQueue.main.async {
+            self.birthDateTextField.text = newEmail
+        }
+    }
+    
+    func didUpdateNightscout(_ newNightscout: String) {
+        nightscoutTextField.text = newNightscout
+    }
+    
+    func didUpdateBirthDate(_ newBirthDate: String) {
+        birthDateTextField.text = newBirthDate
+    }
+    
+    func didUpdatePumpModel(_ newPumpModel: String) {
+        pumpTextField.text = newPumpModel
+    }
+    
+    func didUpdateSensorModel(_ newSensorModel: String) {
+        sensorTextField.text = newSensorModel
+    }
+    
+    func didUpdateInsulinType(_ newInsulinType: String) {
+        insulinTypeTextField.text = newInsulinType
+    }
+    
+    func didUpdateYearOfDiagnosis(_ newYearOfDiagnosis: String){
+        yearOfDiagnosisTextField.text = newYearOfDiagnosis
+    }
+
 }
 
 

@@ -8,13 +8,22 @@
 import UIKit
 
 class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    var name: String = ""
+    var email: String = ""
+    var username: String = ""
+    var password: String = ""
+    var password2: String = ""
 
+    
     var nigscout: String = ""
     var birtDate: String = ""
     var yearOfDiagnosis: String = ""
     var pumpModel: PumpModel = .None
     var sensorModel: SensorModel = .None
     var insulinType: InsulinType = .Other
+    
+    private let birthDateValidator = BirthDateValidator()
+    private let yearOfDiagnosisValidator = YearOfDiagnosisValidator()
     
     private lazy var pumpPickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -164,22 +173,99 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
     
         return txtField
     }()
+    
+    private var errorLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = .red
+        label.numberOfLines = 0
+        label.isHidden = true
+        return label
+    }()
+    
+    private var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
 
     private func setupSubmitButton() {
-        let submitAction = UIAction(handler: didTapSubmitButton)
+        let submitAction = UIAction { [weak self] action in
+            Task {
+                await self?.didTapSubmitButton(action)
+            }
+        }
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", primaryAction: submitAction)
     }
-
-    private func didTapSubmitButton(_ action: UIAction) {
-        let newUser = User(name: "Petya Damyanova", email: "user1@email.com", username: "petiadam2006", password: "password", nightscout: "petiadam.nightscout.bg", birtDate: "09/02/2006", yearOfDiagnosis: "2006", pumpModel: .Medtronic, sensorModel: .Dexcom, insulinType: .Fiasp)
-
-        UserManager.shared.saveUser(newUser)
+    
+    private func didTapSubmitButton(_ action: UIAction) async {
+        guard var nightscout = nightscoutField.textField.text,
+              let birthDate = birthDateField.textField.text,
+              let yearOfDiagnosis = yearOfDiagnosisField.textField.text else {
+            return
+        }
         
-        let mainTabBarViewController = MainTabBarViewController()
-        let navController = UINavigationController(rootViewController: mainTabBarViewController)
-        navController.modalPresentationStyle = .fullScreen
-        navigationController?.setViewControllers([MainTabBarViewController()], animated: true)
+        if !birthDateValidator.isValid(birthDate) {
+            showError(message: "Entered birthdate is not valid!")
+            return
+        }
+        
+        if !yearOfDiagnosisValidator.isValid(yearOfDiagnosis, birthDate) {
+            showError(message: "Year of diagnosis is not valid!")
+            return
+        }
+        
+        if nightscout.isEmpty {
+            nightscout = "none"
+        }
+        
+        errorLabel.isHidden = true
+        
+        activityIndicator.startAnimating()
+        
+        do {
+            try await RegisterUserAPI().registerUser(
+                name: name,
+                email: email,
+                username: username,
+                password: password,
+                password2: password2,
+                nightscout: nightscout,
+                birtDate: birthDate,
+                yearOfDiagnosis: yearOfDiagnosis,
+                pumpModel: pumpModel.rawValue,
+                sensorModel: sensorModel.rawValue,
+                insulinType: insulinType.rawValue
+            )
+            
+            activityIndicator.stopAnimating()
+            
+            do {
+                try await LoginUserAPI().loginUser(email: email, password: password)
+                
+                activityIndicator.stopAnimating()
+                // Login successful
+                let mainTabBarViewController = MainTabBarViewController()
+                let navController = UINavigationController(rootViewController: mainTabBarViewController)
+                navController.modalPresentationStyle = .fullScreen
+                navigationController?.setViewControllers([mainTabBarViewController], animated: true)
+            } catch {
+                self.activityIndicator.stopAnimating()
+                self.showError(message: "Error: User with this email already exists")
+                return
+            }
+        } catch NetworkError.userAlreadyExists {
+            showError(message: "Error: User with this email already exists")
+            activityIndicator.stopAnimating()
+            return
+        } catch {
+            showError(message: "Error: \(error.localizedDescription)")
+            activityIndicator.stopAnimating()
+            return
+        }
     }
+
 
     private func setupDismissButton() {
         let cancelAction = UIAction(handler: didTapCancelButton)
@@ -200,6 +286,8 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         stackView.addArrangedSubview(sensorPickerTextField)
         stackView.addArrangedSubview(insulinPickerTextField)
         stackView.addArrangedSubview(nightscoutField)
+        stackView.addArrangedSubview(activityIndicator)
+        stackView.addArrangedSubview(errorLabel)
     }
 
     private func addStackViewConstraints() {
@@ -217,4 +305,9 @@ class RegistrationDataViewController: UIViewController, UIPickerViewDelegate, UI
         stackView.spacing = 16
         return stackView
     }()
+    
+    private func showError(message: String) {
+        errorLabel.text = message
+        errorLabel.isHidden = false
+    }
 }
