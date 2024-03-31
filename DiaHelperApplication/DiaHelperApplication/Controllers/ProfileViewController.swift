@@ -168,6 +168,38 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
         navigationController?.present(navController, animated: true)
     }
     
+    private var appointmentsIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "appointmentsIcon")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imageView
+    }()
+    
+    public var appointmentsButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSAttributedString(string: "Appointments", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.translatesAutoresizingMaskIntoConstraints = false
+    
+        return button
+    }()
+    
+    private func setupAppointmentsButton() {
+        let action = UIAction(handler: appointmentsButtonTapped)
+        appointmentsButton.addAction(action, for: .touchUpInside)
+    }
+    
+    private func appointmentsButtonTapped(_ action: UIAction) {
+        let appointmentsReminderViewController = AppointmentsViewController()
+        let navController = UINavigationController(rootViewController: appointmentsReminderViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,6 +219,7 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
         setupSensorTextField()
         setupInsulinTypeTextField()
         setupEditButton()
+        setupAppointmentsButton()
         addSubviews()
         addConstraints()
     }
@@ -208,6 +241,8 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
         view.addSubview(sensorTextField)
         view.addSubview(insulinIcon)
         view.addSubview(insulinTypeTextField)
+        view.addSubview(appointmentsIcon)
+        view.addSubview(appointmentsButton)
         view.addSubview(editButton)
     }
     
@@ -284,7 +319,15 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
             insulinTypeTextField.leadingAnchor.constraint(equalTo: insulinIcon.trailingAnchor, constant: 16),
             insulinTypeTextField.heightAnchor.constraint(equalToConstant: 30),
             
-            editButton.topAnchor.constraint(equalTo: insulinTypeTextField.bottomAnchor, constant: 12),
+            appointmentsIcon.topAnchor.constraint(equalTo: insulinIcon.bottomAnchor, constant: 12),
+            appointmentsIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            appointmentsIcon.heightAnchor.constraint(equalToConstant: 32),
+            appointmentsIcon.widthAnchor.constraint(equalToConstant: 32),
+            
+            appointmentsButton.topAnchor.constraint(equalTo: insulinIcon.bottomAnchor, constant: 12),
+            appointmentsButton.leadingAnchor.constraint(equalTo: appointmentsIcon.trailingAnchor, constant: 16),
+            
+            editButton.topAnchor.constraint(equalTo: appointmentsButton.bottomAnchor, constant: 12),
             editButton.centerXAnchor.constraint(equalTo: profileImage.centerXAnchor),
             editButton.widthAnchor.constraint(equalToConstant: 90),
             
