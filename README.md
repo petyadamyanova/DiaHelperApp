@@ -6,8 +6,7 @@ DiaHelper - мобилно приложение, предназначено за
 
 Приложението създава удобство и осигурява сигурност, с оглед на това, че информацията е налична на едно място. Елиминира се нуждата от записването и в тефтери или на друг вид хартиен носител, който би могъл да бъде повреден или загубен, което да доведе до загубата на важна информация. Детайлната и систематизирана информация не само подпомага ежедневния контрол, но и предоставя възможност за анализ, който може да бъде споделян с медицински специалисти по време на консултации.
 
-<img width="591" alt="Screenshot 2024-03-30 at 14 33 10" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/2bdf8a41-0545-49d9-955b-0f18574ccb74">
-<img width="252" alt="Screenshot 2024-03-30 at 14 34 00" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/72a3b7e4-4ce0-42cb-ad5f-6c9472d80291">
-<img width="485" alt="Screenshot 2024-03-30 at 14 34 20" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/376b056e-64d8-43e6-a3a8-7c6323872ebf">
-<img width="258" alt="Screenshot 2024-03-30 at 14 34 44" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/165e0693-ff4d-4337-8077-09402e264eec">
-<img width="420" alt="Screenshot 2024-03-30 at 14 41 24" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/c8a28282-326b-441b-b17d-0a02d303a6bc">
+
+<img width="591" alt="Screenshot 2024-03-30 at 14 33 10" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/1c137e71-9b43-480d-ac27-7c0c06ed432e">
+<img width="644" alt="Screenshot 2024-04-25 at 9 49 09" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/108135f6-083a-4e44-a828-b723b9bdcb09">
+<img width="485" alt="Screenshot 2024-03-30 at 14 34 20" src="https://github.com/petyadamyanova/DiaHelperApp/assets/72454123/bf1c4045-0b19-48ad-8e0e-c37500021528">
