@@ -56,6 +56,9 @@
 		D3BF35D32B85382A00CCC138 /* UpdateUserInfoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */; };
 		D3BFE01E2B8774AF0049AC23 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BFE01D2B8774AF0049AC23 /* API.swift */; };
 		D3C4ABE22BB5DBAC00BADEB0 /* AppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4ABE12BB5DBAC00BADEB0 /* AppointmentsViewController.swift */; };
+		D3C4ABE42BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4ABE32BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift */; };
+		D3C4ABE62BB9E12E00BADEB0 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4ABE52BB9E12E00BADEB0 /* Appointment.swift */; };
+		D3C4ABE82BB9E30D00BADEB0 /* AddAppointmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4ABE72BB9E30D00BADEB0 /* AddAppointmentAPI.swift */; };
 		D3D59E182B740892004679CE /* DeleteMealAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E172B740892004679CE /* DeleteMealAPI.swift */; };
 		D3D59E1A2B74C954004679CE /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E192B74C954004679CE /* EditProfileViewController.swift */; };
 		D3D59E1C2B755B65004679CE /* FetchGlucometerTestsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */; };
@@ -139,6 +142,9 @@
 		D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoAPI.swift; sourceTree = "<group>"; };
 		D3BFE01D2B8774AF0049AC23 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D3C4ABE12BB5DBAC00BADEB0 /* AppointmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsViewController.swift; sourceTree = "<group>"; };
+		D3C4ABE32BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAppointmentsAPI.swift; sourceTree = "<group>"; };
+		D3C4ABE52BB9E12E00BADEB0 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		D3C4ABE72BB9E30D00BADEB0 /* AddAppointmentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentAPI.swift; sourceTree = "<group>"; };
 		D3D59E172B740892004679CE /* DeleteMealAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMealAPI.swift; sourceTree = "<group>"; };
 		D3D59E192B74C954004679CE /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D3D59E1B2B755B65004679CE /* FetchGlucometerTestsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchGlucometerTestsAPI.swift; sourceTree = "<group>"; };
@@ -291,6 +297,7 @@
 				D344AEC72B271D13002C9CE0 /* ApiReading.swift */,
 				D344AECD2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift */,
 				D3D86FAA2B7E0D4100765725 /* StartTimes.swift */,
+				D3C4ABE52BB9E12E00BADEB0 /* Appointment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +317,8 @@
 				D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */,
 				D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */,
 				D3BFE01D2B8774AF0049AC23 /* API.swift */,
+				D3C4ABE32BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift */,
+				D3C4ABE72BB9E30D00BADEB0 /* AddAppointmentAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -467,6 +476,7 @@
 				D344AECE2B2EF373002C9CE0 /* GlucometerBloodSugarTest.swift in Sources */,
 				D344AECA2B27A5B6002C9CE0 /* HomeVcMealTableViewCell.swift in Sources */,
 				D344AE792AF6B93A002C9CE0 /* LoginViewController.swift in Sources */,
+				D3C4ABE82BB9E30D00BADEB0 /* AddAppointmentAPI.swift in Sources */,
 				D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */,
 				D3D86FAD2B7E0DB800765725 /* AddStartTimeAPI.swift in Sources */,
 				D344AEBF2B209566002C9CE0 /* Meal.swift in Sources */,
@@ -501,9 +511,11 @@
 				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,
 				D344AEB42B1E687A002C9CE0 /* NightscoutAPI.swift in Sources */,
+				D3C4ABE62BB9E12E00BADEB0 /* Appointment.swift in Sources */,
 				D3B710642B7E6C85004C95D8 /* FetchStartTimesAPI.swift in Sources */,
 				D399AB072B680616005DBAFA /* RegisterUserAPI.swift in Sources */,
 				D3D86FAB2B7E0D4100765725 /* StartTimes.swift in Sources */,
+				D3C4ABE42BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
 				D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */,
 				D3C4ABE22BB5DBAC00BADEB0 /* AppointmentsViewController.swift in Sources */,

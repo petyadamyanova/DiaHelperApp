@@ -8,14 +8,21 @@
 import Foundation
 import UIKit
 
-class AppointmentsViewController: UIViewController {
+class AppointmentsViewController: UIViewController{
+    var appointments:[Appointment] = []
+    let tableView = UITableView()
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         setupDismissButton()
         addSubviews()
         addStackViewConstraints()
+        configureTableView()
+        
+        Task {
+            await fetchAppointments()
+        }
     }
     
     internal var stackView: UIStackView = {
@@ -61,14 +68,69 @@ class AppointmentsViewController: UIViewController {
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(separatorView1)
         view.addSubview(stackView)
+        view.addSubview(tableView)
     }
-
+    
+    private func configureTableView() {
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.isScrollEnabled = true
+            tableView.backgroundColor = .white
+            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        }
+    
     private func addStackViewConstraints() {
         view.addConstraints([
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            
+            tableView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 50),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
     }
     
+    func fetchAppointments() async {
+        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
+        
+        /*let appointment = Appointment(label: "Gynecologist", doctor: "Dr.Ivanova", date: "22.07.2024", place: "St.Vazov 23")
+        
+        let addMAppointmentApi = AddAppointmentAPI()
+    
+        do {
+            try await addMAppointmentApi.addAppointment(userId: userID.uuidString, appoiment: appointment)
+        }catch {
+            print("Error adding appointment: \(error)")
+        }*/
+        
+        Task {
+            do {
+                appointments = try await FetchAppointmentsAPI.shared.fetchAppointments(for: userID)
+                tableView.reloadData()
+            } catch {
+                print("Error fetching appointments: \(error)")
+            }
+        }
+    }
+    
+}
+
+extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return appointments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+           
+        let appointment = appointments[indexPath.row]
+        print(appointment.label)
+        cell.textLabel?.text = "\(appointment.label) - \(appointment.doctor)"
+        cell.detailTextLabel?.text = "\(appointment.date) at \(appointment.place)"
+             
+        
+        return cell
+    }
 }

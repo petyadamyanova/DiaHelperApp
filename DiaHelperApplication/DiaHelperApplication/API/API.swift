@@ -25,6 +25,8 @@ enum APIEndpoint {
     case updatePumpModel(userId: String)
     case updateSensorModel(userId: String)
     case updateYearOfDiagnosis(userId: String)
+    case addAppointment(userId: String)
+    case fetchAppointments(userId: String)
     
     var rawValue: String {
         switch self {
@@ -62,6 +64,10 @@ enum APIEndpoint {
             return "/users/\(userId)/update-sensor-model"
         case .updateYearOfDiagnosis(let userId):
             return "/users/\(userId)/update-year-of-diagnosis"
+        case .addAppointment(let userId):
+            return "/users/\(userId)/appointments"
+        case .fetchAppointments(let userId):
+            return "/users/\(userId)/appointments"
         }
     }
 }
