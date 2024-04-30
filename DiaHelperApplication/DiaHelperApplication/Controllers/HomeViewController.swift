@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UITableViewDataSource, GlucometerValueViewControllerDelegate  {
     var timer: Timer?
+    var newNightscout_: String?
     var currentUser: User?
     var meals: [Meal] = []
     private let tableView = UITableView()
@@ -237,6 +238,30 @@ class HomeViewController: UIViewController, UITableViewDataSource, GlucometerVal
         
     }
     
+    @objc func updateLabelWithNewNighsctout() {
+        guard let newNightscout = newNightscout_ else {
+            return
+        }
+
+        NightscoutAPI.takeBloodSugar(withID: newNightscout) { readings in
+            if let readings = readings {
+                DispatchQueue.main.async {
+                    if let firstReading = readings.first {
+                        let roundedValue = (Double(firstReading.value) / 18.0).rounded(toPlaces: 2)
+                        self.bloodSugar.text = String(roundedValue)
+                        UserManager.shared.setCurrentGlucose(String(roundedValue))
+                        print("Your blood sugar is: \(roundedValue)")
+                    } else {
+                        print("No readings available.")
+                        self.bloodSugar.text = "-"
+                    }
+                }
+            } else {
+                print("Request failed or no items.")
+            }
+        }
+    }
+    
     func updateLabelManually(_ value: Double){
         self.bloodSugar.text = String(value)
         UserManager.shared.setCurrentGlucose(self.bloodSugar.text!)
@@ -354,5 +379,18 @@ extension HomeViewController: AddNutritionViewControllerDelegate {
             }
         }
 
+    }
+}
+
+extension HomeViewController: EditProfileViewControllerDelegate {
+    func setTimer(_ newNightscout: String) {
+        newNightscout_ = newNightscout
+        timer = Timer.scheduledTimer(timeInterval: 300.0, // 300 секунди = 5 минути
+                                     target: self,
+                                     selector: #selector(updateLabelWithNewNighsctout),
+                                     userInfo: nil,
+                                     repeats: true)
+        
+        updateLabelWithNewNighsctout()
     }
 }

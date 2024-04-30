@@ -13,9 +13,14 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray
         
+        let homeViewController = HomeViewController()
+        let profileViewController = ProfileViewController()
+        profileViewController.homeViewController = homeViewController
+        
         let vc1 = UINavigationController(rootViewController: ReminderViewController())
-        let vc2 = UINavigationController(rootViewController: HomeViewController())
-        let vc3 = UINavigationController(rootViewController: ProfileViewController())
+        let vc2 = UINavigationController(rootViewController: homeViewController)
+        let vc3 = UINavigationController(rootViewController: profileViewController)
+                
         
         vc1.tabBarItem.image = UIImage(systemName: "bell.circle")
         vc2.tabBarItem.image = UIImage(systemName: "house")

@@ -8,8 +8,13 @@
 import Foundation
 import UIKit
 
+protocol EditProfileViewControllerDelegate: AnyObject {
+    func setTimer(_ newNightscout: String)
+}
+
 class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     weak var delegate: EditProfileDelegate?
+    weak var homeViewController: HomeViewController?
     private let emailValidator = EmailValidator()
     private let yearOfDiagnosisValidator = YearOfDiagnosisValidator()
     var pumpModel = UserManager.shared.getCurrentUser()?.pumpModel
@@ -245,6 +250,7 @@ class EditProfileViewController: UIViewController, UIPickerViewDelegate, UIPicke
                     print("Error updating username: \(error)")
                 } else {
                     self.delegate?.didUpdateNightscout(newNightscout!)
+                    self.homeViewController?.setTimer(newNightscout!)
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
                     }

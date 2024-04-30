@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController, EditProfileDelegate {
     var currentUser: User?
+    weak var homeViewController: HomeViewController?
     
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -161,9 +162,10 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     }
     
     private func editButtonTapped(_ action: UIAction) {
-        let protocolsReminderViewController = EditProfileViewController()
-        protocolsReminderViewController.delegate = self
-        let navController = UINavigationController(rootViewController: protocolsReminderViewController)
+        let editProfileViewController = EditProfileViewController()
+        editProfileViewController.delegate = self
+        editProfileViewController.homeViewController = homeViewController
+        let navController = UINavigationController(rootViewController: editProfileViewController)
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
