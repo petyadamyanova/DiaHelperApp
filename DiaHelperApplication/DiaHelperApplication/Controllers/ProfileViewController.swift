@@ -369,7 +369,9 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     }
     
     func didUpdateUsername(_ newUsername: String) {
-        usernameLabel.text = newUsername
+        DispatchQueue.main.async {
+            self.usernameLabel.text = newUsername
+        }
     }
     
     func didUpdateEmail(_ newEmail: String) {
@@ -379,27 +381,39 @@ class ProfileViewController: UIViewController, EditProfileDelegate {
     }
     
     func didUpdateNightscout(_ newNightscout: String) {
-        nightscoutTextField.text = newNightscout
+        DispatchQueue.main.async {
+            self.nightscoutTextField.text = newNightscout
+        }
     }
     
     func didUpdateBirthDate(_ newBirthDate: String) {
-        birthDateTextField.text = newBirthDate
+        DispatchQueue.main.async {
+            self.birthDateTextField.text = newBirthDate
+        }
     }
     
     func didUpdatePumpModel(_ newPumpModel: String) {
-        pumpTextField.text = newPumpModel
+        DispatchQueue.main.async {
+            self.pumpTextField.text = newPumpModel
+        }
     }
     
     func didUpdateSensorModel(_ newSensorModel: String) {
-        sensorTextField.text = newSensorModel
+        DispatchQueue.main.async {
+            self.sensorTextField.text = newSensorModel
+        }
     }
     
     func didUpdateInsulinType(_ newInsulinType: String) {
-        insulinTypeTextField.text = newInsulinType
+        DispatchQueue.main.async {
+            self.insulinTypeTextField.text = newInsulinType
+        }
     }
     
     func didUpdateYearOfDiagnosis(_ newYearOfDiagnosis: String){
-        yearOfDiagnosisTextField.text = newYearOfDiagnosis
+        DispatchQueue.main.async {
+            self.yearOfDiagnosisTextField.text = newYearOfDiagnosis
+        }
     }
 
 }

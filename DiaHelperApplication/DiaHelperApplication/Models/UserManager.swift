@@ -12,6 +12,7 @@ class UserManager {
     private var currentUser: User?
     private var currentGlucose: String?
     private var currentUserId: String?
+    private var token: String?
     private var meals: [Meal] = []
     private var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
     
@@ -55,6 +56,14 @@ class UserManager {
     
     func getAllMeals() -> [Meal] {
         return meals
+    }
+    
+    func setToken(token_: String){
+        token = token_
+    }
+    
+    func getToken() -> String {
+        return token ?? ""
     }
 }
 

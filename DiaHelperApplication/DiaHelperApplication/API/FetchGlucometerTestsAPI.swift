@@ -19,10 +19,11 @@ class FetchGlucometerTestsAPI {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(UserManager.shared.getToken())", forHTTPHeaderField: "Authorization")
 
             let (data, _) = try await URLSession.shared.data(for: request)
 
             let decoder = JSONDecoder()
-            return try decoder.decode([GlucometerBloodSugarTest].self, from: data)
+            return try decoder.decode([GlucometerBloodSugarTest].self, from: data).reversed()
         }
 }

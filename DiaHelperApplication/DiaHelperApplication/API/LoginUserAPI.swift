@@ -33,9 +33,13 @@ class LoginUserAPI {
             let decoder = JSONDecoder()
             let loginResponse = try decoder.decode(LoginResponse.self, from: data)
             
-            let newUser = User(email: loginResponse.email, username: loginResponse.username, nightscout: loginResponse.nightscout, birtDate: loginResponse.birtDate, yearOfDiagnosis: loginResponse.yearOfDiagnosis, pumpModel: PumpModel(rawValue: loginResponse.pumpModel) ?? .Other, sensorModel: SensorModel(rawValue: loginResponse.sensorModel) ?? .Other, insulinType: InsulinType(rawValue: loginResponse.insulinType) ?? .Other)
+            let token = loginResponse.token
+            print(token)
             
-            UserManager.shared.setCurrentUserId(id: loginResponse.id)
+            let newUser = User(email: loginResponse.user.email, username: loginResponse.user.username, nightscout: loginResponse.user.nightscout, birtDate: loginResponse.user.birtDate, yearOfDiagnosis: loginResponse.user.yearOfDiagnosis, pumpModel: PumpModel(rawValue: loginResponse.user.pumpModel) ?? .Other, sensorModel: SensorModel(rawValue: loginResponse.user.sensorModel) ?? .Other, insulinType: InsulinType(rawValue: loginResponse.user.insulinType) ?? .Other)
+            
+            UserManager.shared.setCurrentUserId(id: loginResponse.user.id)
+            UserManager.shared.setToken(token_: token)
             UserManager.shared.saveUser(newUser)
             
             return newUser

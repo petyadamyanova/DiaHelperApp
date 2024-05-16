@@ -17,6 +17,7 @@ class AddGlucometerBloodSugarTestAPI{
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(UserManager.shared.getToken())", forHTTPHeaderField: "Authorization")
         
         let encoder = JSONEncoder()
         request.httpBody = try encoder.encode(test)

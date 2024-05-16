@@ -63,6 +63,7 @@ class UpdateUserInfoAPI {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(UserManager.shared.getToken())", forHTTPHeaderField: "Authorization")
 
         let encoder = JSONEncoder()
         do {
