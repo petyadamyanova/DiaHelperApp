@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AppointmentsViewController: UIViewController{
+class AppointmentsViewController: UIViewController, AddAppointmentViewControllerDelegate{
     var appointments:[Appointment] = []
     let tableView = UITableView()
     
@@ -16,24 +16,15 @@ class AppointmentsViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .systemGray6
         setupDismissButton()
-        addSubviews()
-        addStackViewConstraints()
         configureTableView()
+        setupAddButton()
+        addSubviews()
+        addViewConstraints()
         
         Task {
             await fetchAppointments()
         }
     }
-    
-    internal var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .center
-
-        return stackView
-    }()
     
     public var label: UILabel = {
         let label = UILabel()
@@ -47,6 +38,18 @@ class AppointmentsViewController: UIViewController{
         return label
     }()
     
+    public var addButton: UIButton = {
+        let color = UIColor(named: "newBrown")
+        
+        let button = UIButton(type: .system)
+        button.setTitle("+", for: .normal)
+        button.setTitleColor(color, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 35)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     private func setupDismissButton() {
         let cancelAction = UIAction(handler: didTapCancelButton)
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: cancelAction)
@@ -56,54 +59,54 @@ class AppointmentsViewController: UIViewController{
         dismiss(animated: true)
     }
     
-    let separatorView1: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        return view
-    }()
-    
     private func addSubviews() {
-        stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(separatorView1)
-        view.addSubview(stackView)
+        view.addSubview(label)
+        view.addSubview(addButton)
         view.addSubview(tableView)
     }
     
-    private func configureTableView() {
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.dataSource = self
-            tableView.delegate = self
-            tableView.isScrollEnabled = true
-            tableView.backgroundColor = .white
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        }
+    private func setupAddButton() {
+        let addAction = UIAction(handler: addButtonTapped)
+        addButton.addAction(addAction, for: .touchUpInside)
+    }
     
-    private func addStackViewConstraints() {
+    private func addButtonTapped(_ action: UIAction) {
+        let addAppointmentViewController = AddAppointmentViewController()
+        addAppointmentViewController.delegate = self
+        let navController = UINavigationController(rootViewController: addAppointmentViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.present(navController, animated: true)
+    }
+    
+    private func configureTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.isScrollEnabled = true
+        tableView.backgroundColor = .white
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    private func addViewConstraints() {
         view.addConstraints([
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             
-            tableView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 50),
+            addButton.widthAnchor.constraint(equalToConstant: 64),
+            addButton.heightAnchor.constraint(equalToConstant: 64),
+            addButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: label.topAnchor, constant: 60),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tableView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -16),
         ])
     }
     
     func fetchAppointments() async {
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
-        
-        /*let appointment = Appointment(label: "Gynecologist", doctor: "Dr.Ivanova", date: "22.07.2024", place: "St.Vazov 23")
-        
-        let addMAppointmentApi = AddAppointmentAPI()
-    
-        do {
-            try await addMAppointmentApi.addAppointment(userId: userID.uuidString, appoiment: appointment)
-        }catch {
-            print("Error adding appointment: \(error)")
-        }*/
         
         Task {
             do {
@@ -111,6 +114,25 @@ class AppointmentsViewController: UIViewController{
                 tableView.reloadData()
             } catch {
                 print("Error fetching appointments: \(error)")
+            }
+        }
+    }
+    
+    func didSubmitAppointment() {
+        Task {
+            await fetchAppointments()
+        }
+    }
+
+    func deleteAppointmentFromAPI(appointmentId: String) {
+        let userId = UserManager.shared.getCurrentUserId()
+
+        let deleteAppointmentAPI = DeleteAppointmentAPI()
+        deleteAppointmentAPI.deleteAppointment(userId: userId, appointmentId: appointmentId) { error in
+            if let error = error {
+                print("Error deleting appointment from API: \(error)")
+            } else {
+                print("Appointment deleted successfully from API")
             }
         }
     }
@@ -123,14 +145,20 @@ extension AppointmentsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier")
+        if cell == nil {
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "reuseIdentifier")
+        }
            
         let appointment = appointments[indexPath.row]
         print(appointment.label)
-        cell.textLabel?.text = "\(appointment.label) - \(appointment.doctor)"
-        cell.detailTextLabel?.text = "\(appointment.date) at \(appointment.place)"
-             
+        cell?.textLabel?.text = "\(appointment.label) - \(appointment.doctor)"
+        cell?.detailTextLabel?.text = "date: \(appointment.date), place: \(appointment.place)"
         
-        return cell
+        cell?.textLabel?.font = UIFont.systemFont(ofSize: 18)
+        cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 16)
+        cell?.detailTextLabel?.textColor = UIColor.lightGray
+        
+        return cell!
     }
 }

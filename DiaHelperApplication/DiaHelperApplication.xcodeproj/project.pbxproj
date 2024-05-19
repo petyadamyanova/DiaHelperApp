@@ -52,6 +52,8 @@
 		D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */; };
 		D3B5268B2B5C01D1009E8265 /* ProtocolsReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */; };
 		D3B710642B7E6C85004C95D8 /* FetchStartTimesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */; };
+		D3B8ED5E2BF938E100C05349 /* AddAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B8ED5D2BF938E100C05349 /* AddAppointmentViewController.swift */; };
+		D3B8ED602BFA19E300C05349 /* DeleteAppointmentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B8ED5F2BFA19E300C05349 /* DeleteAppointmentAPI.swift */; };
 		D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC21212B503A5700FF44DC /* ReminderField.swift */; };
 		D3BF35D32B85382A00CCC138 /* UpdateUserInfoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */; };
 		D3BFE01E2B8774AF0049AC23 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BFE01D2B8774AF0049AC23 /* API.swift */; };
@@ -138,6 +140,8 @@
 		D3B224E12B5406070086346D /* InsulinCanulaReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinCanulaReminderField.swift; sourceTree = "<group>"; };
 		D3B5268A2B5C01D1009E8265 /* ProtocolsReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsReminderViewController.swift; sourceTree = "<group>"; };
 		D3B710632B7E6C85004C95D8 /* FetchStartTimesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStartTimesAPI.swift; sourceTree = "<group>"; };
+		D3B8ED5D2BF938E100C05349 /* AddAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentViewController.swift; sourceTree = "<group>"; };
+		D3B8ED5F2BFA19E300C05349 /* DeleteAppointmentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAppointmentAPI.swift; sourceTree = "<group>"; };
 		D3BC21212B503A5700FF44DC /* ReminderField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderField.swift; sourceTree = "<group>"; };
 		D3BF35D22B85382A00CCC138 /* UpdateUserInfoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoAPI.swift; sourceTree = "<group>"; };
 		D3BFE01D2B8774AF0049AC23 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */,
+				D3B8ED5D2BF938E100C05349 /* AddAppointmentViewController.swift */,
 				D344AE762AF63538002C9CE0 /* HomeViewController.swift */,
 				D344AE782AF6B93A002C9CE0 /* LoginViewController.swift */,
 				D344AE7D2AF6C3AD002C9CE0 /* RegisterViewController.swift */,
@@ -319,6 +324,7 @@
 				D3BFE01D2B8774AF0049AC23 /* API.swift */,
 				D3C4ABE32BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift */,
 				D3C4ABE72BB9E30D00BADEB0 /* AddAppointmentAPI.swift */,
+				D3B8ED5F2BFA19E300C05349 /* DeleteAppointmentAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -507,6 +513,8 @@
 				D344AEC62B20C96C002C9CE0 /* CenteredPlaceholderTextField.swift in Sources */,
 				D344AE832B015763002C9CE0 /* EmailValidator.swift in Sources */,
 				D399AB092B6954CB005DBAFA /* LoginUserAPI.swift in Sources */,
+				D3B8ED602BFA19E300C05349 /* DeleteAppointmentAPI.swift in Sources */,
+				D3B8ED5E2BF938E100C05349 /* AddAppointmentViewController.swift in Sources */,
 				D3D5D9112B6C209700DB32FE /* FetchMealsAPI.swift in Sources */,
 				D344AEB92B1E6CF8002C9CE0 /* Double+rounded.swift in Sources */,
 				D344AE8D2B0D1D2A002C9CE0 /* AddNutritionViewController.swift in Sources */,

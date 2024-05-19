@@ -27,6 +27,7 @@ enum APIEndpoint {
     case updateYearOfDiagnosis(userId: String)
     case addAppointment(userId: String)
     case fetchAppointments(userId: String)
+    case deleteAppointment(userId: String, appointmentId: String)
     
     var rawValue: String {
         switch self {
@@ -68,6 +69,8 @@ enum APIEndpoint {
             return "/users/\(userId)/appointments"
         case .fetchAppointments(let userId):
             return "/users/\(userId)/appointments"
+        case .deleteAppointment(let userId, let appointmentId):
+            return "/users/\(userId)/appointments/\(appointmentId)"
         }
     }
 }

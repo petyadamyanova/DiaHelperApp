@@ -8,7 +8,7 @@
 import Foundation
 
 class AddAppointmentAPI {
-    func addAppointment(userId: String, appoiment: Appointment) async throws {
+    func addAppointment(userId: String, appointment: Appointment) async throws {
         guard let url = API.url(for: .addAppointment(userId: userId)) else {
             throw NetworkError.invalidURL
         }
@@ -18,7 +18,7 @@ class AddAppointmentAPI {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let encoder = JSONEncoder()
-        request.httpBody = try encoder.encode(appoiment)
+        request.httpBody = try encoder.encode(appointment)
         
         try await URLSession.shared.data(for: request)
     }
