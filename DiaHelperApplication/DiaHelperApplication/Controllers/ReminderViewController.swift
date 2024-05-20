@@ -262,7 +262,7 @@ class ReminderViewController: UIViewController {
         let color = UIColor(named: "newBlue")
         
         let button = UIButton(type: .system)
-        button.setTitle("protocols", for: .normal)
+        button.setTitle("Protocols", for: .normal)
         button.setTitleColor(color, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 35)
         button.translatesAutoresizingMaskIntoConstraints = false
