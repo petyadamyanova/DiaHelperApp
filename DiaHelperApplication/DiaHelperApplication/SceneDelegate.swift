@@ -18,8 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         var startViewHostingController: UIHostingController<StartView>!
-        let startView = StartView(onLoginButtonTapped: {
-            self.presentLoginScreen(with: startViewHostingController)
+        let startView = StartView(
+            onLoginButtonTapped: {
+                self.presentLoginScreen(with: startViewHostingController)
+            },
+            onRegisterButtonTapped: {
+                self.presentRegisterScreen(with: startViewHostingController)
         })
         startViewHostingController = UIHostingController(rootView: startView)
         window?.rootViewController = startViewHostingController
@@ -29,6 +33,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func presentLoginScreen(with controller: UIHostingController<StartView>) -> Void {
         let loginViewController = LoginViewController()
         let navController = UINavigationController(rootViewController: loginViewController)
+        navController.modalPresentationStyle = .fullScreen
+        controller.present(navController, animated: true)
+    }
+    
+    private func presentRegisterScreen(with controller: UIHostingController<StartView>) -> Void {
+        let registerViewController = RegisterViewController()
+        let navController = UINavigationController(rootViewController: registerViewController)
         navController.modalPresentationStyle = .fullScreen
         controller.present(navController, animated: true)
     }

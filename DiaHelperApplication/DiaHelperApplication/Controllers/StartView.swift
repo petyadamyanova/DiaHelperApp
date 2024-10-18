@@ -9,15 +9,22 @@ import SwiftUI
 
 struct StartView: View {
     var onLoginButtonTapped: () -> Void
+    var onRegisterButtonTapped: () -> Void
     
     var body: some View {
         VStack {
-            Image("startView")
+            welcomeimage
             welcomeHeader
             actions
+            Spacer()
         }
         .padding()
-        Spacer()
+        .background(Color("background"))
+    }
+    
+    private var welcomeimage: some View {
+        Image("startView")
+            .padding(.top, 16)
     }
     
     private var welcomeHeader: some View {
@@ -30,19 +37,28 @@ struct StartView: View {
     private var actions: some View {
         VStack {
             button(with: "Login", and: onLoginButtonTapped)
-            button(with: "Register", and: {
-                
-            })
+            button(with: "Register", and: onRegisterButtonTapped)
         }
     }
     
     private func button(with name: String, and action: @escaping () -> Void) -> some View {
-        Button(name, action: action)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color("newBlue"))
+        Button(action: action, label: {
+            Text(name)
+                .frame(maxWidth: .infinity)
+        })
+            .padding(10)
+            .background(Color("buttonColor"))
+            .contentShape(Rectangle())
             .foregroundColor(Color("newBrown"))
             .cornerRadius(10)
     }
     
+}
+
+#Preview {
+    StartView(onLoginButtonTapped: {
+        
+    }, onRegisterButtonTapped: {
+        
+    })
 }
