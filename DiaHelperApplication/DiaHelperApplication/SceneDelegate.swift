@@ -20,26 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var startViewHostingController: UIHostingController<StartView>!
         let startView = StartView(
             onLoginButtonTapped: {
-                self.presentLoginScreen(with: startViewHostingController)
+                self.presentScreen(with: startViewHostingController, viewController: LoginViewController())
             },
             onRegisterButtonTapped: {
-                self.presentRegisterScreen(with: startViewHostingController)
+                self.presentScreen(with: startViewHostingController, viewController: RegisterViewController())
         })
         startViewHostingController = UIHostingController(rootView: startView)
         window?.rootViewController = startViewHostingController
         window?.makeKeyAndVisible()
     }
     
-    private func presentLoginScreen(with controller: UIHostingController<StartView>) -> Void {
-        let loginViewController = LoginViewController()
-        let navController = UINavigationController(rootViewController: loginViewController)
-        navController.modalPresentationStyle = .fullScreen
-        controller.present(navController, animated: true)
-    }
-    
-    private func presentRegisterScreen(with controller: UIHostingController<StartView>) -> Void {
-        let registerViewController = RegisterViewController()
-        let navController = UINavigationController(rootViewController: registerViewController)
+    private func presentScreen<T: UIViewController>(with controller: UIHostingController<StartView>, viewController: T) {
+        let navController = UINavigationController(rootViewController: viewController)
         navController.modalPresentationStyle = .fullScreen
         controller.present(navController, animated: true)
     }
