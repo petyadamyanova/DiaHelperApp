@@ -6,20 +6,31 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
-        
+    
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = StartViewController()
+        var startViewHostingController: UIHostingController<StartView>!
+        let startView = StartView(onLoginButtonTapped: {
+            self.presentLoginScreen(with: startViewHostingController)
+        })
+        startViewHostingController = UIHostingController(rootView: startView)
+        window?.rootViewController = startViewHostingController
         window?.makeKeyAndVisible()
+    }
+    
+    private func presentLoginScreen(with controller: UIHostingController<StartView>) -> Void {
+        let loginViewController = LoginViewController()
+        let navController = UINavigationController(rootViewController: loginViewController)
+        navController.modalPresentationStyle = .fullScreen
+        controller.present(navController, animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,4 +63,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

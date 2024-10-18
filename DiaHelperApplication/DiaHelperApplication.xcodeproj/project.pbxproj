@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EF9FCF62CC1482F0068F666 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9FCF52CC148240068F666 /* StartView.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8EF9FCF52CC148240068F666 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		D344AE712AF63473002C9CE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8EF9FCF52CC148240068F666 /* StartView.swift */,
 				D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */,
 				D3B8ED5D2BF938E100C05349 /* AddAppointmentViewController.swift */,
 				D344AE762AF63538002C9CE0 /* HomeViewController.swift */,
@@ -504,6 +507,7 @@
 				D3D59E1C2B755B65004679CE /* FetchGlucometerTestsAPI.swift in Sources */,
 				D3D59E1A2B74C954004679CE /* EditProfileViewController.swift in Sources */,
 				D3D59E202B755DAF004679CE /* GlucometerTestViewCell.swift in Sources */,
+				8EF9FCF62CC1482F0068F666 /* StartView.swift in Sources */,
 				D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */,
 				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,
