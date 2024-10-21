@@ -1,6 +1,6 @@
 # DiaHelperApp
 
-Дипломна работа - Петя Дамянова 12Б клас.
+Дипломна работа - Петя Кирилова Дамянова ТУЕС, випуск 2024г.
 
 Линк към github-a на сървърната част -> https://github.com/petyadamyanova/VaporDiaHelper.git
 
