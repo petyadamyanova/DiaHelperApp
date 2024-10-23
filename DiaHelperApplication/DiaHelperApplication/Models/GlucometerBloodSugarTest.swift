@@ -7,7 +7,9 @@
 
 import Foundation
 
-struct GlucometerBloodSugarTest: Codable {
+struct GlucometerBloodSugarTest: Codable, Identifiable {
     var timestamp: String
     var bloodSugar: Double
+    
+    var id: String { timestamp }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8EF9FCF62CC1482F0068F666 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9FCF52CC148240068F666 /* StartView.swift */; };
+		8EF9FCFA2CC7E3CD0068F666 /* GlucometerTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9FCF92CC7E3B70068F666 /* GlucometerTestsView.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		8EF9FCF52CC148240068F666 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		8EF9FCF92CC7E3B70068F666 /* GlucometerTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucometerTestsView.swift; sourceTree = "<group>"; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		D344AE712AF63473002C9CE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8EF9FCF92CC7E3B70068F666 /* GlucometerTestsView.swift */,
 				8EF9FCF52CC148240068F666 /* StartView.swift */,
 				D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */,
 				D3B8ED5D2BF938E100C05349 /* AddAppointmentViewController.swift */,
@@ -530,6 +533,7 @@
 				D3C4ABE42BB9E00A00BADEB0 /* FetchAppointmentsAPI.swift in Sources */,
 				D344AE972B14922E002C9CE0 /* TextInput2.swift in Sources */,
 				D3D5D9152B715ECB00DB32FE /* AddGlucometerBloodSugarTestAPI.swift in Sources */,
+				8EF9FCFA2CC7E3CD0068F666 /* GlucometerTestsView.swift in Sources */,
 				D3C4ABE22BB5DBAC00BADEB0 /* AppointmentsViewController.swift in Sources */,
 				D344AE9B2B18900A002C9CE0 /* BirthDateValidator.swift in Sources */,
 				D3BC21222B503A5700FF44DC /* ReminderField.swift in Sources */,

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol GlucometerValueViewControllerDelegate: AnyObject {
     func didSubmitGlucometerTest(_ value: Double)
@@ -213,8 +214,19 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func didtapViewButton(_ action: UIAction) {
-        let viewController = GlucometerTestsViewController()
-        let navController = UINavigationController(rootViewController: viewController)
+//        let viewController = GlucometerTestsViewController()
+//        let navController = UINavigationController(rootViewController: viewController)
+//        navController.modalPresentationStyle = .fullScreen
+//        navigationController?.present(navController, animated: true)
+        
+        var glucometerTestsViewHostingController: UIHostingController<GlucometerTestsView>!
+        let glucometerTestsView = GlucometerTestsView(
+            dismiss: {
+                glucometerTestsViewHostingController.dismiss(animated: true)
+            }
+        )
+        glucometerTestsViewHostingController = UIHostingController(rootView: glucometerTestsView)
+        let navController = UINavigationController(rootViewController: glucometerTestsViewHostingController )
         navController.modalPresentationStyle = .fullScreen
         navigationController?.present(navController, animated: true)
     }
