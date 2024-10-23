@@ -9,12 +9,7 @@ import SwiftUI
 
 struct GlucometerTestsView : View {
     var dismiss: () -> Void
-    // private var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
-    let glucometerBloodSugarTests = [
-        GlucometerBloodSugarTest(timestamp: "2024-10-22 16:00:00 +0000", bloodSugar: 5.6),
-        GlucometerBloodSugarTest(timestamp: "2024-10-22 15:50:00 +0000", bloodSugar: 7.4),
-        GlucometerBloodSugarTest(timestamp: "2024-10-22 14:00:00 +0000", bloodSugar: 8.9),
-    ]
+    @State var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
     
     var body: some View {
         NavigationStack{
@@ -26,6 +21,9 @@ struct GlucometerTestsView : View {
             .background(Color("background"))
             .toolbar {
                 button
+            }
+            .onAppear {
+                fetchGlucometerTests()
             }
         }
     }
@@ -63,20 +61,19 @@ struct GlucometerTestsView : View {
         .background(Color("background"))
     }
     
-    /*private func fetchGlucometerTests() {
+    private func fetchGlucometerTests() {
         let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
 
         Task {
             do {
                 let tests = try await FetchGlucometerTestsAPI.shared.fetchGlucometerTests(for: userID)
                 self.glucometerBloodSugarTests = tests
-                //self.tableView.reloadData()
             } catch {
                 print("Error fetching glucometer tests: \(error)")
             }
         }
         
-    }*/
+    }
 }
 
 struct GlucometerTestRow: View {
@@ -94,12 +91,12 @@ struct GlucometerTestRow: View {
     }
     
     private func formatTimestamp(_ timestamp: String) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        if let date = formatter.date(from: timestamp) {
-            formatter.dateStyle = .medium
-            formatter.timeStyle = .short
-            return formatter.string(from: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = dateFormatter.date(from: timestamp) {
+            let displayFormatter = DateFormatter()
+            displayFormatter.dateFormat = "MMM d, yyyy h:mm a"
+            return "Date: \(displayFormatter.string(from: date))"
         }
         return timestamp
     }
