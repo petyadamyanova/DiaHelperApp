@@ -7,9 +7,45 @@
 
 import SwiftUI
 
+protocol GlucometerDataSource {
+    func getData() async -> [GlucometerBloodSugarTest]
+}
+
+class APIDataSource: GlucometerDataSource {
+    func getData() async -> [GlucometerBloodSugarTest] {
+        guard let userID = UUID(uuidString: UserManager.shared.getCurrentUserId()) else {
+            return []
+        }
+        
+        do {
+            return try await FetchGlucometerTestsAPI.shared.fetchGlucometerTests(for: userID)
+        } catch {
+            print("Error fetching glucometer tests: \(error)")
+            return []
+        }
+    }
+}
+
+class DummyDataSource: GlucometerDataSource {
+    func getData() async -> [GlucometerBloodSugarTest] {
+        [
+            .init(timestamp: "22/10/2024 16:00", bloodSugar: 5.6),
+            .init(timestamp: "22/10/2024 14:40", bloodSugar: 5.3),
+            .init(timestamp: "22/10/2024 12:00", bloodSugar: 7.8)
+        ]
+    }
+}
+
+
 struct GlucometerTestsView : View {
     var dismiss: () -> Void
     @State var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
+    private var dataSource: GlucometerDataSource
+    
+    init(dismiss: @escaping () -> Void, dataSource: GlucometerDataSource) {
+        self.dismiss = dismiss
+        self.dataSource = dataSource
+    }
     
     var body: some View {
         NavigationStack{
@@ -62,17 +98,9 @@ struct GlucometerTestsView : View {
     }
     
     private func fetchGlucometerTests() {
-        let userID = UUID(uuidString: UserManager.shared.getCurrentUserId())!
-
         Task {
-            do {
-                let tests = try await FetchGlucometerTestsAPI.shared.fetchGlucometerTests(for: userID)
-                self.glucometerBloodSugarTests = tests
-            } catch {
-                print("Error fetching glucometer tests: \(error)")
-            }
+            glucometerBloodSugarTests = await dataSource.getData()
         }
-        
     }
 }
 
@@ -105,6 +133,6 @@ struct GlucometerTestRow: View {
 #Preview {
     GlucometerTestsView(dismiss: {
         
-    })
+    }, dataSource: DummyDataSource())
 }
 

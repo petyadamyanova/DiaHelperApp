@@ -223,7 +223,7 @@ class GlucometerValueViewController: UIViewController, UITextFieldDelegate {
         let glucometerTestsView = GlucometerTestsView(
             dismiss: {
                 glucometerTestsViewHostingController.dismiss(animated: true)
-            }
+            }, dataSource: APIDataSource()
         )
         glucometerTestsViewHostingController = UIHostingController(rootView: glucometerTestsView)
         let navController = UINavigationController(rootViewController: glucometerTestsViewHostingController )
