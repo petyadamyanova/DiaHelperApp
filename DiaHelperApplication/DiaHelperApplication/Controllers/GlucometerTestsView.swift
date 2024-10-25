@@ -36,15 +36,28 @@ class DummyDataSource: GlucometerDataSource {
     }
 }
 
+final class GlucometerTestsViewModel: ObservableObject {
+    @Published var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
+    
+    private var dataSource: GlucometerDataSource
+    
+    init(dataSource: GlucometerDataSource) {
+        self.dataSource = dataSource
+    }
+    
+    func fetchGlucometerTests() async {
+        glucometerBloodSugarTests = await dataSource.getData()
+    }
+}
+
 
 struct GlucometerTestsView : View {
     var dismiss: () -> Void
-    @State var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
-    private var dataSource: GlucometerDataSource
+    @ObservedObject var viewModel: GlucometerTestsViewModel
     
-    init(dismiss: @escaping () -> Void, dataSource: GlucometerDataSource) {
+    init(dismiss: @escaping () -> Void, viewModel: GlucometerTestsViewModel) {
         self.dismiss = dismiss
-        self.dataSource = dataSource
+        self.viewModel = viewModel
     }
     
     var body: some View {
@@ -58,8 +71,8 @@ struct GlucometerTestsView : View {
             .toolbar {
                 button
             }
-            .onAppear {
-                fetchGlucometerTests()
+            .task {
+                await viewModel.fetchGlucometerTests()
             }
         }
     }
@@ -88,19 +101,13 @@ struct GlucometerTestsView : View {
     
     private var list: some View {
         List {
-            ForEach(glucometerBloodSugarTests) { test in
+            ForEach(viewModel.glucometerBloodSugarTests) { test in
                 GlucometerTestRow(test: test)
             }
         }
         .padding(.horizontal)
         .listStyle(PlainListStyle())
         .background(Color("background"))
-    }
-    
-    private func fetchGlucometerTests() {
-        Task {
-            glucometerBloodSugarTests = await dataSource.getData()
-        }
     }
 }
 
@@ -133,6 +140,6 @@ struct GlucometerTestRow: View {
 #Preview {
     GlucometerTestsView(dismiss: {
         
-    }, dataSource: DummyDataSource())
+    }, viewModel: GlucometerTestsViewModel(dataSource: DummyDataSource()))
 }
 
