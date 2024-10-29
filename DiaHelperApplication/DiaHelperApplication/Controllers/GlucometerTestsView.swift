@@ -6,47 +6,33 @@
 //
 
 import SwiftUI
-
-protocol GlucometerDataSource {
-    func getData() async -> [GlucometerBloodSugarTest]
-}
-
-class APIDataSource: GlucometerDataSource {
-    func getData() async -> [GlucometerBloodSugarTest] {
-        guard let userID = UUID(uuidString: UserManager.shared.getCurrentUserId()) else {
-            return []
-        }
-        
-        do {
-            return try await FetchGlucometerTestsAPI.shared.fetchGlucometerTests(for: userID)
-        } catch {
-            print("Error fetching glucometer tests: \(error)")
-            return []
-        }
-    }
-}
-
-class DummyDataSource: GlucometerDataSource {
-    func getData() async -> [GlucometerBloodSugarTest] {
-        [
-            .init(timestamp: "22/10/2024 16:00", bloodSugar: 5.6),
-            .init(timestamp: "22/10/2024 14:40", bloodSugar: 5.3),
-            .init(timestamp: "22/10/2024 12:00", bloodSugar: 7.8)
-        ]
-    }
-}
+import Combine
 
 final class GlucometerTestsViewModel: ObservableObject {
     @Published var glucometerBloodSugarTests: [GlucometerBloodSugarTest] = []
     
-    private var dataSource: GlucometerDataSource
-    
-    init(dataSource: GlucometerDataSource) {
-        self.dataSource = dataSource
+    private let api: FetchGlucometerTestsAPI
+    private var subscriber: AnyCancellable?
+        
+    init(api: FetchGlucometerTestsAPI = .shared) {
+        self.api = api
+        
+        subscriber = api.fetchGlucometerTestsPublisher(for: UUID(uuidString: UserManager.shared.getCurrentUserId())!)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    print("Error fetching glucometer tests: \(error)")
+                case .finished:
+                    break
+                }
+            }, receiveValue: { [weak self] tests in
+                self?.glucometerBloodSugarTests = tests
+            })
     }
     
-    func fetchGlucometerTests() async {
-        glucometerBloodSugarTests = await dataSource.getData()
+    deinit {
+        subscriber = nil
     }
 }
 
@@ -70,9 +56,6 @@ struct GlucometerTestsView : View {
             .background(Color("background"))
             .toolbar {
                 button
-            }
-            .task {
-                await viewModel.fetchGlucometerTests()
             }
         }
     }
@@ -137,9 +120,9 @@ struct GlucometerTestRow: View {
     }
 }
 
-#Preview {
-    GlucometerTestsView(dismiss: {
-        
-    }, viewModel: GlucometerTestsViewModel(dataSource: DummyDataSource()))
-}
+//#Preview {
+//    GlucometerTestsView(dismiss: {
+//        
+//    }, viewModel: GlucometerTestsViewModel(dataSource: DummyDataSource()))
+//}
 
