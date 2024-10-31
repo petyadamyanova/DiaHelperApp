@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct StartView: View {
-    var onLoginButtonTapped: () -> Void
-    var onRegisterButtonTapped: () -> Void
-    
     var body: some View {
         VStack {
             welcomeimage
@@ -36,29 +33,24 @@ struct StartView: View {
     
     private var actions: some View {
         VStack {
-            button(with: "Login", and: onLoginButtonTapped)
-            button(with: "Register", and: onRegisterButtonTapped)
+            button(with: "Login", to: LoginView())
+            button(with: "Register", to: RegisterView())
         }
     }
     
-    private func button(with name: String, and action: @escaping () -> Void) -> some View {
-        Button(action: action, label: {
+    private func button<Destination: View>(with name: String, to destination: Destination) -> some View {
+        NavigationLink(destination: destination) {
             Text(name)
                 .frame(maxWidth: .infinity)
-        })
-            .padding(10)
-            .background(Color("buttonColor"))
-            .contentShape(Rectangle())
-            .foregroundColor(Color("newBrown"))
-            .cornerRadius(10)
+                .padding(10)
+                .background(Color("buttonColor"))
+                .foregroundColor(Color("newBrown"))
+                .cornerRadius(10)
+        }
+        .contentShape(Rectangle())
     }
-    
 }
 
 #Preview {
-    StartView(onLoginButtonTapped: {
-        
-    }, onRegisterButtonTapped: {
-        
-    })
+    StartView()
 }

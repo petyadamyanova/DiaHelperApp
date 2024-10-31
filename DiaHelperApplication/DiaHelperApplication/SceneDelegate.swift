@@ -13,20 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        var startViewHostingController: UIHostingController<StartView>!
-        let startView = StartView(
-            onLoginButtonTapped: {
-                self.presentScreen(with: startViewHostingController, viewController: LoginViewController())
-            },
-            onRegisterButtonTapped: {
-                self.presentScreen(with: startViewHostingController, viewController: RegisterViewController())
-        })
-        startViewHostingController = UIHostingController(rootView: startView)
-        window?.rootViewController = startViewHostingController
-        window?.makeKeyAndVisible()
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+//        window?.windowScene = windowScene
+//        var startViewHostingController: UIHostingController<StartView>!
+//        let startView = StartView(
+//            onLoginButtonTapped: {
+//                self.presentScreen(with: startViewHostingController, viewController: LoginViewController())
+//            },
+//            onRegisterButtonTapped: {
+//                self.presentScreen(with: startViewHostingController, viewController: RegisterViewController())
+//        })
+//        startViewHostingController = UIHostingController(rootView: startView)
+//        window?.rootViewController = startViewHostingController
+//        window?.makeKeyAndVisible()
     }
     
     private func presentScreen<T: UIViewController>(with controller: UIHostingController<StartView>, viewController: T) {
