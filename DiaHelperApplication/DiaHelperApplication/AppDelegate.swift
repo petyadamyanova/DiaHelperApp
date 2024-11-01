@@ -6,18 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
-
-@main
-struct DiaHelperApp: App {
-    var body: some Scene {
-        WindowGroup {
-            NavigationStack{
-                StartView()
-            }
-        }
-    }
-}
 
 //@main
 class AppDelegate: UIResponder, UIApplicationDelegate {

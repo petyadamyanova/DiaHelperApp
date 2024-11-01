@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		8EA9B35E2CD3ADCD00C7A7F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */; };
 		8EA9B3602CD3BE8B00C7A7F3 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */; };
-		8EA9B3642CD3D07700C7A7F3 /* .swift in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9B3632CD3D07300C7A7F3 /* .swift */; };
 		8EA9B3662CD4D28900C7A7F3 /* RepresentableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B3652CD4D27700C7A7F3 /* RepresentableViewController.swift */; };
+		8EA9B3682CD4D5F300C7A7F3 /* DiaHelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B3672CD4D5E800C7A7F3 /* DiaHelperApp.swift */; };
 		8EF9FCF62CC1482F0068F666 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9FCF52CC148240068F666 /* StartView.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
@@ -98,8 +98,8 @@
 /* Begin PBXFileReference section */
 		8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		8EA9B3632CD3D07300C7A7F3 /* .swift */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swift; sourceTree = "<group>"; };
 		8EA9B3652CD4D27700C7A7F3 /* RepresentableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentableViewController.swift; sourceTree = "<group>"; };
+		8EA9B3672CD4D5E800C7A7F3 /* DiaHelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaHelperApp.swift; sourceTree = "<group>"; };
 		8EF9FCF52CC148240068F666 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +219,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				8EA9B3672CD4D5E800C7A7F3 /* DiaHelperApp.swift */,
 				D344AEC22B20A817002C9CE0 /* CustomCells */,
 				D344AEB52B1E6C44002C9CE0 /* Extensions */,
 				D344AEB22B1E6857002C9CE0 /* API */,
@@ -227,7 +228,6 @@
 				D344AE7A2AF6C2F2002C9CE0 /* Components */,
 				D344AE712AF63473002C9CE0 /* Controllers */,
 				D344AE412AF625D4002C9CE0 /* AppDelegate.swift */,
-				8EA9B3632CD3D07300C7A7F3 /* .swift */,
 				D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */,
 				D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */,
 				D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */,
@@ -468,7 +468,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D344AE4B2AF625D7002C9CE0 /* Assets.xcassets in Resources */,
-				8EA9B3642CD3D07700C7A7F3 /* .swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +504,7 @@
 				D3D59E1E2B755C49004679CE /* GlucometerTestsViewController.swift in Sources */,
 				D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */,
 				D344AE752AF634F0002C9CE0 /* ProfileViewController.swift in Sources */,
+				8EA9B3682CD4D5F300C7A7F3 /* DiaHelperApp.swift in Sources */,
 				D344AE802AF8F6BE002C9CE0 /* StartViewController.swift in Sources */,
 				D3B224E22B5406070086346D /* InsulinCanulaReminderField.swift in Sources */,
 				D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */,
