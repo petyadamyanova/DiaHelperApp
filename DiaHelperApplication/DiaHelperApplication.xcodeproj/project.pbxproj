@@ -196,6 +196,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EA9B3692CD4D69E00C7A7F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */,
+				8EF9FCF52CC148240068F666 /* StartView.swift */,
+				8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D344AE352AF625D4002C9CE0 = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +229,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
-				8EA9B3672CD4D5E800C7A7F3 /* DiaHelperApp.swift */,
+				8EA9B3692CD4D69E00C7A7F3 /* Views */,
 				D344AEC22B20A817002C9CE0 /* CustomCells */,
 				D344AEB52B1E6C44002C9CE0 /* Extensions */,
 				D344AEB22B1E6857002C9CE0 /* API */,
@@ -232,6 +242,7 @@
 				D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */,
 				D344AE4A2AF625D7002C9CE0 /* Assets.xcassets */,
 				D344AE4F2AF625D7002C9CE0 /* Info.plist */,
+				8EA9B3672CD4D5E800C7A7F3 /* DiaHelperApp.swift */,
 			);
 			path = DiaHelperApplication;
 			sourceTree = "<group>";
@@ -262,9 +273,6 @@
 			isa = PBXGroup;
 			children = (
 				8EA9B3652CD4D27700C7A7F3 /* RepresentableViewController.swift */,
-				8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */,
-				8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */,
-				8EF9FCF52CC148240068F666 /* StartView.swift */,
 				D344AE742AF634F0002C9CE0 /* ProfileViewController.swift */,
 				D3B8ED5D2BF938E100C05349 /* AddAppointmentViewController.swift */,
 				D344AE762AF63538002C9CE0 /* HomeViewController.swift */,
