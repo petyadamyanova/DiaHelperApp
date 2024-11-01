@@ -7,13 +7,8 @@
 
 import SwiftUI
 
-struct LoginView: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> LoginViewController {
-        LoginViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: LoginViewController, context: Context) {
-       //
+struct LoginView: View {
+    var body: some View {
+        RepresentableViewController(viewController: LoginViewController())
     }
 }

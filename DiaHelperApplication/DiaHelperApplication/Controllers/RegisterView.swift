@@ -7,13 +7,8 @@
 
 import SwiftUI
 
-struct RegisterView: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> RegisterViewController {
-        RegisterViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: RegisterViewController, context: Context) {
-       //
+struct RegisterView: View {
+    var body: some View {
+        RepresentableViewController(viewController: RegisterViewController())
     }
 }

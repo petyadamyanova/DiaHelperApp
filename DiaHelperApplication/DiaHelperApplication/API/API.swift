@@ -76,7 +76,7 @@ enum APIEndpoint {
 }
 
 class API {
-    static let baseURL = "http://localhost:8081"
+    static let baseURL = "http://localhost:8082"
     //static let baseURL = "http://138.68.92.11:8080"
     
     static func url(for endpoint: APIEndpoint, userId: String? = nil) -> URL? {

@@ -10,6 +10,7 @@
 		8EA9B35E2CD3ADCD00C7A7F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */; };
 		8EA9B3602CD3BE8B00C7A7F3 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */; };
 		8EA9B3642CD3D07700C7A7F3 /* .swift in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9B3632CD3D07300C7A7F3 /* .swift */; };
+		8EA9B3662CD4D28900C7A7F3 /* RepresentableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9B3652CD4D27700C7A7F3 /* RepresentableViewController.swift */; };
 		8EF9FCF62CC1482F0068F666 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF9FCF52CC148240068F666 /* StartView.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
@@ -98,6 +99,7 @@
 		8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		8EA9B3632CD3D07300C7A7F3 /* .swift */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swift; sourceTree = "<group>"; };
+		8EA9B3652CD4D27700C7A7F3 /* RepresentableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentableViewController.swift; sourceTree = "<group>"; };
 		8EF9FCF52CC148240068F666 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		D344AE712AF63473002C9CE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8EA9B3652CD4D27700C7A7F3 /* RepresentableViewController.swift */,
 				8EA9B35F2CD3BE8100C7A7F3 /* RegisterView.swift */,
 				8EA9B35D2CD3ADBC00C7A7F3 /* LoginView.swift */,
 				8EF9FCF52CC148240068F666 /* StartView.swift */,
@@ -519,6 +522,7 @@
 				D3D59E202B755DAF004679CE /* GlucometerTestViewCell.swift in Sources */,
 				8EF9FCF62CC1482F0068F666 /* StartView.swift in Sources */,
 				D344AECC2B2C4B53002C9CE0 /* GlucometerValueViewController.swift in Sources */,
+				8EA9B3662CD4D28900C7A7F3 /* RepresentableViewController.swift in Sources */,
 				D344AE952B139613002C9CE0 /* RegisterDataViewController.swift in Sources */,
 				D344AE8F2B0D22EA002C9CE0 /* ReminderViewController.swift in Sources */,
 				D344AEBD2B2091B3002C9CE0 /* UserManager.swift in Sources */,
