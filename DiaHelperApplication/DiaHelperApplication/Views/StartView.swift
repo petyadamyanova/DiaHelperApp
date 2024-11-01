@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct StartView: View {
+    @Binding var path: NavigationPath
+    
     var body: some View {
         VStack {
             welcomeimage
@@ -33,13 +35,15 @@ struct StartView: View {
     
     private var actions: some View {
         VStack {
-            button(with: "Login", to: LoginView())
-            button(with: "Register", to: RegisterView())
+            button(with: "Login", destination: .login)
+            button(with: "Register", destination: .register)
         }
     }
     
-    private func button<Destination: View>(with name: String, to destination: Destination) -> some View {
-        NavigationLink(destination: destination) {
+    private func button(with name: String, destination: Destination) -> some View {
+        Button(action: {
+            $path.wrappedValue.append(destination)
+        }) {
             Text(name)
                 .frame(maxWidth: .infinity)
                 .padding(10)
@@ -47,10 +51,9 @@ struct StartView: View {
                 .foregroundColor(Color("newBrown"))
                 .cornerRadius(10)
         }
-        .contentShape(Rectangle())
     }
 }
 
 #Preview {
-    StartView()
+    NavigationStackView()
 }
