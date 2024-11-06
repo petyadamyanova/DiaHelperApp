@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct DiaHelperApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     var body: some Scene {
         WindowGroup {
             NavigationStackView()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }
@@ -21,7 +24,7 @@ struct NavigationStackView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            StartView(path: $path)
+            StartMenuView(path: $path)
                 .navigationDestination(for: Destination.self) { destination in
                     switch destination {
                     case .login:

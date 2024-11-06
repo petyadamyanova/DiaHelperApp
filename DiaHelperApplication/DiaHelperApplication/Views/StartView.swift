@@ -42,7 +42,7 @@ struct StartView: View {
     
     private func button(with name: String, destination: Destination) -> some View {
         Button(action: {
-            $path.wrappedValue.append(destination)
+            path.append(destination)
         }) {
             Text(name)
                 .frame(maxWidth: .infinity)
@@ -54,6 +54,6 @@ struct StartView: View {
     }
 }
 
-#Preview {
-    NavigationStackView()
-}
+//#Preview {
+//    NavigationStackView()
+//}
