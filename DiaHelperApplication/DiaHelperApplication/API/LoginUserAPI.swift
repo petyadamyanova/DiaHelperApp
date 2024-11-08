@@ -7,7 +7,11 @@
 
 import Foundation
 
-class LoginUserAPI {
+protocol LoginInterface {
+    func loginUser(email: String, password: String) async throws -> User
+}
+
+class LoginUserAPI: LoginInterface {
     func loginUser(email: String, password: String) async throws -> User {
         guard let url = API.url(for: .login) else {
             throw NetworkError.invalidURL

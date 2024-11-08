@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EA796C92CDE22C000AB1842 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA796C82CDE22B900AB1842 /* LoginViewModel.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8EA796C82CDE22B900AB1842 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EA796C72CDE22AF00AB1842 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8EA796C82CDE22B900AB1842 /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D344AE352AF625D4002C9CE0 = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +219,7 @@
 		D344AE402AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXGroup;
 			children = (
+				8EA796C72CDE22AF00AB1842 /* ViewModels */,
 				D344AEC22B20A817002C9CE0 /* CustomCells */,
 				D344AEB52B1E6C44002C9CE0 /* Extensions */,
 				D344AEB22B1E6857002C9CE0 /* API */,
@@ -497,6 +508,7 @@
 				D344AEB72B1E6C7B002C9CE0 /* UIColor+Hex.swift in Sources */,
 				D3D59E182B740892004679CE /* DeleteMealAPI.swift in Sources */,
 				D3BF35D32B85382A00CCC138 /* UpdateUserInfoAPI.swift in Sources */,
+				8EA796C92CDE22C000AB1842 /* LoginViewModel.swift in Sources */,
 				D344AE872B0157B0002C9CE0 /* UsernameValidator.swift in Sources */,
 				D3D5D9132B6C2C6B00DB32FE /* AddMealApi.swift in Sources */,
 				D344AE892B0157CF002C9CE0 /* NameValidator.swift in Sources */,

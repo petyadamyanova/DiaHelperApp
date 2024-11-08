@@ -8,6 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    private var viewModel = LoginViewModel(api: LoginUserAPI())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,10 +19,8 @@ class LoginViewController: UIViewController {
         setupSignUpLabel()
         addSubviews()
         addStackViewConstraints()
+        setupBindings()
     }
-
-    private let emailValidator = EmailValidator()
-    private let passwordValidator = PasswordValidator()
 
     internal var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -83,10 +82,42 @@ class LoginViewController: UIViewController {
        return indicator
     }()
     
+    private func setupBindings() {
+        viewModel.onLoadingStateChange = { [weak self] isLoading in
+            DispatchQueue.main.async {
+                if isLoading {
+                    self?.activityIndicator.startAnimating()
+                } else {
+                    self?.activityIndicator.stopAnimating()
+                }
+            }
+        }
+    }
+    
     private func setupLoginButton() {
-        let loginAction = UIAction { [weak self] action in
+        let loginAction = UIAction { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.viewModel.email = self.emailField.textField.text ?? ""
+            self.viewModel.password = self.passwordField.textField.text ?? ""
             Task {
-                await self?.didTapLoginButton(action)
+                do {
+                    try await self.viewModel.login()
+                    self.navigateToMainScreen()
+                } catch let error as LoginViewModel.Error {
+                    switch error {
+                    case .incorrectEmail:
+                        self.showErrorForField(field: self.emailField, message: error.description)
+                    case .incorrectPassword:
+                        self.showErrorForField(field: self.passwordField, message: error.description)
+                    case .invalidEmailOrPassword:
+                        self.showErrorForField(field: self.emailField, message: error.description)
+                    case .unexpected:
+                        self.showErrorForField(field: self.emailField, message: error.description)
+                    }
+                    
+                }
             }
         }
         loginButton.addAction(loginAction, for: .touchUpInside)
@@ -126,43 +157,6 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    private func didTapLoginButton(_ action: UIAction) async {
-        guard let email = emailField.textField.text,
-              let password = passwordField.textField.text else {
-            return
-        }
-        
-        activityIndicator.startAnimating()
-        
-        do {
-            let newUser = try await LoginUserAPI().loginUser(email: email, password: password)
-            
-            activityIndicator.stopAnimating()
-            // Login successful
-            let mainTabBarViewController = MainTabBarViewController()
-            let navController = UINavigationController(rootViewController: mainTabBarViewController)
-            navController.modalPresentationStyle = .fullScreen
-            navigationController?.setViewControllers([mainTabBarViewController], animated: true)
-            
-        } catch let loginError as LoginError {
-            switch loginError {
-            case .userNotFound:
-                showErrorForField(field: emailField, message: "Incorrect email")
-            case .invalidPassword:
-                showErrorForField(field: passwordField, message: "Incorrect password")
-            case .invalidEmailOrPassword:
-                showErrorForField(field: emailField, message: "Incorrect email or password")
-            }
-            activityIndicator.stopAnimating()
-            return
-        } catch {
-            showErrorForField(field: emailField, message: "Unexpected error. Try again")
-            activityIndicator.stopAnimating()
-            return
-        }
-    }
-
-    
     private func showErrorForField(field: RoundedValidatedTextInput, message: String) {
         field.errorField.isHidden = false
         field.errorField.textColor = UIColor.systemRed
@@ -175,5 +169,13 @@ class LoginViewController: UIViewController {
         field.textField.layer.cornerRadius = 6
         field.textField.layer.borderWidth = 2
     }
+    
+    private func navigateToMainScreen() {
+        let mainTabBarViewController = MainTabBarViewController()
+        let navController = UINavigationController(rootViewController: mainTabBarViewController)
+        navController.modalPresentationStyle = .fullScreen
+        navigationController?.setViewControllers([mainTabBarViewController], animated: true)
+    }
 }
+    
 
