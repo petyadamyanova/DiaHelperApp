@@ -62,8 +62,4 @@ private extension LoginError {
     }
 }
 
-//class LoginUserAPITest: LoginInterface {
-//    func loginUser(email: String, password: String) async throws -> User {
-//        //
-//    }
-//}
+
