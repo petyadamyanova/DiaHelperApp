@@ -6,7 +6,7 @@
 //
 
 
-class LoginUserAPITest: LoginInterface {
+class MockLoginUserAPI: LoginInterface {
     var scenario: Scenario = .success
     
     enum Scenario {
@@ -39,11 +39,11 @@ import XCTest
 final class LoginViewModelTests: XCTestCase {
     
     var viewModel: LoginViewModel!
-    var mockAPI: LoginUserAPITest!
+    var mockAPI: MockLoginUserAPI!
        
     override func setUp() {
        super.setUp()
-       mockAPI = LoginUserAPITest()
+       mockAPI = MockLoginUserAPI()
        viewModel = LoginViewModel(api: mockAPI)
     }
     
@@ -51,34 +51,27 @@ final class LoginViewModelTests: XCTestCase {
         viewModel.email = "test@example.com"
         viewModel.password = "password123"
         mockAPI.scenario = .success
-        let expectation = XCTestExpectation(description: "Login success")
         
         do {
             try await viewModel.login()
-            expectation.fulfill()
         } catch {
             XCTFail("Expected success but got error: \(error)")
         }
         
-        await fulfillment(of: [expectation], timeout: 1.0)
     }
     
     func testLoginFailureInvalidEmailOrPassword() async {
         viewModel.email = "test@example.com"
         viewModel.password = "password123"
         mockAPI.scenario = .invalidEmailOrPassword
-        let expectation = XCTestExpectation(description: "Login failed with invalid email or password error")
         
         do {
             try await viewModel.login()
             XCTFail("Expected failure but login succeeded")
         } catch let error as LoginViewModel.Error {
             XCTAssertEqual(error, .invalidEmailOrPassword)
-            expectation.fulfill()
         } catch {
             XCTFail("Unexpected error: \(error)")
         }
-        
-        await fulfillment(of: [expectation], timeout: 1.0)
     }
 }
