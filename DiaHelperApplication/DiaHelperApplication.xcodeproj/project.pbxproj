@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EBF615E2D708D600075F8F0 /* DiaWatch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8EBF61692D708DB00075F8F0 /* ApiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC72B271D13002C9CE0 /* ApiReading.swift */; };
+		8EBF616A2D708DEA0075F8F0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
+		8EBF616B2D708E100075F8F0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
@@ -74,6 +78,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8EBF615C2D708D600075F8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D344AE362AF625D4002C9CE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EBF61502D708D5E0075F8F0;
+			remoteInfo = "DiaWatch Watch App";
+		};
 		D344AE552AF625D8002C9CE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D344AE362AF625D4002C9CE0 /* Project object */;
@@ -90,7 +101,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8EBF615F2D708D600075F8F0 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8EBF615E2D708D600075F8F0 /* DiaWatch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,7 +187,18 @@
 		D3D86FAC2B7E0DB800765725 /* AddStartTimeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStartTimeAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8EBF61522D708D5E0075F8F0 /* DiaWatch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "DiaWatch Watch App"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		8EBF614E2D708D5E0075F8F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D344AE3B2AF625D4002C9CE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -192,6 +229,7 @@
 				D344AE402AF625D4002C9CE0 /* DiaHelperApplication */,
 				D344AE572AF625D8002C9CE0 /* DiaHelperApplicationTests */,
 				D344AE612AF625D8002C9CE0 /* DiaHelperApplicationUITests */,
+				8EBF61522D708D5E0075F8F0 /* DiaWatch Watch App */,
 				D344AE3F2AF625D4002C9CE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -202,6 +240,7 @@
 				D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */,
 				D344AE542AF625D8002C9CE0 /* DiaHelperApplicationTests.xctest */,
 				D344AE5E2AF625D8002C9CE0 /* DiaHelperApplicationUITests.xctest */,
+				8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +390,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8EBF61502D708D5E0075F8F0 /* DiaWatch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EBF61622D708D600075F8F0 /* Build configuration list for PBXNativeTarget "DiaWatch Watch App" */;
+			buildPhases = (
+				8EBF614D2D708D5E0075F8F0 /* Sources */,
+				8EBF614E2D708D5E0075F8F0 /* Frameworks */,
+				8EBF614F2D708D5E0075F8F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8EBF61522D708D5E0075F8F0 /* DiaWatch Watch App */,
+			);
+			name = "DiaWatch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "DiaWatch Watch App";
+			productReference = 8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D344AE3D2AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D344AE682AF625D8002C9CE0 /* Build configuration list for PBXNativeTarget "DiaHelperApplication" */;
@@ -358,10 +419,12 @@
 				D344AE3A2AF625D4002C9CE0 /* Sources */,
 				D344AE3B2AF625D4002C9CE0 /* Frameworks */,
 				D344AE3C2AF625D4002C9CE0 /* Resources */,
+				8EBF615F2D708D600075F8F0 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8EBF615D2D708D600075F8F0 /* PBXTargetDependency */,
 			);
 			name = DiaHelperApplication;
 			productName = DiaHelperApplication;
@@ -411,9 +474,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					8EBF61502D708D5E0075F8F0 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					D344AE3D2AF625D4002C9CE0 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -443,11 +509,19 @@
 				D344AE3D2AF625D4002C9CE0 /* DiaHelperApplication */,
 				D344AE532AF625D8002C9CE0 /* DiaHelperApplicationTests */,
 				D344AE5D2AF625D8002C9CE0 /* DiaHelperApplicationUITests */,
+				8EBF61502D708D5E0075F8F0 /* DiaWatch Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8EBF614F2D708D5E0075F8F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D344AE3C2AF625D4002C9CE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,6 +547,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8EBF614D2D708D5E0075F8F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EBF616A2D708DEA0075F8F0 /* NightscoutAPI.swift in Sources */,
+				8EBF61692D708DB00075F8F0 /* ApiReading.swift in Sources */,
+				8EBF616B2D708E100075F8F0 /* Double+rounded.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D344AE3A2AF625D4002C9CE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -560,6 +644,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8EBF615D2D708D600075F8F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EBF61502D708D5E0075F8F0 /* DiaWatch Watch App */;
+			targetProxy = 8EBF615C2D708D600075F8F0 /* PBXContainerItemProxy */;
+		};
 		D344AE562AF625D8002C9CE0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D344AE3D2AF625D4002C9CE0 /* DiaHelperApplication */;
@@ -573,6 +662,68 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8EBF61602D708D600075F8F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DiaWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 7GP3UDP4HR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DiaWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = petya.DiaHelperApplication;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = petya.DiaHelperApplication.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		8EBF61612D708D600075F8F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DiaWatch Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 7GP3UDP4HR;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = DiaWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = petya.DiaHelperApplication;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = petya.DiaHelperApplication.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 		D344AE662AF625D8002C9CE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -821,6 +972,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8EBF61622D708D600075F8F0 /* Build configuration list for PBXNativeTarget "DiaWatch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EBF61602D708D600075F8F0 /* Debug */,
+				8EBF61612D708D600075F8F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D344AE392AF625D4002C9CE0 /* Build configuration list for PBXProject "DiaHelperApplication" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

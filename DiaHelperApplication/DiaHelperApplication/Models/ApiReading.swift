@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ApiReading {
+struct ApiReading: Identifiable {
+    let id = UUID()
     let date: String
     let value: Int
 }
