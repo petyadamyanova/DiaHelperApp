@@ -11,6 +11,12 @@
 		8EBF61692D708DB00075F8F0 /* ApiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC72B271D13002C9CE0 /* ApiReading.swift */; };
 		8EBF616A2D708DEA0075F8F0 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
 		8EBF616B2D708E100075F8F0 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
+		8EC83C4E2D76FCD500208513 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC83C4D2D76FCD400208513 /* WidgetKit.framework */; };
+		8EC83C502D76FCD500208513 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC83C4F2D76FCD500208513 /* SwiftUI.framework */; };
+		8EC83C5D2D76FCD700208513 /* DiaWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8EC83C4B2D76FCD400208513 /* DiaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8EC83C6D2D7700D000208513 /* ApiReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEC72B271D13002C9CE0 /* ApiReading.swift */; };
+		8EC83C6E2D7700F300208513 /* NightscoutAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB32B1E687A002C9CE0 /* NightscoutAPI.swift */; };
+		8EC83C6F2D77010C00208513 /* Double+rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AEB82B1E6CF8002C9CE0 /* Double+rounded.swift */; };
 		D344AE422AF625D4002C9CE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE412AF625D4002C9CE0 /* AppDelegate.swift */; };
 		D344AE442AF625D4002C9CE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */; };
 		D344AE462AF625D4002C9CE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D344AE452AF625D4002C9CE0 /* MainTabBarViewController.swift */; };
@@ -85,6 +91,13 @@
 			remoteGlobalIDString = 8EBF61502D708D5E0075F8F0;
 			remoteInfo = "DiaWatch Watch App";
 		};
+		8EC83C5B2D76FCD700208513 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D344AE362AF625D4002C9CE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EC83C4A2D76FCD400208513;
+			remoteInfo = DiaWidgetExtension;
+		};
 		D344AE552AF625D8002C9CE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D344AE362AF625D4002C9CE0 /* Project object */;
@@ -113,10 +126,24 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8EC83C5E2D76FCD700208513 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8EC83C5D2D76FCD700208513 /* DiaWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DiaWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EC83C4B2D76FCD400208513 /* DiaWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DiaWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EC83C4D2D76FCD400208513 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8EC83C4F2D76FCD500208513 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		D344AE3E2AF625D4002C9CE0 /* DiaHelperApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaHelperApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D344AE412AF625D4002C9CE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D344AE432AF625D4002C9CE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,8 +214,27 @@
 		D3D86FAC2B7E0DB800765725 /* AddStartTimeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStartTimeAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8EC83C612D76FCD700208513 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8EC83C4A2D76FCD400208513 /* DiaWidgetExtension */;
+		};
+		8EC83C6C2D76FF5D00208513 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BloodSugarChartView.swift,
+				BloodSugarViewModel.swift,
+			);
+			target = 8EC83C4A2D76FCD400208513 /* DiaWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8EBF61522D708D5E0075F8F0 /* DiaWatch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "DiaWatch Watch App"; sourceTree = "<group>"; };
+		8EBF61522D708D5E0075F8F0 /* DiaWatch Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8EC83C6C2D76FF5D00208513 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "DiaWatch Watch App"; sourceTree = "<group>"; };
+		8EC83C512D76FCD500208513 /* DiaWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (8EC83C612D76FCD700208513 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = DiaWidget; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +242,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EC83C482D76FCD400208513 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EC83C502D76FCD500208513 /* SwiftUI.framework in Frameworks */,
+				8EC83C4E2D76FCD500208513 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +278,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EC83C4C2D76FCD400208513 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8EC83C4D2D76FCD400208513 /* WidgetKit.framework */,
+				8EC83C4F2D76FCD500208513 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D344AE352AF625D4002C9CE0 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +294,8 @@
 				D344AE572AF625D8002C9CE0 /* DiaHelperApplicationTests */,
 				D344AE612AF625D8002C9CE0 /* DiaHelperApplicationUITests */,
 				8EBF61522D708D5E0075F8F0 /* DiaWatch Watch App */,
+				8EC83C512D76FCD500208513 /* DiaWidget */,
+				8EC83C4C2D76FCD400208513 /* Frameworks */,
 				D344AE3F2AF625D4002C9CE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -241,6 +307,7 @@
 				D344AE542AF625D8002C9CE0 /* DiaHelperApplicationTests.xctest */,
 				D344AE5E2AF625D8002C9CE0 /* DiaHelperApplicationUITests.xctest */,
 				8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */,
+				8EC83C4B2D76FCD400208513 /* DiaWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -412,6 +479,28 @@
 			productReference = 8EBF61512D708D5E0075F8F0 /* DiaWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8EC83C4A2D76FCD400208513 /* DiaWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EC83C622D76FCD700208513 /* Build configuration list for PBXNativeTarget "DiaWidgetExtension" */;
+			buildPhases = (
+				8EC83C472D76FCD400208513 /* Sources */,
+				8EC83C482D76FCD400208513 /* Frameworks */,
+				8EC83C492D76FCD400208513 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8EC83C512D76FCD500208513 /* DiaWidget */,
+			);
+			name = DiaWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = DiaWidgetExtension;
+			productReference = 8EC83C4B2D76FCD400208513 /* DiaWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D344AE3D2AF625D4002C9CE0 /* DiaHelperApplication */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D344AE682AF625D8002C9CE0 /* Build configuration list for PBXNativeTarget "DiaHelperApplication" */;
@@ -420,11 +509,13 @@
 				D344AE3B2AF625D4002C9CE0 /* Frameworks */,
 				D344AE3C2AF625D4002C9CE0 /* Resources */,
 				8EBF615F2D708D600075F8F0 /* Embed Watch Content */,
+				8EC83C5E2D76FCD700208513 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				8EBF615D2D708D600075F8F0 /* PBXTargetDependency */,
+				8EC83C5C2D76FCD700208513 /* PBXTargetDependency */,
 			);
 			name = DiaHelperApplication;
 			productName = DiaHelperApplication;
@@ -480,6 +571,9 @@
 					8EBF61502D708D5E0075F8F0 = {
 						CreatedOnToolsVersion = 16.0;
 					};
+					8EC83C4A2D76FCD400208513 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					D344AE3D2AF625D4002C9CE0 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -510,12 +604,20 @@
 				D344AE532AF625D8002C9CE0 /* DiaHelperApplicationTests */,
 				D344AE5D2AF625D8002C9CE0 /* DiaHelperApplicationUITests */,
 				8EBF61502D708D5E0075F8F0 /* DiaWatch Watch App */,
+				8EC83C4A2D76FCD400208513 /* DiaWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8EBF614F2D708D5E0075F8F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EC83C492D76FCD400208513 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -554,6 +656,16 @@
 				8EBF616A2D708DEA0075F8F0 /* NightscoutAPI.swift in Sources */,
 				8EBF61692D708DB00075F8F0 /* ApiReading.swift in Sources */,
 				8EBF616B2D708E100075F8F0 /* Double+rounded.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EC83C472D76FCD400208513 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EC83C6D2D7700D000208513 /* ApiReading.swift in Sources */,
+				8EC83C6E2D7700F300208513 /* NightscoutAPI.swift in Sources */,
+				8EC83C6F2D77010C00208513 /* Double+rounded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,6 +761,11 @@
 			target = 8EBF61502D708D5E0075F8F0 /* DiaWatch Watch App */;
 			targetProxy = 8EBF615C2D708D600075F8F0 /* PBXContainerItemProxy */;
 		};
+		8EC83C5C2D76FCD700208513 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EC83C4A2D76FCD400208513 /* DiaWidgetExtension */;
+			targetProxy = 8EC83C5B2D76FCD700208513 /* PBXContainerItemProxy */;
+		};
 		D344AE562AF625D8002C9CE0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D344AE3D2AF625D4002C9CE0 /* DiaHelperApplication */;
@@ -721,6 +838,62 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		8EC83C5F2D76FCD700208513 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7GP3UDP4HR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DiaWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DiaWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = petya.DiaHelperApplication.DiaWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EC83C602D76FCD700208513 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7GP3UDP4HR;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DiaWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DiaWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = petya.DiaHelperApplication.DiaWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -977,6 +1150,15 @@
 			buildConfigurations = (
 				8EBF61602D708D600075F8F0 /* Debug */,
 				8EBF61612D708D600075F8F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EC83C622D76FCD700208513 /* Build configuration list for PBXNativeTarget "DiaWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EC83C5F2D76FCD700208513 /* Debug */,
+				8EC83C602D76FCD700208513 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
