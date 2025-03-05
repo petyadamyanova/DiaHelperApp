@@ -17,7 +17,7 @@ struct BloodSugarChartWidget: Widget {
         }
         .configurationDisplayName("Blood Sugar Chart")
         .description("Shows a graph of your blood sugar levels.")
-        .supportedFamilies([.systemMedium, .systemLarge]) 
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 

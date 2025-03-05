@@ -8,7 +8,6 @@
 import SwiftUI
 import WidgetKit
 
-@main
 struct BloodSugarWidget: Widget {
     let kind: String = "BloodSugarWidget"
     
@@ -18,7 +17,7 @@ struct BloodSugarWidget: Widget {
         }
         .configurationDisplayName("Blood Sugar Widget")
         .description("Shows your latest blood sugar reading.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 

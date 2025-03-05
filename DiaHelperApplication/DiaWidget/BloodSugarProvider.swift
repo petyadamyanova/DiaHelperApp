@@ -6,12 +6,14 @@
 //
 
 import WidgetKit
+import SwiftUI
 
-struct BloodSugarProvider: @preconcurrency TimelineProvider {
-    var nightscout: String
+struct BloodSugarProvider: TimelineProvider {
+    private var viewModel: BloodSugarViewModel
     
+    @MainActor
     init(nightscout: String) {
-        self.nightscout = nightscout
+        viewModel = BloodSugarViewModel(nightscout: nightscout)
     }
     
     func placeholder(in context: Context) -> BloodSugarEntry {
@@ -22,17 +24,10 @@ struct BloodSugarProvider: @preconcurrency TimelineProvider {
         let entry = BloodSugarEntry(date: Date(), bloodSugar: "5.6", readings: [])
         completion(entry)
     }
-
-    @MainActor func getTimeline(in context: Context, completion: @escaping (Timeline<BloodSugarEntry>) -> Void) {
-        let viewModel = BloodSugarViewModel(nightscout: nightscout)
-        
-        Task {
-            try? await Task.sleep(nanoseconds: 2_000_000_000)
-            
-            let entry = BloodSugarEntry(date: Date(), bloodSugar: viewModel.bloodSugar, readings: viewModel.readings)
-            let timeline = Timeline(entries: [entry], policy: .atEnd)
-            
-            completion(timeline)
-        }
+    
+    func getTimeline(in context: Context, completion: @escaping (Timeline<BloodSugarEntry>) -> Void) {
+        let entry = BloodSugarEntry(date: Date(), bloodSugar: viewModel.bloodSugar, readings: viewModel.readings)
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
+        completion(timeline)
     }
 }
